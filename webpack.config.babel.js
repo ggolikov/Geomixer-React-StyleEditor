@@ -4,9 +4,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import paths from './config';
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: __dirname + '/index.html',
+    template: 'index.html',
     name: 'index.html',
-    inject: 'head'
+    inject: 'body'
 });
 
 export default {

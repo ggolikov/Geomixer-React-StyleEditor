@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --hot --history-api-fallback",
+    "start:dev": "webpack-dev-server --inline --hot --content-base public --history-api-fallback",
     "start:prod": "webpack && node server.js",
     "server": "nodemon server.js --watch app/routes --watch app/server --exec babel-node --presets es2015,stage-2",
     "build": "webpack -w",
@@ -24,7 +24,8 @@
     "leaflet-geomixer": "git+https://github.com/ScanEx/Leaflet-GeoMixer.git",
     "leaflet-icon-sidebar-control": "git+https://github.com/ScanEx/IconSidebarControl.git",
     "leaflet.markercluster": "^1.0.3",
-    "react-bootstrap-select": "^0.14.0"
+    "react-bootstrap-select": "^0.14.0",
+    "react-sortable-tree": "^0.1.19"
   },
   "devDependencies": {
     "babel": "^6.23.0",
