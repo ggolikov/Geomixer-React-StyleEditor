@@ -8,57 +8,20 @@
         <script type="text/javascript" src="./lib/control.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" charset="utf-8">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
-        <style>
-            html, body, #root {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            .icon-foo::before {
-                content: 'F'
-            }
-            .icon-bar::before {
-                content: 'B'
-            }
-            .icon-baz::before {
-                content: 'Z'
-            }
-        </style>
-    <link rel="stylesheet" href="main.css" charset="utf-8">
+        <link rel="stylesheet" href="main.css" charset="utf-8">
+    </head>
     <body>
-      <!-- <script type="text/javascript">
-
-      const map = L.map(document.body).setView([54.04, 26.27], 5)
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-      const sidebarControl = new nsGmx.IconSidebarControl({
-         position: 'topleft'
-     });
-
-     map.addControl(sidebarControl);
-
-      sidebarControl.on('opened', ({ id }) => console.log('opened', id))
-      sidebarControl.on('closed', () => console.log('closed'));
-
-      const paneFooEl = sidebarControl.setPane('id_01',  {
-          createTab: fontIcon
-      });
-
-      sidebarControl.open('id_01');
-        function fontIcon(iconClass, state) {
-           const iconEl = L.DomUtil.create('div', iconClass)
-           if (state === 'active') {
-               L.DomUtil.addClass(iconEl, 'fa-bus')
-           }
-           if (state === 'disabled') {
-               L.DomUtil.addClass(iconEl, 'fa-book')
-           }
-           return iconEl
-       }
-
-    //    L.DomUtil.create('div', 'content', paneFooEl).innerHTML = JSON.stringify(json.Result.children);
-       </script> -->
-       <div id="root">
-       </div>
+        <div class="wrap">
+            <div class="left-panel">
+                <div class="header">
+                    <h2>Leaflet.River demo</h2>
+                </div>
+                <div class="content">
+                </div>
+            </div>
+            <div id="map">
+            </div>
+        </div>
+          <script src="./index_bundle.js"></script>
     </body>
 </html>

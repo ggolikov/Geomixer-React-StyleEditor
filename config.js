@@ -5,8 +5,8 @@ const root = __dirname;
 const config = {
 	root,
 	node_modules: path.join(root, 'node_modules'),
-	src: path.join(root, 'app'),
-	public: path.join(root, 'public')
+	src: path.join(root, 'src'),
+	public: path.join(root, 'demo/js')
 }
 
 export default config;

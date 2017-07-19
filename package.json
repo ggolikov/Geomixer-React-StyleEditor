@@ -12,12 +12,9 @@
     ]
   },
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --hot --content-base public --history-api-fallback",
-    "start:prod": "webpack && node server.js",
-    "server": "nodemon server.js --watch app/routes --watch app/server --exec babel-node --presets es2015,stage-2",
+    "start": "webpack-dev-server --inline --hot --content-base demo --history-api-fallback",
     "build": "webpack -w",
-    "deploy": "gh-pages -d public"
+    "deploy": "gh-pages -d demo"
   },
   "dependencies": {
     "leaflet": "0.7.7",

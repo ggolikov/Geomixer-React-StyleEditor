@@ -25,13 +25,10 @@ export default {
         ]
     },
     output: {
-        filename: 'index_bundle.js',
-        path: __dirname
+        filename: 'bundle.js',
+        path: path.join(__dirname, paths.public)
     },
     plugins: [
-        HTMLWebpackPluginConfig//,
-        // new CopyWebpackPlugin([
-        //     { from: path.join(paths.src, '/styles/images'), to: path.join(paths.public, 'images') }
-        // ])
+        HTMLWebpackPluginConfig
     ]
 }

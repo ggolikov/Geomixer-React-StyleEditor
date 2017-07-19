@@ -42,5 +42,5 @@ function iterator(node) {
 
 render(
     <Tree layers={titles}/>,
-    document.getElementById('root')
+    document.querySelector('.content')
 );
