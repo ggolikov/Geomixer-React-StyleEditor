@@ -4,14 +4,14 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import paths from './config';
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: 'index.html',
+    template: path.join(paths.src, 'html/index.html'),
     name: 'index.html',
     inject: 'body'
 });
 
 export default {
     entry: [
-        path.join(__dirname, '/index.js')
+        __dirname + '/index.js'
     ],
     devtool: "cheap-inline-module-source-map",
     devServer: {
@@ -25,10 +25,13 @@ export default {
         ]
     },
     output: {
-        filename: 'bundle.js',
-        path: path.join(__dirname, paths.public)
+        path: paths.public,
+        filename: 'bundle.js'
     },
     plugins: [
-        HTMLWebpackPluginConfig
+        HTMLWebpackPluginConfig,
+        new CopyWebpackPlugin([
+            { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') }
+        ])
     ]
 }

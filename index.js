@@ -1,46 +1,47 @@
 import 'leaflet';
+import 'leaflet-geomixer';
 import React from 'react';
 import { render } from 'react-dom';
-import Tree from './components/Tree';
+import Tree from './src/js/components/Tree';
+
+var m = document.querySelector('#map');
+m.style.height = document.documentElement.clientHeight + 'px';
+var lp = document.querySelector('.left-panel');
+lp.style.height = document.documentElement.clientHeight + 'px';
+
+var osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    }),
+    point = L.latLng([55.819723, 37.611661]),
+    map = new L.Map('map', {layers: [osm], center: point, zoom: 17, maxZoom: 22}),
+    root = document.getElementById('content');
 
 
-// require('./lib/IconSidebarControl/dist/iconSidebarControl.css');
-// window.nsGmx = window.nsGmx || {};
-// window.nsGmx.IconSidebarControl = require('./lib/IconSidebarControl/dist/iconSidebarControl.js');
+var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
 
-import { json } from './data/mapdata.js';
-console.log(json);
+def.then(function(res){
+    const titles = res.rawTree.children.map(function (l) {
+        return ({title: l.content.properties.title});
+    });
 
+    render(
+        <Tree layers={titles}/>,
+        document.querySelector('.content')
+    );
 
-const titles = json.children.map(function (l) {
-    return ({title: l.content.properties.title});
-});
+})
 
-json.children.forEach(function (node) {
-    return visitTree(node, iterator);
-});
+// tree traverse
 
-const titles2 = json.children.forEach(function (node) {
-    return visitTree(node, iterator);
-});
-
-// console.log(titles);
-console.log(titles2);
-
-function visitTree (o, fn) {
-    if (o.type === 'group') {
-        o.content.children.forEach((n) => visitTree(n, fn))
-    } else {
-        fn(o);
-    }
-}
-
-function iterator(node) {
-    console.log({title: node.content.properties.title, type: node.type});
-    // return {title: node.content.properties.title};
-}
-
-render(
-    <Tree layers={titles}/>,
-    document.querySelector('.content')
-);
+// const titles2 = res.rawTree.children.forEach(function (node) {
+//     return visitTree(node, visitTree);
+// });
+//
+// function visitTree (o, fn) {
+//     if (o.type === 'group') {
+//         o.content.children.forEach((n) => visitTree(n, fn))
+//     } else {
+//         fn(o);
+//     }
+// }
