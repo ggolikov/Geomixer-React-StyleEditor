@@ -17,10 +17,15 @@
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {
+    "@blueprintjs/core": "^1.24.0",
+    "antd": "^2.12.3",
+    "antd-init": "^2.0.4",
+    "jquery": "^3.2.1",
     "leaflet": "0.7.7",
     "leaflet-geomixer": "git+https://github.com/ScanEx/Leaflet-GeoMixer.git",
     "leaflet-icon-sidebar-control": "git+https://github.com/ScanEx/IconSidebarControl.git",
     "leaflet.markercluster": "^1.0.3",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-bootstrap-select": "^0.14.0",
     "react-sortable-tree": "^0.1.19"
   },

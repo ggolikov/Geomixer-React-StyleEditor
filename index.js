@@ -1,8 +1,7 @@
 import 'leaflet';
 import 'leaflet-geomixer';
-import React from 'react';
-import { render } from 'react-dom';
-import Tree from './src/js/components/Tree';
+
+import { dataHandler } from './src/js/dataHandler.js';
 
 var m = document.querySelector('#map');
 m.style.height = document.documentElement.clientHeight + 'px';
@@ -20,17 +19,7 @@ var osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
 
 var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
 
-def.then(function(res){
-    const titles = res.rawTree.children.map(function (l) {
-        return ({title: l.content.properties.title});
-    });
-
-    render(
-        <Tree layers={titles}/>,
-        document.querySelector('.content')
-    );
-
-})
+def.then(dataHandler);
 
 // tree traverse
 
