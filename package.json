@@ -25,9 +25,11 @@
     "leaflet-geomixer": "git+https://github.com/ScanEx/Leaflet-GeoMixer.git",
     "leaflet-icon-sidebar-control": "git+https://github.com/ScanEx/IconSidebarControl.git",
     "leaflet.markercluster": "^1.0.3",
+    "rc-tree": "^1.7.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-bootstrap-select": "^0.14.0",
-    "react-sortable-tree": "^0.1.19"
+    "react-sortable-tree": "^0.1.19",
+    "react-virtualized": "^9.9.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
