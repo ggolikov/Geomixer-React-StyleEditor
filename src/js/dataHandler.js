@@ -10,7 +10,7 @@ const nsGmx = window.nsGmx || {};
  * res {Object} instanceof gmxMap
  */
 const dataHandler = function (res) {
-    let modifiedTree = cloneRawTree(res.rawTree, parseRawTree);
+    let modifiedTree = cloneRawTree(res, parseRawTree);
 
     render(
         <GmxTree layers={modifiedTree.children}/>,

@@ -10,14 +10,12 @@ const parseRawTree = function (node) {
             key: props.name,
             title: props.title,
             source: props.dataSource,
-            isLeaf: false,
             children: styles.map((st, i) => {
                 return {
                     type: 'filter',
                     key: props.name + i,
                     title: st.Filter || 'Стиль ' + i,
-                    source: props.dataSource,
-                    isLeaf: true
+                    source: props.dataSource
                 }
             })
         }
@@ -32,7 +30,6 @@ const parseRawTree = function (node) {
             key: props.GroupID,
             title: props.title,
             source: props.dataSource,
-            isLeaf: false,
             children: children
         }
     }

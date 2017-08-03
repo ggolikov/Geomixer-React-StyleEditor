@@ -17,8 +17,13 @@ var osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
     root = document.getElementById('content');
 
 
-var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
-
+var def = L.gmx.gmxMapManager.loadMapProperties(
+    {
+    	hostName: 'maps.kosmosnimki.ru',
+    	mapName: '4ZICS',
+    	skipTiles: 'all'
+    });
+// var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
 def.then(dataHandler);
 
 // tree traverse
