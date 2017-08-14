@@ -1,19 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { GmxTree } from './components/GmxTree';
-import { cloneRawTree } from './cloneRawTree.js';
-import { parseRawTree } from './rawTreeParser.js';
+import { StylesList } from './components/List';
 
 const nsGmx = window.nsGmx || {};
 
 /**
  * res {Object} instanceof gmxMap
  */
-const dataHandler = function (res) {
-    let modifiedTree = cloneRawTree(res, parseRawTree);
+const dataHandler = function (gmxMap) {
+
+    const layer = gmxMap.layersByID['063834BB2D8B40079E26C9A83BFAB034'],
+        layerStyles = layer.getStyles();
 
     render(
-        <GmxTree layers={modifiedTree.children}/>,
+        <StylesList styles={layerStyles} />,
         document.querySelector('.content')
     );
 

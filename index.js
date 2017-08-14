@@ -17,25 +17,15 @@ var osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
     root = document.getElementById('content');
 
 
-var def = L.gmx.gmxMapManager.loadMapProperties(
-    {
-    	hostName: 'maps.kosmosnimki.ru',
-    	mapName: '4ZICS',
-    	skipTiles: 'all'
-    });
-// var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
-def.then(dataHandler);
-
-// tree traverse
-
-// const titles2 = res.rawTree.children.forEach(function (node) {
-//     return visitTree(node, visitTree);
-// });
-//
-// function visitTree (o, fn) {
-//     if (o.type === 'group') {
-//         o.content.children.forEach((n) => visitTree(n, fn))
-//     } else {
-//         fn(o);
-//     }
-// }
+// var def = L.gmx.gmxMapManager.loadMapProperties(
+//     {
+//     	hostName: 'maps.kosmosnimki.ru',
+//     	mapName: '4ZICS',
+//     	skipTiles: 'all'
+//     });
+var def = L.gmx.loadMap('4ZICS', {leafletMap: map});
+def.then((gmxMap) => {
+    const layer = gmxMap.layersByID['063834BB2D8B40079E26C9A83BFAB034'];
+    map.fitBounds(layer.getBounds());
+    dataHandler(gmxMap);
+});
