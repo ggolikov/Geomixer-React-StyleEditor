@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
+import { Input } from './Input';
 
 class StylesList extends Component {
     constructor(props) {
@@ -8,11 +9,13 @@ class StylesList extends Component {
     }
 
     render() {
+        const layer = this.state.layer;
         const styles = this.state.styles;
         console.log(styles);
-        const stylesItems = styles.map((style) =>
+        const stylesItems = styles.map((style, index) =>
             <li key={style.Filter}>
                 {style.Filter}
+                <Input layer={layer} style={style} index={index}/>
             </li>
         );
 
