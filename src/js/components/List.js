@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
 import { Input } from './Input';
+import { FilterEditor } from './FilterEditor';
 
 class StylesList extends Component {
     constructor(props) {
@@ -12,15 +13,23 @@ class StylesList extends Component {
         const layer = this.state.layer;
         const styles = this.state.styles;
         console.log(styles);
+        // <FilterEditor layer={layer} style={style} index={index}/>
         const stylesItems = styles.map((style, index) =>
-            <li key={style.Filter}>
-                {style.Filter}
-                <Input layer={layer} style={style} index={index}/>
-            </li>
+            <div key={style.Filter}>
+                <div>
+                    {style.Filter}
+                </div>
+                <div>
+                    <Input layer={layer} style={style} index={index}/>
+                </div>
+                <div>
+                    <FilterEditor layer={layer} style={style} index={index}/>
+                </div>
+            </div>
         );
 
         return (
-            <ul>{stylesItems}</ul>
+            <div>{stylesItems}</div>
         );
     }
 }
