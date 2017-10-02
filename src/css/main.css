@@ -1,3 +1,5 @@
+@import "~@blueprintjs/core";
+
 html, body {
     width: 100%;
     margin: 0px;
@@ -99,3 +101,27 @@ h2 {
 .iconSidebarControl_opened {
     width: 415px !important;
 }*/
+
+.iconSidebarControl {
+    background-color: #4c5567 !important;
+    /* background-color: #FFF !important; */
+    height: 100%;
+}
+
+.iconSidebarControl-pane {
+    padding: 0px !important;
+}
+
+.iconSidebarControl_opened {
+    width: 400px !important;
+}
+
+.iconSidebarControl {
+    margin: 0;
+}
+
+.leaflet-left .iconSidebarControl {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import paths from './config';
+
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(paths.src, 'index.html'),
     name: 'index.html',

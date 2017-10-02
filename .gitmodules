@@ -1,0 +1,3 @@
+[submodule "src/js/IconSidebarControl"]
+	path = src/js/IconSidebarControl
+	url = git@github.com:ScanEx/IconSidebarControl.git

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { StylesList } from './components/List';
+import { StylesEditor } from './components/StylesEditor';
 
 const nsGmx = window.nsGmx || {};
 
@@ -14,7 +14,7 @@ const dataHandler = function (gmxMap) {
 
     window.layer = layer;
     render(
-        <StylesList layer={layer} styles={layerStyles} />,
+        <StylesEditor layer={layer} styles={layerStyles} />,
         document.querySelector('.content')
     );
 
