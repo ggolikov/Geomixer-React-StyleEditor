@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Header } from './Header';
 import { Input } from './Input';
 import { FilterEditor } from './FilterEditor';
 import { Tab2, Tabs2 } from "@blueprintjs/core";
@@ -29,7 +30,10 @@ class StyleFilter extends Component {
         );
 
         return (
-            <div>{stylesItems}</div>
+            <div>
+                <Header txt={window._gtxt('Уровень зума')} />
+                {stylesItems}
+            </div>
         );
     }
 }

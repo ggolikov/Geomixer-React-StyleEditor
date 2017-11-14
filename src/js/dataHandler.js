@@ -9,7 +9,7 @@ const nsGmx = window.nsGmx || {};
  */
 const dataHandler = function (gmxMap) {
 
-    const layer = gmxMap.layersByID['063834BB2D8B40079E26C9A83BFAB034'],
+    const layer = gmxMap.layersByID['05D50D053F8A495BB3F59A9AEFE976B8'],
         layerStyles = layer.getStyles();
 
     window.layer = layer;
