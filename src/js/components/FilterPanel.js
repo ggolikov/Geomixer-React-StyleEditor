@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
 import { Input } from './Input';
+import { ColorStylerBlock } from './ColorStylerBlock';
 import { FilterEditor } from './FilterEditor';
 import { Tab2, Tabs2 } from "@blueprintjs/core";
 
-class StyleFilter extends Component {
+class FilterPanel extends Component {
     constructor(props) {
         super(props);
         this.state = props;
@@ -33,8 +34,9 @@ class StyleFilter extends Component {
             <div>
                 <Header txt={window._gtxt('Уровень зума')} />
                 {stylesItems}
+                <ColorStylerBlock txt={window._gtxt('Уровень зума')} />
             </div>
         );
     }
 }
-export { StyleFilter };
+export { FilterPanel };
