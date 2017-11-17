@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import $ from 'jquery';
 
 export const StyleHOC = (InnerComponent) => class extends Component {
@@ -8,8 +9,8 @@ export const StyleHOC = (InnerComponent) => class extends Component {
     }
 
     onChange(e) {
-        let param = this.state.param,
-            nestedParam = this.state.nestedParam,
+        let param = this.props.param,
+            nestedParam = this.props.nestedParam,
             newSyle;
 
         if (nestedParam) {
@@ -28,9 +29,10 @@ export const StyleHOC = (InnerComponent) => class extends Component {
             };
         }
 
-        const extendedStyle = $.extend(true, {}, this.state.style, newSyle);
+        // const extendedStyle = _.extend(this.props.style, newSyle);
+        const extendedStyle = $.extend(true, this.props.style, newSyle);
 
-        this.state.layer.setStyle(extendedStyle, this.state.index);
+        this.state.layer.setStyle(extendedStyle, this.props.index);
     }
 
     render() {
