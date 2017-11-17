@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
-import { Input } from './Input';
-import { FilterPanel } from './FilterPanel';
-import { StylePanel } from './StylePanel';
-import { PopupPanel } from './PopupPanel';
+import { Input } from './common/Input';
+import { FilterPanel } from './filter/FilterPanel';
+import { StylePanel } from './style/StylePanel';
+import { PopupPanel } from './popup/PopupPanel';
 import { Tab2, Tabs2 } from "@blueprintjs/core";
 
 class StylesEditor extends Component {

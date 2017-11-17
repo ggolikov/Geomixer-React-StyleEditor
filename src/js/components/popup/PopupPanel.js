@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Header } from './Header';
-import { Input } from './Input';
+import { Header } from '../common/Header';
+import { Input } from '../common/Input';
 
 class PopupPanel extends Component {
     constructor(props) {

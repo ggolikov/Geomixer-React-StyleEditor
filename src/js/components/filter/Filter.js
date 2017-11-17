@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-class FilterEditor extends Component {
+class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = props;
@@ -23,4 +23,4 @@ class FilterEditor extends Component {
         );
     }
 }
-export { FilterEditor };
+export { Filter };
