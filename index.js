@@ -6,7 +6,7 @@ import { dataHandler } from './src/js/dataHandler.js';
 import { createTab } from './src/js/utils/tabFactory.js';
 
 // import './src/js/IconSidebarControl/dist/iconSidebarControl.css';
-
+window.serverBase = 'http://maps.kosmosnimki.ru/';
 var m = document.querySelector('#map');
 m.style.height = document.documentElement.clientHeight + 'px';
 var lp = document.querySelector('.left-panel');

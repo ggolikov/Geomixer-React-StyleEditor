@@ -36,7 +36,6 @@ export const StyleHOC = (InnerComponent) => class extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <InnerComponent
                 {...this.props}
