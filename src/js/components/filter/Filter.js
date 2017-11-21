@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { loadAttributes } from '../../utils/attrsLoader';
 import $ from 'jquery';
 
 class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = props;
+        // this.state.attrs = {'Улица': []};
         this.getInitialState = this.getInitialState.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.getAttributes = this.getAttributes.bind(this);
-
         this.getInitialState();
     }
 
@@ -21,19 +21,8 @@ class Filter extends Component {
     }
 
     componentWillMount() {
-        var attrs = this.getAttributes();
-        console.log(attrs);
-    }
-
-    getAttributes() {
-        let layerID = this.state.layer.getGmxProperties && this.state.layer.getGmxProperties().LayerID;
-        let attrs = fetch(window.serverBase + "VectorLayer/GetVectorAttrValues.ashx?WrapStyle=func&LayerName=" + layerID, {mode: 'cors', credentials: 'include'})
-            .then(res => res.text())
-            .then(function(str){
-                let attrs = JSON.parse(str.substring(1, str.length-1));
-                console.log(attrs);
-                this.setState({attrs : attrs});
-            }.bind(this));
+        loadAttributes()
+            .then(attrs => this.setState({attrs}));
     }
 
     onChange(e) {
