@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { loadAttributes } from '../../utils/attrsLoader';
+import { * } from "@blueprintjs/core";
 import $ from 'jquery';
 
 class Filter extends Component {
@@ -21,11 +22,15 @@ class Filter extends Component {
     }
 
     componentWillMount() {
-        loadAttributes()
-            .then(attrs => this.setState({attrs}));
+        let gmxProps = this.props.layer.getGmxProperties && this.props.layer.getGmxProperties(),
+            layerID = gmxProps.LayerID;
+
+        loadAttributes(layerID)
+            .then(data => this.setState({attrs: data.Result}));
     }
 
     onChange(e) {
+        console.log(this.state.attrs);
         const newSyle = {
             Filter: e.value
         };
@@ -35,12 +40,13 @@ class Filter extends Component {
     }
 
     render() {
-        console.log(this.state.attrs);
-        const streets = this.state.attrs['Улица'].map(function(street) {
+
+        this.state.attrs && console.log(this.state.attrs);
+        const streets = this.state.attrs ? this.state.attrs['Улица'].map(function(street) {
             return (
                 <li key={street}>{street}</li>
             );
-        });
+        }) : <li></li>
 
         return (
             <div>
@@ -48,6 +54,11 @@ class Filter extends Component {
                 <ul>
                     {streets}
                 </ul>
+                <Table numRows={5}>
+                    <Column />
+                    <Column />
+                    <Column />
+                </Table>
             </div>
         );
     }
