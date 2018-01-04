@@ -1,8 +1,8 @@
 import React from 'react';
 import ColorPicker from 'rc-color-picker';
 
-export const ColorStylerBlock = (props) => (
-    <div className="dfdfdf">
+export const SelectorBlock = (props) => (
+    <div className="selector-block">
         {props.txt}
         <input type="number" onChange={props.onChange} />
         <ColorPicker

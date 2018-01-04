@@ -1,3 +1,7 @@
 input[type=text] {
     width: 80px;
 }
+
+.slider-block {
+    width: 80px;
+}

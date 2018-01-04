@@ -3,8 +3,6 @@ export const loadAttributes = (layerID) => {
         .then(res => res.text())
         .then(function(str){
             let attrs = JSON.parse(str.substring(1, str.length-1));
-            console.log(attrs);
-
             return Promise.resolve(attrs);
         });
 }
