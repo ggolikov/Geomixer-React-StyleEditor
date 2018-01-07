@@ -32,7 +32,8 @@ export default {
     plugins: [
         HTMLWebpackPluginConfig,
         new CopyWebpackPlugin([
-            { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') }
+            { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') },
+            { from: path.join(paths.src, 'css/gmx.css'), to: path.join(paths.public, 'css/gmx.css') }
         ])
     ]
 }

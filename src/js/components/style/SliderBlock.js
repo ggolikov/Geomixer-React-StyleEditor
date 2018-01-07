@@ -45,17 +45,17 @@ class SliderBlock extends Component {
 
     render() {
         return (
-            <div className="slider-block">
-                {this.props.txt}
+            <div className="slider-block gmx-style-editor-block-small">
+                <span className="gmx-style-editor-label-small gmx-style-editor-left">{this.props.txt}</span>
                 <Slider
                     className={'style-slider'}
                     min={-50}
                     max={50}
-                    value={0}
+                    value={this.state.inputValue}
                     renderLabel={false}
                     onChange={this.handleSlideChange}
                 / >
-                <input value={this.state.inputValue} onChange={this.handleSlideChange}/>
+                <input className="gmx-style-editor-input-small gmx-style-editor-right" value={this.state.inputValue} onChange={this.setSliderValue}/>
             </div>
         );
     }

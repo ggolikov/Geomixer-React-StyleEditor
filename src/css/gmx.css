@@ -1,7 +1,25 @@
-input[type=text] {
-    width: 80px;
+.gmx-style-editor-block-small {
+    height: 30px;
 }
 
-.slider-block {
+.gmx-style-editor-right {
+    float: right;
+    margin-right: 5px;
+}
+
+.gmx-style-editor-left {
+    float: left;
+    margin-left: 5px;
+}
+
+.style-slider {
+    vertical-align: middle;
     width: 80px;
+    display: inline-block;
+}
+
+.gmx-style-editor-input-small {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    width: 30px;
 }

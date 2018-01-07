@@ -31,6 +31,10 @@ h2 {
     text-align: center;
 }
 
+.header {
+    margin: 10px 0 10px 0;
+}
+
 .content {
     width: 100%;
 }

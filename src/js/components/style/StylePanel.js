@@ -13,7 +13,7 @@ class StylePanel extends Component {
 
     render() {
         let layer = this.props.layer,
-            styles = this.props.styles
+            styles = this.props.styles;
 
         let ColorPickerHOC = StyleHOC(ColorPickerBlock);
         let SliderHOC = StyleHOC(SliderBlock);
