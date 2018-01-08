@@ -1,5 +1,6 @@
 .gmx-style-editor-block-small {
     height: 30px;
+    text-align: center;
 }
 
 .gmx-style-editor-right {
@@ -9,7 +10,21 @@
 
 .gmx-style-editor-left {
     float: left;
-    margin-left: 5px;
+    margin: 0 10px 0 5px;
+}
+
+.gmx-style-editor-header {
+    font-weight: bold;
+    margin: 5px 0 5px 3px;
+}
+
+.gmx-style-editor-zoom-settings {
+    display: inline;
+}
+
+.gmx-style-editor-header-small {
+    display: inline-block;
+    width: 120px;
 }
 
 .style-slider {
@@ -22,4 +37,8 @@
     display: inline-block;
     margin: 0 5px 0 0;
     width: 30px;
+}
+
+.gmx-style-editor-input-error {
+    background-color: red;
 }

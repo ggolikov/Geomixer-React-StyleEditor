@@ -5,14 +5,10 @@ class ShowPopupSettings extends Component {
     constructor(props) {
         super(props);
         this.state = props;
-        this.handleChange = this.handleChange.bind(this);
-        // this.setSliderValue = this.setSliderValue.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleChange(e) {
-        console.log(e);
-        console.log(e.target);
-
+    handleClick(e) {
         let style = this.state.style,
             newSyle = {};
 
@@ -49,8 +45,8 @@ class ShowPopupSettings extends Component {
 
         return (
             <div>
-                <label><input type="radio" name="contact" value="DisableBalloonOnClick" defaultChecked={!style.DisableBalloonOnClick} onClick={this.handleChange}/> {window._gtxt('при клике')} </label> <br />
-                <label><input type="radio" name="contact" value="DisableBalloonOnMouseMove" defaultChecked={!style.DisableBalloonOnMouseMove} onClick={this.handleChange}/> {window._gtxt('при наведении')} </label>
+                <label><input type="radio" name="contact" value="DisableBalloonOnClick" defaultChecked={!style.DisableBalloonOnClick} onClick={this.handleClick}/> {window._gtxt('при клике')} </label> <br />
+                <label><input type="radio" name="contact" value="DisableBalloonOnMouseMove" defaultChecked={!style.DisableBalloonOnMouseMove} onClick={this.handleClick}/> {window._gtxt('при наведении')} </label>
             </div>
         );
     }

@@ -8,14 +8,14 @@
 
 ##### 1. Верхний уровень - стилевые фильтры:
 
-Номер | Наименование | Тип | Описание | Значение по умолчанию
+Номер | Наименование | Тип | Описание | Значение по умолчанию | Component
 ----- | ------------ | --- | -------- | ---------------------
-1 | `MinZoom` | `Uint` | мин. zoom | `1`
-2 | `MaxZoom` | `Uint` | макс.zoom | `21`
-3 | `Filter` | `SQL string`  |  SQL выражение стиля | ''
-4 | `Balloon` | `String` |  Шаблон балуна (поля атрибутов объектов заключаются в квадратные скобки) | ''
-5 | `DisableBalloonOnMouseMove` | `Boolean`  |  отключение балунов по наведению | `true`  
-6 | `DisableBalloonOnClick` | `Boolean`  |  отключение балунов при `click`| `false`  
+1 | `MinZoom` | `Uint` | мин. zoom | `1` | ZoomSettings
+2 | `MaxZoom` | `Uint` | макс.zoom | `21` | ZoomSettings
+3 | `Filter` | `SQL string`  |  SQL выражение стиля | '' |
+4 | `Balloon` | `String` |  Шаблон балуна (поля атрибутов объектов заключаются в квадратные скобки) | '' |
+5 | `DisableBalloonOnMouseMove` | `Boolean`  |  отключение балунов по наведению | `true` | ShowPopupSettings  
+6 | `DisableBalloonOnClick` | `Boolean`  |  отключение балунов при `click`| `false` | ShowPopupSettings   
 7 | `RenderStyle` | `Style object`   |  стиль (тип данных `Style`) |  
 8 | `HoverStyle` | `Style object`    |  hover стиль (тип данных `Style`) |
 

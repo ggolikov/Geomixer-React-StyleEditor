@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header } from '../common/Header';
 import { Input } from '../common/Input';
+import { Suggestor } from '../common/Suggestor';
 import { ShowPopupSettings } from './ShowPopupSettings';
 import { PopupHOC } from './PopupHOC';
 
@@ -18,8 +19,9 @@ class PopupPanel extends Component {
 
         const popupItems = styles.map((style, index) =>
             <div key={style.Filter}>
-                {window._gtxt('Показывать')};
+                <Header txt={window._gtxt('Показывать')} />
                 <ShowPopupSettings layer={layer} style={style} index={index} />
+                <Suggestor layer={layer} style={style} index={index} />
             </div>
         );
         return (
