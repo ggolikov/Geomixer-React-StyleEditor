@@ -13,7 +13,7 @@
     margin: 0 10px 0 5px;
 }
 
-.gmx-style-editor-header {
+.gmx-style-editor-label {
     font-weight: bold;
     margin: 5px 0 5px 3px;
 }
@@ -22,7 +22,7 @@
     display: inline;
 }
 
-.gmx-style-editor-header-small {
+.gmx-style-editor-label-small {
     display: inline-block;
     width: 120px;
 }

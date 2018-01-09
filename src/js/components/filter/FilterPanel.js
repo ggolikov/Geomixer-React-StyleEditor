@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from '../common/Header';
+import { Label } from '../common/Label';
 import { Input } from '../common/Input';
 import { Filter } from './Filter';
 
@@ -15,7 +15,7 @@ class FilterPanel extends Component {
 
         return (
             <div>
-                <Header txt={window._gtxt('Фильтр')} />
+                <Label txt={window._gtxt('Фильтр')} />
                 <Filter layer={layer} />
             </div>
         );

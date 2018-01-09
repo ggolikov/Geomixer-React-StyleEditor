@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from '../common/Header';
+import { Label } from '../common/Label';
 import { Input } from '../common/Input';
 import { ColorPickerBlock } from './ColorPickerBlock';
 import { ZoomSettings } from './ZoomSettings';
@@ -14,26 +14,27 @@ class StylePanel extends Component {
 
     render() {
         let layer = this.props.layer,
+            layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             styles = this.props.styles;
 
         let ColorPickerHOC = StyleHOC(ColorPickerBlock);
         let SelectorHOC = StyleHOC(SelectorBlock);
         let SliderHOC = StyleHOC(SliderBlock);
 
-        /*Headers*/
-        let headerClassName = 'gmx-style-editor-header',
-            smallHeaderClassName = headerClassName + ' gmx-style-editor-header-small';
+        /*Labels*/
+        let labelClassName = 'gmx-style-editor-label',
+            smallLabelClassName = labelClassName + ' gmx-style-editor-header-small';
 
         const stylesItems = styles.map((style, index) =>
             <div key={style.Filter}>
-                <Header txt={window._gtxt('Уровень зума')} className={smallHeaderClassName}/>
+                <Label txt={window._gtxt('Уровень зума')} className={smallLabelClassName} />
                 <ZoomSettings layer={layer} style={style} />
 
-                <Header txt={window._gtxt('Стилевое оформление')} className={headerClassName} />
+                <Label txt={window._gtxt('Стилевое оформление')} className={smallLabelClassName} />
                 <ColorPickerHOC layer={layer} style={style} param='fillColor' index={index} txt={window._gtxt('Заливка')} />
                 <ColorPickerHOC layer={layer} style={style} param='weight' index={index} txt={window._gtxt('Обводка')} />
 
-                <Header txt={window._gtxt('Оформление подписи стиля')} className={headerClassName} />
+                <Label txt={window._gtxt('Оформление подписи стиля')} className={labelClassName} />
                 <ColorPickerHOC layer={layer} style={style} param='labelFontSize' index={index} txt={window._gtxt('Кегль и цвет')} />
                 <ColorPickerHOC layer={layer} style={style} param='labelHaloColor' index={index} txt={window._gtxt('Обводка и цвет')} />
                 <SliderHOC layer={layer} style={style} param='labelAnchor/0' index={index} txt={window._gtxt('Смещение по X')} />

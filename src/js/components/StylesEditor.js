@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
-import { Input } from './common/Input';
+import { Header } from './common/Header';
 import { FilterPanel } from './filter/FilterPanel';
 import { StylePanel } from './style/StylePanel';
 import { PopupPanel } from './popup/PopupPanel';
@@ -13,12 +13,19 @@ class StylesEditor extends Component {
     }
 
     render() {
+        let layer = this.props.layer,
+            layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
+            styles = this.props.styles;
+
         return (
-            <Tabs2 id="StylesTabs">
-                <Tab2 id="style" title="Оформление" panel={<StylePanel layer={this.state.layer} styles={this.state.styles}/>} />
-                <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={this.state.layer} styles={this.state.styles}/>} />
-                <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={this.state.layer} styles={this.state.styles}/>} />
-            </Tabs2>
+            <div>
+                <Header layerName={layerProperties.title} />
+                <Tabs2 id="StylesTabs">
+                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} styles={styles}/>} />
+                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} styles={styles}/>} />
+                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} styles={styles}/>} />
+                </Tabs2>
+            </div>
         );
     }
 }
