@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
 import { Header } from './common/Header';
+import { StylesSelector } from './common/StylesSelector';
 import { FilterPanel } from './filter/FilterPanel';
 import { StylePanel } from './style/StylePanel';
 import { PopupPanel } from './popup/PopupPanel';
@@ -20,6 +21,7 @@ class StylesEditor extends Component {
         return (
             <div>
                 <Header layerName={layerProperties.title} />
+                <StylesSelector layer={layer} styles={styles} />
                 <Tabs2 id="StylesTabs">
                     <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} styles={styles}/>} />
                     <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} styles={styles}/>} />

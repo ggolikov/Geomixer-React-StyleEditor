@@ -23,14 +23,14 @@ class StylePanel extends Component {
 
         /*Labels*/
         let labelClassName = 'gmx-style-editor-label',
-            smallLabelClassName = labelClassName + ' gmx-style-editor-header-small';
+            smallLabelClassName = labelClassName + ' gmx-style-editor-label-small';
 
         const stylesItems = styles.map((style, index) =>
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Уровень зума')} className={smallLabelClassName} />
                 <ZoomSettings layer={layer} style={style} />
 
-                <Label txt={window._gtxt('Стилевое оформление')} className={smallLabelClassName} />
+                <Label txt={window._gtxt('Стилевое оформление')} className={labelClassName} />
                 <ColorPickerHOC layer={layer} style={style} param='fillColor' index={index} txt={window._gtxt('Заливка')} />
                 <ColorPickerHOC layer={layer} style={style} param='weight' index={index} txt={window._gtxt('Обводка')} />
 

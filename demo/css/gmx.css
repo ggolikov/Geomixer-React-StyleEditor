@@ -1,7 +1,44 @@
-input[type=text] {
-    width: 80px;
+.gmx-style-editor-block-small {
+    height: 30px;
+    text-align: center;
 }
 
-.slider-block {
+.gmx-style-editor-right {
+    float: right;
+    margin-right: 5px;
+}
+
+.gmx-style-editor-left {
+    float: left;
+    margin: 0 10px 0 5px;
+}
+
+.gmx-style-editor-label {
+    font-weight: bold;
+    margin: 5px 0 5px 3px;
+}
+
+.gmx-style-editor-zoom-settings {
+    display: inline;
+}
+
+.gmx-style-editor-label-small {
+    display: inline-block;
+    width: 120px;
+}
+
+.style-slider {
+    vertical-align: middle;
     width: 80px;
+    display: inline-block;
+}
+
+.gmx-style-editor-input-small {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    width: 30px;
+}
+
+.gmx-style-editor-input-error {
+    background-color: red;
 }

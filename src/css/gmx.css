@@ -1,3 +1,8 @@
+.gmx-style-editor-header {
+    margin: 0 0 5px 0;
+    background-color: rgba(236, 241, 245, 0);
+}
+
 .gmx-style-editor-block-small {
     height: 30px;
     text-align: center;
@@ -41,4 +46,55 @@
 
 .gmx-style-editor-input-error {
     background-color: red;
+}
+
+.gmx-style-editor-back-button {
+    float: left;
+    width: 10%;
+    clear: both;
+}
+
+.gmx-style-editor-top-header{
+    display: block;
+    font-size: 0.9em;
+}
+
+.gmx-style-editor-layer-name {
+    display: block;
+    font-weight: bold;
+}
+
+.colorIcon {
+    height: 13px;
+    margin: 0px 3px 0px 4px;
+    position: relative;
+    width: 9px;
+    border: none;
+    cursor: pointer;
+    font-size: 0px;
+    display: inline-block;
+    margin: 2px 4px 2px 5px;
+}
+
+.borderIcon {
+    height: 9px;
+    position: absolute;
+    width: 9px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: 0px;
+    top: 3px;
+    left: 1px;
+}
+
+.fillIcon {
+    height: 11px;
+    margin: 0px;
+    border: none;
+    position: absolute;
+    width: 7px;
+    font-size: 0px;
+    top: 1px;
+    left: 1px;
 }
