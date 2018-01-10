@@ -17,11 +17,13 @@ class PopupPanel extends Component {
 
         let PopupTypeHOC = PopupHOC(ShowPopupSettings);
 
+        let popupSuggestorColumns = ['attrs', 'operators', 'values'];
+
         const popupItems = styles.map((style, index) =>
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Показывать')} />
                 <ShowPopupSettings layer={layer} style={style} index={index} />
-                <Suggestor layer={layer} style={style} index={index} />
+                <Suggestor layer={layer} style={style} index={index} columns={popupSuggestorColumns} />
             </div>
         );
         return (

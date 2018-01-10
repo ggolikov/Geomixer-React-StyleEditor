@@ -98,3 +98,20 @@
     top: 1px;
     left: 1px;
 }
+
+/*suggestor*/
+
+.gmx-suggest-textarea {
+    width: 100%;
+    resize: none;
+    margin: 5px 0 5px 0;
+}
+
+.gmx-suggest-list {
+    width: 30%;
+    float: left;
+}
+
+.gmx-suggest-list-value {
+    background-color: rgba(236, 241, 245, 0);
+}

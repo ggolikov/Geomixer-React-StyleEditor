@@ -21,9 +21,6 @@ class StylesSelector extends Component {
             let iconBorderStyle = {borderColor: "#" + style.RenderStyle.color};
             let iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
 
-            console.log(iconBorderStyle);
-            console.log(iconFillStyle);
-
             return (
                 <div key={style.Filter}>
                     <ColorIcon iconBorderStyle={iconBorderStyle} iconFillStyle={iconFillStyle}/>
