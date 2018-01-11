@@ -107,11 +107,26 @@
     margin: 5px 0 5px 0;
 }
 
-.gmx-suggest-list {
+.gmx-suggest-list,
+.gmx-suggest-list-header {
     width: 30%;
     float: left;
+    cursor: pointer;
 }
 
 .gmx-suggest-list-value {
-    background-color: rgba(236, 241, 245, 0);
+    cursor: pointer;
+    background-color: rgba(236, 241, 245, 1);
+}
+
+.gmx-suggest-list-value-selected {
+    background-color: #2f70e1;
+}
+
+.gmx-suggest-list-container {
+    display: block;
+}
+
+.gmx-suggest-list-container-hidden {
+    display: none;
 }

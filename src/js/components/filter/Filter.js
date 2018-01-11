@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loadAttributes } from '../../utils/attrsLoader';
+// import { loadAttrValues } from '../utils/attrValuesLoader';
 import { Table, Column } from "@blueprintjs/core";
 import $ from 'jquery';
 
@@ -25,8 +25,8 @@ class Filter extends Component {
         let gmxProps = this.props.layer.getGmxProperties && this.props.layer.getGmxProperties(),
             layerID = gmxProps.LayerID;
 
-        loadAttributes(layerID)
-            .then(data => this.setState({attrs: data.Result}));
+        // loadAttributes(layerID)
+        //     .then(data => this.setState({attrs: data.Result}));
     }
 
     onChange(e) {

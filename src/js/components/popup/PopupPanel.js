@@ -13,7 +13,8 @@ class PopupPanel extends Component {
 
     render() {
         let layer = this.props.layer,
-            styles = this.props.styles;
+            styles = this.props.styles,
+            attrs = this.props.attrs;
 
         let PopupTypeHOC = PopupHOC(ShowPopupSettings);
 
@@ -23,7 +24,7 @@ class PopupPanel extends Component {
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Показывать')} />
                 <ShowPopupSettings layer={layer} style={style} index={index} />
-                <Suggestor layer={layer} style={style} index={index} columns={popupSuggestorColumns} />
+                <Suggestor layer={layer} style={style} index={index} attrs={attrs} columns={popupSuggestorColumns} valuesLimit={20} />
             </div>
         );
         return (

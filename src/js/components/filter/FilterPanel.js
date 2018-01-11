@@ -16,7 +16,7 @@ class FilterPanel extends Component {
         return (
             <div>
                 <Label txt={window._gtxt('Фильтр')} />
-                <Filter layer={layer} />
+                // <Filter layer={layer} />
             </div>
         );
     }
