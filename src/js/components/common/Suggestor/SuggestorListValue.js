@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SuggestorListValue = (props) => (
-    <div className={props.className} onClick={props.onClick}>
+    <div style={props.style} data-type={props.dataType} className={props.className} onClick={props.onClick} onDoubleClick={props.onDoubleClick}>
         {props.value}
     </div>
 );

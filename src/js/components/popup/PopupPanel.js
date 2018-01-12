@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Label } from '../common/Label';
 import { Input } from '../common/Input';
 import { Suggestor } from '../common/Suggestor';
+import { SuggestorHOC } from '../common/Suggestor/SuggestorHOC';
 import { ShowPopupSettings } from './ShowPopupSettings';
-import { PopupHOC } from './PopupHOC';
+import $ from 'jquery';
 
 class PopupPanel extends Component {
     constructor(props) {
@@ -12,19 +13,23 @@ class PopupPanel extends Component {
     }
 
     render() {
-        let layer = this.props.layer,
-            styles = this.props.styles,
-            attrs = this.props.attrs;
+        let HOC = SuggestorHOC(Suggestor);
+        let popupSuggestorColumns = ['attrs'];
 
-        let PopupTypeHOC = PopupHOC(ShowPopupSettings);
-
-        let popupSuggestorColumns = ['attrs', 'operators', 'values'];
-
-        const popupItems = styles.map((style, index) =>
+        const popupItems = this.props.styles.map((style, index) =>
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Показывать')} />
-                <ShowPopupSettings layer={layer} style={style} index={index} />
-                <Suggestor layer={layer} style={style} index={index} attrs={attrs} columns={popupSuggestorColumns} valuesLimit={20} />
+                <ShowPopupSettings layer={this.props.layer} style={style} index={index} />
+                <HOC
+                    param={"Balloon"}
+                    layer={this.props.layer}
+                    style={style}
+                    index={index}
+                    attrs={this.props.attrs}
+                    columns={popupSuggestorColumns}
+                    attrsValueWrapper={'brackets'}
+                    valuesLimit={20}
+                />
             </div>
         );
         return (

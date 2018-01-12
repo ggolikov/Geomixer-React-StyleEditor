@@ -1,24 +1,56 @@
 import React, { Component } from 'react';
-import { SuggestorListHeader } from './SuggestorListHeader';
 import { SuggestorListValue } from './SuggestorListValue';
 import $ from 'jquery';
+import reactTriggerChange from 'react-trigger-change';
 
 class Suggestor extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            listStyle: {
+                width: 100 / this.props.columns.length + '%'
+            },
             selectedAttribute: '',
             hideSuggestions: true
         };
 
         this.hideSuggestions = this.hideSuggestions.bind(this);
         this.onAttributeClick = this.onAttributeClick.bind(this);
+        this.insertAtCursor = this.insertAtCursor.bind(this);
         this.generateList = this.generateList.bind(this);
         this.clearSelectedAttribute = this.clearSelectedAttribute.bind(this);
     }
 
     hideSuggestions() {
         this.setState({hideSuggestions: !this.state.hideSuggestions});
+    }
+
+    insertAtCursor(e) {
+        let value = e.target.innerText,
+            type = e.target.getAttribute('data-type'),
+            textArea = this.textArea;
+
+        if (type === 'attrs') {
+            if (this.props.attrsValueWrapper === 'brackets') {
+                value = '[' + e.target.innerText + ']';
+            } else if (this.props.attrsValueWrapper === 'quotes') {
+                value = '"' + e.target.innerText + '"';
+            }
+        }
+	       if (document.selection) {
+               textArea.focus();
+			   let sel = document.selection.createRange();
+			   sel.text = value;
+		   } else if (textArea.selectionStart || textArea.selectionStart == '0') {
+		       let startPos = textArea.selectionStart,
+			       endPos = textArea.selectionEnd;
+
+		        textArea.value = textArea.value.substring(0, startPos) + value + textArea.value.substring(endPos, textArea.value.length);
+	       } else {
+               textArea.value += myValue;
+           }
+
+           reactTriggerChange(textArea);
     }
 
     onAttributeClick(e) {
@@ -36,47 +68,55 @@ class Suggestor extends Component {
     }
 
     generateList(array, type, text) {
-        let selected =
         array = array.map((item) =>
-            <SuggestorListValue className={(type !== 'attrs' || item !== this.state.selectedAttribute) ? "gmx-suggest-list-value" : "gmx-suggest-list-value gmx-suggest-list-value-selected"} key={item} value={item} onClick={type === 'attrs' ? this.onAttributeClick : null}/>
+            <SuggestorListValue
+                className={(type !== 'attrs' || item !== this.state.selectedAttribute) ? "gmx-suggest-list-value" : "gmx-suggest-list-value gmx-suggest-list-value-selected"}
+                key={item}
+                value={item}
+                dataType={type}
+                onClick={type === 'attrs' ? this.onAttributeClick : null}
+                onDoubleClick={this.insertAtCursor}/>
         );
 
-        array.unshift(<SuggestorListHeader value={window._gtxt(text)} onClick={this.hideSuggestions}/>);
-
         return (
-            <div className="gmx-suggest-list" >
+            <div className="gmx-suggest-list" style={this.state.listStyle}>
                 {array}
             </div>
-        )
+        );
     }
 
     render() {
         let attrs = this.props.columns.includes('attrs'),
-            attrsBlock = "",
+            attrsHeaderBlock,
+            attrsBlock,
             operators = this.props.columns.includes('operators'),
-            operatorsBlock = "",
+            operatorsHeaderBlock,
+            operatorsBlock,
             values = this.props.columns.includes('values'),
-            valuesBlock = "";
+            valuesHeaderBlock,
+            valuesBlock;
 
         if (attrs) {
+            attrsHeaderBlock = <SuggestorListValue className={"gmx-suggest-list-header"} value={window._gtxt('Колонки')} style={this.state.listStyle} />,
             attrsBlock = this.props.attrs ? this.generateList(Object.keys(this.props.attrs), 'attrs') : <div></div>;
         }
 
         if (operators) {
             let sqlOperators = ['=', '>', '<', '>=', '<=', '<>', 'AND', 'OR', 'NOT', 'IN', 'CONTAINS', 'CONTAINSIGNORECASE', 'BETWEEN', 'STARTSWITH', 'ENDSWITH'];
+            operatorsHeaderBlock = <SuggestorListValue className={"gmx-suggest-list-header"}value={window._gtxt('Операторы')} style={this.state.listStyle} />,
             operatorsBlock = this.generateList(sqlOperators, 'operators');
         }
 
         if (values) {
+            valuesHeaderBlock = <SuggestorListValue className={"gmx-suggest-list-header"} style={this.state.listStyle} value={window._gtxt('Значения')} />;
             if (this.props.attrs && this.state.selectedAttribute in this.props.attrs) {
-                let valuesArr = this.props.attrs[this.state.selectedAttribute];
+                let valuesArr = this.props.attrs[this.state.selectedAttribute].slice();
 
                 if (typeof valuesArr[0] === 'number') {
                     valuesArr = valuesArr.map(v => Number(v)).sort((a, b) => b - a);
                 }
 
                 valuesArr = this.props.valuesLimit ? valuesArr.splice(0, this.props.valuesLimit) : valuesArr;
-
                 valuesBlock = this.generateList(valuesArr, 'values');
             } else {
                 valuesBlock = <div></div>;
@@ -85,11 +125,11 @@ class Suggestor extends Component {
 
         return (
             <div>
-                <textarea className={"gmx-suggest-textarea"} onClick={this.clearSelectedAttribute}></textarea>
+                <textarea defaultValue={this.props.defaultValue} ref={(textarea) => { this.textArea = textarea; }} className={"gmx-suggest-textarea"} onChange={this.props.onChange}></textarea>
                 <div className={"gmx-suggest-list-header-container"} onClick={this.hideSuggestions} >
-                    <SuggestorListHeader value={window._gtxt('Колонки')} />
-                    <SuggestorListHeader value={window._gtxt('Операторы')} />
-                    <SuggestorListHeader value={window._gtxt('Значения')} />
+                    {attrsHeaderBlock}
+                    {operatorsHeaderBlock}
+                    {valuesHeaderBlock}
                 </div>
                 <div className={this.state.hideSuggestions ? "gmx-suggest-list-container" : "gmx-suggest-list-container gmx-suggest-list-container-hidden"}>
                     {attrsBlock}

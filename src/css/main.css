@@ -28,6 +28,8 @@ h2 {
     width: 360px;
     height: 100%;
     float: left;
+    background-color: rgba(236, 241, 245, 1);
+    padding: 0 5px 0 5px;
 }
 
 .header {

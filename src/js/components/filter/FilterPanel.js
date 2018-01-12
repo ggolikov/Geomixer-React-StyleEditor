@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Label } from '../common/Label';
-import { Input } from '../common/Input';
 import { Filter } from './Filter';
+import { Suggestor } from '../common/Suggestor';
+import { SuggestorHOC } from '../common/Suggestor/SuggestorHOC';
 
 class FilterPanel extends Component {
     constructor(props) {
@@ -10,13 +11,27 @@ class FilterPanel extends Component {
     }
 
     render() {
-        const layer = this.state.layer;
-        const styles = this.state.styles;
+        let HOC = SuggestorHOC(Suggestor);
+        let popupSuggestorColumns = ['attrs', 'operators', 'values'];
+
+        const filterItems = this.props.styles.map((style, index) =>
+            <div key={style.Filter}>
+                <HOC
+                    param={"Filter"}
+                    layer={this.props.layer}
+                    style={style}
+                    index={index}
+                    attrs={this.props.attrs}
+                    columns={popupSuggestorColumns}
+                    attrsValueWrapper={'quotes'}
+                    valuesLimit={20}
+                />
+            </div>
+        );
 
         return (
             <div>
-                <Label txt={window._gtxt('Фильтр')} />
-                // <Filter layer={layer} />
+                {filterItems}
             </div>
         );
     }
