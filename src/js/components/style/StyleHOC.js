@@ -10,8 +10,16 @@ export const StyleHOC = (InnerComponent) => class extends Component {
     onChange(e) {
         let param = this.props.param,
             nestedParam = this.props.nestedParam,
-            value = Number(typeof e === "number" ? e : e.target.value),
+            value,
             newSyle;
+
+        if (typeof e === "number") {
+            value = e;
+        } else if (e.target) {
+            value = Number(e.target.value);
+        } else {
+            value = e.color;
+        }
 
         // handle array param
         if (param.match(/\//gi)) {
@@ -55,6 +63,8 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         }
 
         const extendedStyle = $.extend(true, this.props.style, newSyle);
+
+        this.setState({style: newSyle});
 
         this.state.layer.setStyle(extendedStyle, this.props.index);
     }

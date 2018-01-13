@@ -1,5 +1,5 @@
 @import "~@blueprintjs/core";
-
+@import 'colorpicker.css';
 html, body {
     width: 100%;
     margin: 0px;

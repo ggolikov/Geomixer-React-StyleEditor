@@ -18,10 +18,13 @@ export default {
     devServer: {
         historyApiFallback: true,
     },
+    resolve: {
+        extensions: ['.js', '.css', '.scss']
+    },
     module: {
         loaders: [
             { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
-            { test: /\.css$/, exclude: /node_modules/, loader: 'style-loader!css-loader' },
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, exclude: /node_modules/, loader: "file-loader?name=[name].[ext]" }
         ]
     },
