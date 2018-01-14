@@ -14,13 +14,13 @@ class FilterPanel extends Component {
         let HOC = SuggestorHOC(Suggestor);
         let popupSuggestorColumns = ['attrs', 'operators', 'values'];
 
-        const filterItems = this.props.styles.map((style, index) =>
-            <div key={style.Filter}>
+        const filterPanel = (
+            <div key={this.props.style.Filter}>
                 <HOC
                     param={"Filter"}
                     layer={this.props.layer}
-                    style={style}
-                    index={index}
+                    style={this.props.style}
+                    index={this.props.index}
                     attrs={this.props.attrs}
                     columns={popupSuggestorColumns}
                     attrsValueWrapper={'quotes'}
@@ -31,7 +31,7 @@ class FilterPanel extends Component {
 
         return (
             <div>
-                {filterItems}
+                {filterPanel}
             </div>
         );
     }

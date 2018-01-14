@@ -11,32 +11,49 @@ class StylesEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentStyleIndex: 0,
             attrs: []
         };
+
+        this.changeStyle = this.changeStyle.bind(this);
     }
 
     componentWillMount() {
         let gmxProps = this.props.layer.getGmxProperties && this.props.layer.getGmxProperties(),
             layerID = gmxProps.LayerID;
 
+        if (this.props.currentStyleIndex) {
+            this.setState({currentStyleIndex: this.props.currentStyleIndex})
+        } else {
+            this.setState({currentStyleIndex: 1})
+        }
+
         loadAttrValues(layerID)
             .then(data => this.setState({attrs: data.Result}));
+    }
+
+    changeStyle(e) {
+        let index = Number(e.target.getAttribute('data-index'));
+
+        this.setState({currentStyle: this.props.styles[index]})
     }
 
     render() {
         let layer = this.props.layer,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             styles = this.props.styles,
+            index = this.state.currentStyleIndex,
+            style = styles[index],
             attrs = this.state.attrs;
 
         return (
             <div>
                 <Header layerName={layerProperties.title} />
-                <StylesSelector layer={layer} styles={styles} />
+                <StylesSelector layer={layer} styles={styles} onChange={this.changeStyle}/>
                 <Tabs2 id="StylesTabs">
-                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} styles={styles} attrs={attrs} />} />
-                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} styles={styles} attrs={attrs} />} />
-                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} styles={styles} attrs={attrs} />} />
+                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={index} attrs={attrs} />} />
+                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={index} attrs={attrs} />} />
+                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={index} attrs={attrs} />} />
                 </Tabs2>
             </div>
         );
