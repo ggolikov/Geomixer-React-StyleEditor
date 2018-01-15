@@ -25,7 +25,7 @@ class StylesEditor extends Component {
         if (this.props.currentStyleIndex) {
             this.setState({currentStyleIndex: this.props.currentStyleIndex})
         } else {
-            this.setState({currentStyleIndex: 1})
+            this.setState({currentStyleIndex: 0})
         }
 
         loadAttrValues(layerID)
@@ -35,7 +35,7 @@ class StylesEditor extends Component {
     changeStyle(e) {
         let index = Number(e.target.getAttribute('data-index'));
 
-        this.setState({currentStyle: this.props.styles[index]})
+        this.setState({currentStyleIndex: index});
     }
 
     render() {
@@ -49,7 +49,7 @@ class StylesEditor extends Component {
         return (
             <div>
                 <Header layerName={layerProperties.title} />
-                <StylesSelector layer={layer} styles={styles} onChange={this.changeStyle}/>
+                <StylesSelector layer={layer} styles={styles} index={index} onChange={this.changeStyle}/>
                 <Tabs2 id="StylesTabs">
                     <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={index} attrs={attrs} />} />
                     <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={index} attrs={attrs} />} />

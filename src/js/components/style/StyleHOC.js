@@ -11,7 +11,7 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         let param = this.props.param,
             nestedParam = this.props.nestedParam,
             value,
-            newSyle;
+            newStyle;
 
         if (typeof e === "number") {
             value = e;
@@ -47,7 +47,7 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         }
 
         if (nestedParam) {
-            newSyle = {
+            newStyle = {
                 RenderStyle: {
                     [param]: {
                         nestedParam: value
@@ -55,16 +55,16 @@ export const StyleHOC = (InnerComponent) => class extends Component {
                 }
             };
         } else {
-            newSyle = {
+            newStyle = {
                 RenderStyle: {
                     [param]: value
                 }
             };
         }
 
-        const extendedStyle = $.extend(true, this.props.style, newSyle);
+        const extendedStyle = $.extend(true, this.props.style, newStyle);
 
-        this.setState({style: newSyle});
+        this.setState({style: extendedStyle});
 
         this.state.layer.setStyle(extendedStyle, this.props.index);
     }

@@ -161,3 +161,16 @@
 vertical-align: middle;
 ine-block;
 }
+
+/*Style selector*/
+
+.gmx-style-editor-style-selector-item-name {
+    height: 18px;
+    line-height: 18px;
+    min-width: 80px;
+    vertical-align: top;
+}
+
+.gmx-style-editor-style-selector-icon {
+    margin-left: 5px;
+}

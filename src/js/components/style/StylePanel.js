@@ -24,7 +24,7 @@ class StylePanel extends Component {
         let InputHOC = StyleHOC(InputBlock);
         let SelectorHOC = StyleHOC(SelectorBlock);
         let SliderHOC = StyleHOC(SliderBlock);
-        console.log(style);
+
         /*Labels*/
         let labelClassName = 'gmx-style-editor-label',
             smallLabelClassName = labelClassName + ' gmx-style-editor-label-small';
