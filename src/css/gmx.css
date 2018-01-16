@@ -171,6 +171,10 @@
     vertical-align: top;
 }
 
+.gmx-style-editor-style-selector-current-item-name {
+    font-weight: bold;
+}
+
 .gmx-style-editor-style-selector-icon {
     margin-left: 5px;
 }

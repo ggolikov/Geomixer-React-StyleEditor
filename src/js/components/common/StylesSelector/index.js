@@ -19,7 +19,9 @@ class StylesSelector extends Component {
             currentStyle = styles[this.props.index];
 
         const stylesItems = styles.map(function (style, index) {
-            return <StyleSelectorItem key={style.Filter} layer={layer} style={style}/>;
+            var isCurrent = style === currentStyle;
+            console.log(isCurrent);
+            return <StyleSelectorItem key={style.Filter} layer={layer} style={style} isCurrent={isCurrent} />;
         });
 
         return (

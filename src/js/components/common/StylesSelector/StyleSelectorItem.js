@@ -55,16 +55,16 @@ class StyleSelectorItem extends Component {
         let layer = this.props.layer,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = this.state.style,
+            styleNameClassName = this.state.isCurrent ? "gmx-style-editor-style-selector-item-name gmx-style-editor-style-selector-current-item-name" : "gmx-style-editor-style-selector-item-name",
             styleNameValue = style.Name || style.Filter,
             isNameEditable = this.state.isNameEditable,
             iconBorderStyle = {borderColor: "#" + style.RenderStyle.color},
             iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
 
-        let txt = this.state.active ? "редактировать" : "";
         let styleName =
             this.state.isNameEditable ?
             <EditableText defaultValue={styleNameValue} onChange={this.setStyleName} onConfirm={this.confirmStyleName}/> :
-            <span className={"gmx-style-editor-style-selector-item-name"}>
+            <span className={styleNameClassName}>
                 {styleNameValue}
             </span>
         let editIcon = this.state.active ? <span className="pt-icon-standard pt-icon-edit gmx-style-editor-style-selector-icon" /> : <span></span>;
