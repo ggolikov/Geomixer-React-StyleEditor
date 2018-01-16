@@ -9,16 +9,19 @@ class StyleSelectorItem extends Component {
         super(props);
 
         this.state = props;
-        this.setState({
-            active: false,
-            isNameEditable: false
-        });
 
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.editStyleName = this.editStyleName.bind(this);
         this.setStyleName = this.setStyleName.bind(this);
         this.confirmStyleName = this.confirmStyleName.bind(this);
+    }
+
+    componentWillMount() {
+        this.setState({
+            active: false,
+            isNameEditable: false
+        });
     }
 
     handleMouseEnter(e) {
@@ -56,8 +59,6 @@ class StyleSelectorItem extends Component {
             isNameEditable = this.state.isNameEditable,
             iconBorderStyle = {borderColor: "#" + style.RenderStyle.color},
             iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
-
-            console.log(this.state.isNameEditable);
 
         let txt = this.state.active ? "редактировать" : "";
         let styleName =

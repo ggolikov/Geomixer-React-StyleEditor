@@ -19,19 +19,13 @@ class StylesSelector extends Component {
             currentStyle = styles[this.props.index];
 
         const stylesItems = styles.map(function (style, index) {
-            let iconBorderStyle = {borderColor: "#" + style.RenderStyle.color};
-            let iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
-
-            return (
-                <div key={style.Filter}>
-                    {style.Filter}
-                </div>
-            );
+            return <StyleSelectorItem key={style.Filter} layer={layer} style={style}/>;
         });
 
         return (
             <div className="gmx-style-editor-style-selector">
-                <StyleSelectorItem  layer={this.props.layer} style={currentStyle}/>
+                <StyleSelectorItem layer={layer} style={currentStyle}/>
+                {stylesItems}
             </div>
         );
     }
