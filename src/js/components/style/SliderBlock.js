@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Slider } from "@blueprintjs/core";
+import { StyleHOC } from './StyleHOC';
 
 class SliderBlock extends Component {
     constructor(props) {
@@ -91,4 +92,5 @@ class SliderBlock extends Component {
         );
     }
 }
-export { SliderBlock };
+
+export default StyleHOC(SliderBlock);

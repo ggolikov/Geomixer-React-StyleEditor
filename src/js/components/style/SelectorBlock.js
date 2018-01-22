@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleHOC } from './StyleHOC';
 
 class SelectorBlock extends Component {
     constructor(props) {
@@ -51,4 +52,5 @@ class SelectorBlock extends Component {
         );
     }
 }
-export { SelectorBlock };
+
+export default StyleHOC(SelectorBlock);

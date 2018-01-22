@@ -1,7 +1,8 @@
 import React from 'react';
 import ColorPicker from 'rc-color-picker';
+import { StyleHOC } from './StyleHOC';
 
-export const ColorPickerBlock = (props) => (
+const ColorPickerBlock = (props) => (
     <ColorPicker
         // color={String(props.style.RenderStyle[props.param])}
         color={'#36c'}
@@ -12,3 +13,5 @@ export const ColorPickerBlock = (props) => (
         className="gmx-style-editor-color-picker-container gmx-style-editor-right"
     />
 );
+
+export default StyleHOC(ColorPickerBlock);
