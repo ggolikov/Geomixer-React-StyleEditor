@@ -39,21 +39,19 @@ class StylesEditor extends Component {
     }
 
     render() {
-        let layer = this.props.layer,
+        let {layer, styles} = this.props,
+            {currentStyleIndex, attrs} = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
-            styles = this.props.styles,
-            index = this.state.currentStyleIndex,
-            style = styles[index],
-            attrs = this.state.attrs;
+            style = styles[currentStyleIndex];
 
         return (
             <div>
                 <Header layerName={layerProperties.title} />
-                <StylesSelector layer={layer} styles={styles} index={index} onChange={this.changeStyle}/>
+                <StylesSelector layer={layer} styles={styles} index={currentStyleIndex} onChange={this.changeStyle}/>
                 <Tabs2 id="StylesTabs">
-                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={index} attrs={attrs} />} />
-                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={index} attrs={attrs} />} />
-                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={index} attrs={attrs} />} />
+                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
+                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
+                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
                 </Tabs2>
             </div>
         );

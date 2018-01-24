@@ -15,10 +15,8 @@ class StylePanel extends Component {
     }
 
     render() {
-        let layer = this.props.layer,
-            layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
-            index = this.props.index,
-            style = this.props.style;
+        let {layer, index, style} = this.props,
+            layerProperties = layer.getGmxProperties && layer.getGmxProperties();
 
         /*Labels*/
         let labelClassName = 'gmx-style-editor-label',

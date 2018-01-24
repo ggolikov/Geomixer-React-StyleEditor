@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SuggestorListValue } from './SuggestorListValue';
 import $ from 'jquery';
 import reactTriggerChange from 'react-trigger-change';
+import { SuggestorHOC } from './SuggestorHOC';
 
 class Suggestor extends Component {
     constructor(props) {
@@ -141,4 +142,4 @@ class Suggestor extends Component {
     }
 }
 
-export { Suggestor };
+export default SuggestorHOC(Suggestor);

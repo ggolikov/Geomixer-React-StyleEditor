@@ -9,13 +9,10 @@ class SliderBlock extends Component {
         this.handleSlideChange = this.handleSlideChange.bind(this);
         this.setSliderValue = this.setSliderValue.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.getInputClassName = this.getInputClassName.bind(this);
     }
 
     componentDidMount() {
-        this.setState({
-            error: false
-        });
-
         this.setSliderValue();
     }
 
@@ -48,9 +45,6 @@ class SliderBlock extends Component {
     }
 
     handleSlideChange(e) {
-        this.setState({
-            error: false
-        });
         this.state.onChange(e);
         this.setSliderValue();
     }
@@ -58,24 +52,28 @@ class SliderBlock extends Component {
     handleInputChange(e) {
         let num = Number(e.target.value);
 
-        if (Number.isNaN(num) || num < -50 || num > 50) {
+        if (e.target.value === '' || Number.isNaN(num) || num < -50 || num > 50) {
             this.setState({
-                inputValue: e.target.value,
-                error: true
+                inputValue: e.target.value
             });
             return;
         }
 
-        this.setState({
-            error: false
-        });
-
         this.handleSlideChange(num);
     }
 
-    render() {
-        let inputClassName = 'gmx-style-editor-input-small gmx-style-editor-minzoom' + (this.state.error ? ' gmx-style-editor-input-error' : '');
+    getInputClassName() {
+        let num = Number(this.state.inputValue),
+            className = 'gmx-style-editor-input-small gmx-style-editor-minzoom';
 
+        if (this.state.inputValue === '' || Number.isNaN(num) || num < -50 || num > 50) {
+            className += ' gmx-style-editor-input-error';
+        }
+
+        return className;
+    }
+
+    render() {
         return (
             <div className="slider-block gmx-style-editor-block-small">
                 <span className="gmx-style-editor-label-small gmx-style-editor-left">{this.props.txt}</span>
@@ -87,7 +85,7 @@ class SliderBlock extends Component {
                     renderLabel={false}
                     onChange={this.handleSlideChange}
                 / >
-                <input className={inputClassName} value={this.state.inputValue} onChange={this.handleInputChange}/>
+                <input className={this.getInputClassName()} value={this.state.inputValue} onChange={this.handleInputChange}/>
             </div>
         );
     }

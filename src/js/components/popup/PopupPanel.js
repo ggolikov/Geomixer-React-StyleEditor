@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Label } from '../common/Label';
 import { Input } from '../common/Input';
-import { Suggestor } from '../common/Suggestor';
-import { SuggestorHOC } from '../common/Suggestor/SuggestorHOC';
+import Suggestor from '../common/Suggestor';
 import { ShowPopupSettings } from './ShowPopupSettings';
 import $ from 'jquery';
 
@@ -13,14 +12,13 @@ class PopupPanel extends Component {
     }
 
     render() {
-        let HOC = SuggestorHOC(Suggestor);
         let popupSuggestorColumns = ['attrs'];
 
         const popupPanel = (
             <div key={this.props.style.Filter}>
                 <Label txt={window._gtxt('Показывать')} />
                 <ShowPopupSettings layer={this.props.layer} style={this.props.style} index={this.props.index} />
-                <HOC
+                <Suggestor
                     param={"Balloon"}
                     layer={this.props.layer}
                     style={this.props.style}

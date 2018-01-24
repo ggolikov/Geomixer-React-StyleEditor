@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Label } from '../common/Label';
 import { Filter } from './Filter';
-import { Suggestor } from '../common/Suggestor';
-import { SuggestorHOC } from '../common/Suggestor/SuggestorHOC';
+import Suggestor from '../common/Suggestor';
 
 class FilterPanel extends Component {
     constructor(props) {
@@ -11,12 +10,11 @@ class FilterPanel extends Component {
     }
 
     render() {
-        let HOC = SuggestorHOC(Suggestor);
         let popupSuggestorColumns = ['attrs', 'operators', 'values'];
 
         const filterPanel = (
             <div key={this.props.style.Filter}>
-                <HOC
+                <Suggestor
                     param={"Filter"}
                     layer={this.props.layer}
                     style={this.props.style}
