@@ -8,10 +8,9 @@ class ZoomSettings extends Component {
             minZoomError: false,
             maxZoomError: false
         }
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         let style = this.props.style,
             isMinZoom = e.target.className.indexOf('minzoom') !== -1,
             newSyle = {},
@@ -60,7 +59,7 @@ class ZoomSettings extends Component {
         return (
             <div className='gmx-style-editor-zoom-settings'>
                 <input className={minZoomClassName} defaultValue={this.props.style.MinZoom} onChange={this.handleChange}/>
-                 - 
+                 -
                 <input className={maxZoomClassName} defaultValue={this.props.style.MaxZoom} onChange={this.handleChange}/>
             </div>
         );
