@@ -13,7 +13,10 @@
   },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base demo --history-api-fallback",
-    "build": "webpack -w",
+    "build": "webpack --env",
+    "build-plugin": "webpack --env.plugin",
+    "build-plugin-copy": "webpack --env.plugin && plugin-copy.bat",
+    "build-plugin-copy-l": "webpack --env.plugin && ./plugin-copy-l.sh",
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {
@@ -76,7 +79,8 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "watchify": "^3.7.0",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-merge": "^4.1.2"
   }
 }
