@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { StylesEditor } from './src/js/components/StylesEditor';
+import './src/js/translationsHash.js';
 
 (function () {
     'use strict';

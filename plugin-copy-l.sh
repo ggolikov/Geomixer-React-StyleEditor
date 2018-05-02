@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -rf ../Geomixer-client/plugins/styleEditor;
-cp -R dist ../Geomixer-client/plugins;
-mv ../Geomixer-client/plugins/dist ../Geomixer-client/plugins/forestproject
+rm -rf ../../Scanex/Geomixer-client/plugins/styleEditor;
+cp -R dist ../../Scanex/Geomixer-client/plugins;
+mv ../../Scanex/Geomixer-client/plugins/dist ../../Scanex/Geomixer-client/plugins/styleEditor
 echo plugin replaced

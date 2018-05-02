@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --content-base demo --history-api-fallback",
+    "start": "webpack-dev-server --env --inline --hot --content-base demo --history-api-fallback",
     "build": "webpack --env",
     "build-plugin": "webpack --env.plugin",
     "build-plugin-copy": "webpack --env.plugin && plugin-copy.bat",

@@ -12,7 +12,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 const extractSass = new ExtractTextPlugin({
-    filename: "./css/[name].css"
+    filename: "./src/css/[name].css"
 });
 
 const common = {
