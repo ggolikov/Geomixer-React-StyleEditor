@@ -52,6 +52,7 @@
     float: left;
     width: 10%;
     clear: both;
+    cursor: pointer;
 }
 
 .gmx-style-editor-top-header{

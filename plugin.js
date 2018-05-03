@@ -13,30 +13,29 @@ import './src/js/translationsHash.js';
             pluginName: pluginName,
             afterViewer: function (params, map) {
     			if (window.nsGmx) {
-                    let pluginContainer = window.iconSidebarWidget.setPane(
-                        "style-editor-plugin", {
-                            createTab: window.createTabFunction({
-                                icon: "s-forest-plugin",
-                                active: "sidebar-icon-active",
-                                inactive: "sidebar-icon-inactive",
-                                hint: "style-editor"
-                            })
-                        }
-                    ),
-                    layerId = params.layerId || '05D50D053F8A495BB3F59A9AEFE976B8',
-                    layer = nsGmx.gmxMap.layersByID[layerId];
+                    // replace existing LayersStylesEditor function
+                    nsGmx.createStylesDialog = function(treeElem, treeView, i) {
+                        let layerId = treeElem.name,
+                            layer = nsGmx.gmxMap.layersByID[layerId],
+                            pluginContainer = document.createElement('div'),
+                            layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu');
 
-                    render(
-                        <StylesEditor layer={layer} styles={layer.getStyles()} />,
-                        pluginContainer
-                    );
+                        pluginContainer.className = 'gmx-style-editor-container';
+                        layersTreeContainer.style.display = 'none';
+                        nsGmx.layersTreePane.appendChild(pluginContainer);
+
+                        render(
+                            <StylesEditor layer={layer} styles={layer.getStyles()} currentStyleIndex={i}/>,
+                            pluginContainer
+                        );
+                    }
                 }
             }
     };
 
     if (window.gmxCore) {
 		window.gmxCore.addModule(pluginName, publicInterface, {
-			css: './plugins/styleEditorPlugin/styleEditorPlugin.css',
+			css: './css/styleEditorPlugin.css',
 			init: function(module, path) {}
 		});
 	} else {
