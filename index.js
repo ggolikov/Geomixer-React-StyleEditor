@@ -4,12 +4,12 @@ import './src/js/translations.js';
 import './src/js/translationsHash.js';
 import { dataHandler } from './src/js/dataHandler.js';
 import { createTab } from './src/js/utils/tabFactory.js';
-import './src/css/gmx.css';
+// import './src/css/gmx.css';
 
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 var m = document.querySelector('#map');
 m.style.height = document.documentElement.clientHeight + 'px';
-var lp = document.querySelector('.left-panel');
+var lp = document.querySelector('.gmx-style-editor');
 lp.style.height = document.documentElement.clientHeight + 'px';
 
 let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {

@@ -20,7 +20,7 @@ import './src/js/translationsHash.js';
                             pluginContainer = document.createElement('div'),
                             layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu');
 
-                        pluginContainer.className = 'gmx-style-editor-container';
+                        pluginContainer.className = 'gmx-style-editor';
                         layersTreeContainer.style.display = 'none';
                         nsGmx.layersTreePane.appendChild(pluginContainer);
 

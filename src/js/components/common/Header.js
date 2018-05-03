@@ -4,7 +4,7 @@ const backButtonPath = "plugins/styleEditorPlugin/css/images/back.svg"
 
 const onBackButtonClick = (e) => {
     let layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu'),
-        styleEditorContainer = nsGmx.layersTreePane.querySelector('.gmx-style-editor-container');
+        styleEditorContainer = nsGmx.layersTreePane.querySelector('.gmx-style-editor');
 
     nsGmx.layersTreePane.removeChild(styleEditorContainer);
 
