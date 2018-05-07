@@ -25,7 +25,13 @@ import './src/js/translationsHash.js';
                         nsGmx.layersTreePane.appendChild(pluginContainer);
 
                         render(
-                            <StylesEditor layer={layer} styles={layer.getStyles()} currentStyleIndex={i}/>,
+                            <StylesEditor
+                                layer={layer}
+                                styles={layer.getStyles()}
+                                currentStyleIndex={i}
+                                treeElem={treeElem}
+                                treeView={treeView}
+                                />,
                             pluginContainer
                         );
                     }

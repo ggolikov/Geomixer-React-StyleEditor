@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loadAttrValues } from '../utils/attrValuesLoader';
+import { applyStylesToTree, loadAttrValues } from '../utils';
 import { Header } from './common/Header';
 import { StylesSelector } from './common/StylesSelector';
 import { FilterPanel } from './filter/FilterPanel';
@@ -19,11 +19,12 @@ class StylesEditor extends Component {
     }
 
     componentWillMount() {
-        let gmxProps = this.props.layer.getGmxProperties && this.props.layer.getGmxProperties(),
+        const { layer, currentStyleIndex } = this.props,
+            gmxProps = layer.getGmxProperties && layer.getGmxProperties(),
             layerID = gmxProps.LayerID;
 
-        if (this.props.currentStyleIndex) {
-            this.setState({currentStyleIndex: this.props.currentStyleIndex})
+        if (currentStyleIndex) {
+            this.setState({ currentStyleIndex })
         } else {
             this.setState({currentStyleIndex: 0})
         }
@@ -39,20 +40,25 @@ class StylesEditor extends Component {
     }
 
     render() {
-        let {layer, styles} = this.props,
+        let { layer, styles, treeElem, treeView } = this.props,
             {currentStyleIndex, attrs} = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = styles[currentStyleIndex];
 
         return (
             <div>
-                <Header layerName={layerProperties.title} />
+                <Header
+                    layer={layer}
+                    treeElem={treeElem}
+                    treeView={treeView}
+                    layerName={layerProperties.title}
+                />
                 <StylesSelector layer={layer} styles={styles} index={currentStyleIndex} onChange={this.changeStyle}/>
                 <Tabs id="StylesTabs">
                     <Tab id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
                     <Tab id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
                     <Tab id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
-                </Tabs>*/}
+                </Tabs>}
             </div>
         );
     }

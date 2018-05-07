@@ -8,12 +8,6 @@ class StyleSelectorItem extends Component {
         super(props);
 
         this.state = props;
-
-        this.handleMouseEnter = this.handleMouseEnter.bind(this);
-        this.handleMouseLeave = this.handleMouseLeave.bind(this);
-        this.editStyleName = this.editStyleName.bind(this);
-        this.setStyleName = this.setStyleName.bind(this);
-        this.confirmStyleName = this.confirmStyleName.bind(this);
     }
 
     componentWillMount() {
@@ -23,30 +17,31 @@ class StyleSelectorItem extends Component {
         });
     }
 
-    handleMouseEnter(e) {
+    handleMouseEnter = (e) => {
         this.setState({active: true});
     }
 
-    handleMouseLeave(e) {
+    handleMouseLeave = (e) => {
         this.setState({active: false});
     }
 
-    editStyleName() {
+    editStyleName = () => {
         this.setState({isNameEditable: true});
     }
 
-    setStyleName(e) {
-        let newStyle = {};
+    setStyleName = (e) => {
+        const { layer, style, index } = this.props,
+            newStyle = {};
 
         newStyle.Name = e;
 
-        const extendedStyle = $.extend(true, this.props.style, newStyle);
+        const extendedStyle = $.extend(true, style, newStyle);
 
-        this.props.layer.setStyle(extendedStyle, this.props.index);
+        layer.setStyle(extendedStyle, index);
         this.setState({style: extendedStyle});
     }
 
-    confirmStyleName() {
+    confirmStyleName = () => {
         this.setState({isNameEditable: false});
     }
 
