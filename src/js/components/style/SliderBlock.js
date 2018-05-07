@@ -82,7 +82,7 @@ class SliderBlock extends Component {
                     min={-50}
                     max={50}
                     value={this.state.sliderValue}
-                    renderLabel={false}
+                    labelRenderer={false}
                     onChange={this.handleSlideChange}
                 / >
                 <input className={this.getInputClassName()} value={this.state.inputValue} onChange={this.handleInputChange}/>

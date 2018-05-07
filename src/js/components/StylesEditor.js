@@ -5,7 +5,7 @@ import { StylesSelector } from './common/StylesSelector';
 import { FilterPanel } from './filter/FilterPanel';
 import { StylePanel } from './style/StylePanel';
 import { PopupPanel } from './popup/PopupPanel';
-import { Tab2, Tabs2 } from "@blueprintjs/core";
+import { Tab, Tabs } from "@blueprintjs/core";
 
 class StylesEditor extends Component {
     constructor(props) {
@@ -48,11 +48,11 @@ class StylesEditor extends Component {
             <div>
                 <Header layerName={layerProperties.title} />
                 <StylesSelector layer={layer} styles={styles} index={currentStyleIndex} onChange={this.changeStyle}/>
-                <Tabs2 id="StylesTabs">
-                    <Tab2 id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
-                    <Tab2 id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
-                    <Tab2 id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
-                </Tabs2>
+                <Tabs id="StylesTabs">
+                    <Tab id="style" title="Оформление" panel={<StylePanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
+                    <Tab id="filter" title="Фильтр" panel={<FilterPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
+                    <Tab id="popup" title="Pop-up" panel={<PopupPanel layer={layer} style={style} index={currentStyleIndex} attrs={attrs} />} />
+                </Tabs>*/}
             </div>
         );
     }

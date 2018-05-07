@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ColorIcon } from '../ColorIcon';
 import { EditableText } from "@blueprintjs/core";
-import { IconClasses } from "@blueprintjs/core";
 import $ from 'jquery';
 
 class StyleSelectorItem extends Component {

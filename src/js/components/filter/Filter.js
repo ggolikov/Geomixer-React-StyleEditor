@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import { loadAttrValues } from '../utils/attrValuesLoader';
-import { Table, Column } from "@blueprintjs/core";
 import $ from 'jquery';
 
 class Filter extends Component {
@@ -47,11 +46,6 @@ class Filter extends Component {
                 <li key={street}>{street}</li>
             );
         }) : <li></li>;
-        // <Table numRows={5}>
-        //     <Column />
-        //     <Column />
-        //     <Column />
-        // </Table>
 
         return (
             <div>
