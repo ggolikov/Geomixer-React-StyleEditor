@@ -40,7 +40,7 @@ class StylesEditor extends Component {
     }
 
     render() {
-        let { layer, styles, treeElem, treeView } = this.props,
+        let { layer, styles } = this.props,
             {currentStyleIndex, attrs} = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = styles[currentStyleIndex];
@@ -49,8 +49,6 @@ class StylesEditor extends Component {
             <div>
                 <Header
                     layer={layer}
-                    treeElem={treeElem}
-                    treeView={treeView}
                     layerName={layerProperties.title}
                 />
                 <StylesSelector layer={layer} styles={styles} index={currentStyleIndex} onChange={this.changeStyle}/>

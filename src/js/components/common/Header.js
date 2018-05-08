@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
+import { StyleEditor } from '../../StyleEditor';
 
-const backButtonPath = "plugins/styleEditorPlugin/css/images/back.svg"
-
-
+const backButtonPath = "plugins/styleEditorPlugin/css/images/bac0``k.svg";
 
 export const Header = (props) => {
     const onBackButtonClick = (e) => {
-        let { layer, treeElem, treeView } = props,
-            div = $(window._queryMapLayers.buildedTree).find("div[LayerID='" + treeElem.LayerID + "']")[0],
-            styles = layer.getStyles(),
-            layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu'),
-            styleEditorContainer = nsGmx.layersTreePane.querySelector('.gmx-style-editor');
+        let { layer } = props,
+            event = document.createEvent('Event');
 
-        window._mapHelper.updateTreeStyles(styles, div, treeView);
+        event.initEvent('saveStyles', false, false);
+        event.detail = { layer };
 
-        nsGmx.layersTreePane.removeChild(styleEditorContainer);
-
-        layersTreeContainer.style.display = 'block';
+        StyleEditor.dispatchEvent(event);
     }
 
     return (
