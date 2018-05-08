@@ -6,4 +6,6 @@ class StyleEditor extends EventTarget {
     }
 }
 
-export default StyleEditor;
+const styleEditor = new StyleEditor();
+
+export default styleEditor;

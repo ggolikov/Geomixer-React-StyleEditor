@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleEditor } from '../../StyleEditor';
+import styleEditor from '../../StyleEditor';
 
 const backButtonPath = "plugins/styleEditorPlugin/css/images/bac0``k.svg";
 
@@ -11,7 +11,7 @@ export const Header = (props) => {
         event.initEvent('saveStyles', false, false);
         event.detail = { layer };
 
-        StyleEditor.dispatchEvent(event);
+        styleEditor.dispatchEvent(event);
     }
 
     return (

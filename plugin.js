@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { StylesEditor } from './src/js/components/StylesEditor';
-import { StyleEditor } from './src/js/StyleEditor';
+import styleEditor from './src/js/StyleEditor';
 import './src/js/translationsHash.js';
 
 (function () {
@@ -15,7 +15,7 @@ import './src/js/translationsHash.js';
             afterViewer: function (params, map) {
     			if (window.nsGmx) {
                     if (window.newStyles) {
-                        StyleEditor.addEventListener('saveStyles', (e) => {
+                        styleEditor.addEventListener('saveStyles', (e) => {
                             let { layer } = e.detail,
                                 gmxProps = layer.getGmxProperties && layer.getGmxProperties(),
                                 div = $(window._queryMapLayers.buildedTree).find("div[LayerID='" + gmxProps.name + "']")[0],
@@ -52,7 +52,7 @@ import './src/js/translationsHash.js';
                             );
                         }
 
-                        nsGmx.StyleEditor = StyleEditor;
+                        nsGmx.styleEditor = styleEditor;
                     }
                 }
             }

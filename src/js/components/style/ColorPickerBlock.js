@@ -4,21 +4,46 @@ import { StyleHOC } from './StyleHOC';
 import $ from 'jquery';
 
 const ColorPickerBlock = (props) => {
+
+    const parseColor = color => parseInt('0x' + color.replace(/#/, ''));
+
     const onChange = (color, e) => {
-        let { layer, param, index } = props,
-            style = layer.getStyles()[index],
-            newStyle = {},
-            newRenderStyle = $.extend(true, style.RenderStyle, {[param]: color.color}),
-            newHoverStyle = $.extend(true, style.HoverStyle, {[param]: color.color});
+        let { layer, param, style, index } = props,
+            extendingStyle,
+            newRenderStyle, newHoverStyle,
+            newStyle, copyStyle;
+
+        extendingStyle = {
+            [param]: parseColor(color.color)
+        };
+
+        if (param === 'color') {
+            extendingStyle.opacity = color.alpha;
+        };
+
+        if (param === 'fillColor') {
+            extendingStyle.fillOpacity = color.alpha;
+        }
+
+        newRenderStyle = $.extend(true, style.RenderStyle, extendingStyle);
+
+        newHoverStyle = $.extend(true, style.HoverStyle, extendingStyle);
 
         newStyle = $.extend(true, style, {
             RenderStyle: newRenderStyle,
             HoverStyle: newHoverStyle
         });
+
+        copyStyle = $.extend(true, style, {
+            RenderStyle: newRenderStyle,
+            HoverStyle: newHoverStyle
+        });
+
+        style = newStyle;
         console.log(`param: ${param}`);
-        layer.setStyle(newStyle, index);
-    }
-    console.log(`#${props.style.RenderStyle[props.param]}`);
+        layer.setStyle(copyStyle, index);
+        style = newStyle;
+    };
 
     return (
         <ColorPicker
