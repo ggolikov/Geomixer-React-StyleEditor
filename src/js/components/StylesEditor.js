@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { applyStylesToTree, loadAttrValues } from '../utils';
 import { Header } from './common/Header';
-import { StylesSelector } from './common/StylesSelector';
+import StylesSelector from './common/StylesSelector';
 import { FilterPanel } from './filter/FilterPanel';
 import { StylePanel } from './style/StylePanel';
 import { PopupPanel } from './popup/PopupPanel';
-import { Tab, Tabs } from "@blueprintjs/core";
+import { Tab, Tabs } from '@blueprintjs/core';
 
 class StylesEditor extends Component {
     constructor(props) {
@@ -14,8 +14,6 @@ class StylesEditor extends Component {
             currentStyleIndex: props.currentStyleIndex,
             attrs: []
         };
-
-        this.changeStyle = this.changeStyle.bind(this);
     }
 
     componentWillMount() {
@@ -33,10 +31,12 @@ class StylesEditor extends Component {
             .then(data => this.setState({attrs: data.Result}));
     }
 
-    changeStyle(e) {
-        let index = Number(e.target.getAttribute('data-index'));
+    changeStyle = (e, data) => {
+        // let { currentStyleIndex } = data;
 
-        this.setState({currentStyleIndex: index});
+        let currentStyleIndex = Number(prompt('Введите индекс'));
+
+        this.setState({ currentStyleIndex });
     }
 
     render() {

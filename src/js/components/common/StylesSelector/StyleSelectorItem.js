@@ -74,4 +74,4 @@ class StyleSelectorItem extends Component {
         );
     }
 }
-export { StyleSelectorItem };
+export default StyleSelectorItem;

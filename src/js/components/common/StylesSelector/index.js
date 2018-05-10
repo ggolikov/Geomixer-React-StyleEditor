@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSelectorItem } from './StyleSelectorItem';
+import StyleSelectorItem from './StyleSelectorItem';
+import StylesPopover from './StylesPopover';
+import CurrentStyle from './CurrentStyle';
+import { Popover, PopoverInteractionKind } from '@blueprintjs/core';
 
 class StylesSelector extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(e) {
-        this.state.onChange(e);
+    handleChange = (e) => {
+        this.props.onChange(e);
+    }
+
+    toggleStylesList = () => {
+        this.setState({
+            stylesListShown: !this.state.stylesListShown
+        })
     }
 
     render() {
         const { layer, styles, index } = this.props,
-            layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             currentStyle = styles[index];
 
-        const stylesItems = styles.map(function (style, index) {
-            var isCurrent = style === currentStyle;
-            console.log(isCurrent);
-            return <StyleSelectorItem key={style.Filter} layer={layer} style={style} index={index} isCurrent={isCurrent} />;
-        });
+        let stylesPopover = (
+            <StylesPopover
+                styles={styles}
+                currentStyleIndex={index}
+                onChange={this.props.onChange}
+            />
+        );
+
+
 
         return (
             <div className="gmx-style-editor-style-selector">
-                <StyleSelectorItem layer={layer} style={currentStyle}/>
-                {stylesItems}
+                <Popover content={stylesPopover}>
+                    <CurrentStyle style={currentStyle} />
+                </Popover>
             </div>
         );
     }
 }
-export { StylesSelector };
+export default StylesSelector;
