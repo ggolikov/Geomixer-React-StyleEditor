@@ -1,52 +1,70 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 class ShowPopupSettings extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
-        let style = this.state.style,
-            newSyle = {};
+    handleClick = (e) => {
+        let { layer, param, style, index } = this.props,
+            extendingStyle = {};
 
         if (typeof style.BalloonEnable === 'undefined')
         {
-            newSyle.BalloonEnable = true;
-            newSyle.DisableBalloonOnClick = false;
-            newSyle.DisableBalloonOnMouseMove = true;
+            extendingStyle.BalloonEnable = true;
+            extendingStyle.DisableBalloonOnClick = false;
+            extendingStyle.DisableBalloonOnMouseMove = true;
         } else {
             if (typeof style.DisableBalloonOnClick === 'undefined') {
-                newSyle.DisableBalloonOnClick = false;
+                extendingStyle.DisableBalloonOnClick = false;
             }
 
             if (typeof style.DisableBalloonOnMouseMove === 'undefined') {
-                newSyle.DisableBalloonOnMouseMove = false;
+                extendingStyle.DisableBalloonOnMouseMove = false;
             }
         }
 
         if (e.target.value === 'DisableBalloonOnClick') {
-            newSyle.DisableBalloonOnClick = false;
-            newSyle.DisableBalloonOnMouseMove = true;
+            extendingStyle.DisableBalloonOnClick = false;
+            extendingStyle.DisableBalloonOnMouseMove = true;
         } else {
-            newSyle.DisableBalloonOnClick = true;
-            newSyle.DisableBalloonOnMouseMove = false;
+            extendingStyle.DisableBalloonOnClick = true;
+            extendingStyle.DisableBalloonOnMouseMove = false;
         }
 
-        const extendedStyle = $.extend(true, this.props.style, newSyle);
+        style = _.extend(style, extendingStyle);
 
-        this.state.layer.setStyle(extendedStyle, this.props.index);
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {
-        let style = this.state.style;
+        let { style } = this.props;
 
         return (
             <div>
-                <label><input type="radio" name="contact" value="DisableBalloonOnClick" defaultChecked={!style.DisableBalloonOnClick} onClick={this.handleClick}/> {window._gtxt('при клике')} </label> <br />
-                <label><input type="radio" name="contact" value="DisableBalloonOnMouseMove" defaultChecked={!style.DisableBalloonOnMouseMove} onClick={this.handleClick}/> {window._gtxt('при наведении')} </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="contact"
+                        value="DisableBalloonOnClick"
+                        defaultChecked={!style.DisableBalloonOnClick}
+                        onClick={this.handleClick}
+                    />
+                        {window._gtxt('при клике')}
+                    </label>
+                <br />
+                <label>
+                    <input
+                        type="radio"
+                        name="contact"
+                        value="DisableBalloonOnMouseMove"
+                        defaultChecked={!style.DisableBalloonOnMouseMove}
+                        onClick={this.handleClick}
+                    />
+                        {window._gtxt('при наведении')}
+                </label>
             </div>
         );
     }

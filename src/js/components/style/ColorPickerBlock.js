@@ -1,7 +1,8 @@
 import React from 'react';
 import ColorPicker from 'rc-color-picker';
 import { StyleHOC } from './StyleHOC';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 const ColorPickerBlock = (props) => {
 
@@ -10,8 +11,7 @@ const ColorPickerBlock = (props) => {
     const onChange = (color, e) => {
         let { layer, param, style, index } = props,
             extendingStyle,
-            newRenderStyle, newHoverStyle,
-            newStyle, copyStyle;
+            newRenderStyle, newHoverStyle;
 
         extendingStyle = {
             [param]: parseColor(color.color)
@@ -25,30 +25,19 @@ const ColorPickerBlock = (props) => {
             extendingStyle.fillOpacity = color.alpha;
         }
 
-        newRenderStyle = $.extend(true, style.RenderStyle, extendingStyle);
-
-        newHoverStyle = $.extend(true, style.HoverStyle, extendingStyle);
-
-        newStyle = $.extend(true, style, {
+        newRenderStyle = _.extend(style.RenderStyle, extendingStyle);
+        newHoverStyle = _.extend(style.HoverStyle, extendingStyle);
+        style = _.extend(style, {
             RenderStyle: newRenderStyle,
             HoverStyle: newHoverStyle
         });
 
-        copyStyle = $.extend(true, style, {
-            RenderStyle: newRenderStyle,
-            HoverStyle: newHoverStyle
-        });
-
-        style = newStyle;
-        console.log(`param: ${param}`);
-        layer.setStyle(copyStyle, index);
-        style = newStyle;
+        styleEditor.setStyle(layer, style, index);
     };
 
     return (
         <ColorPicker
             color={`${props.style.RenderStyle[props.param]}`}
-            // defaultColor={'#36c'}
             alpha={100}
             onChange={onChange}
             // onClose={this.closeHandler}

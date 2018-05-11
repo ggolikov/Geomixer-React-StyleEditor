@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ColorIcon } from '../ColorIcon';
 import { EditableText } from "@blueprintjs/core";
-import $ from 'jquery';
+import styleEditor from '../../../StyleEditor';
+import _ from 'lodash/core';
 
 class StyleSelectorItem extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class StyleSelectorItem extends Component {
     componentWillMount() {
         this.setState({
             active: false,
-            isNameEditable: false
+            isNameEditable: false,
+            // style: null
         });
     }
 
@@ -30,15 +32,18 @@ class StyleSelectorItem extends Component {
     }
 
     setStyleName = (e) => {
-        const { layer, style, index } = this.props,
-            newStyle = {};
+        let { layer, style, index } = this.props,
+            extendingStyle, newStyle;
 
-        newStyle.Name = e;
+        extendingStyle = {
+            Name: e
+        };
 
-        const extendedStyle = $.extend(true, style, newStyle);
+        style = _.extend(style, extendingStyle);
 
-        layer.setStyle(extendedStyle, index);
-        this.setState({style: extendedStyle});
+        styleEditor.setStyle(layer, style, index);
+
+        this.setState({ style });
     }
 
     confirmStyleName = () => {

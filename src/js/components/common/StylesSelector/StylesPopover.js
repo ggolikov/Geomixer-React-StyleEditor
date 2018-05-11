@@ -30,7 +30,7 @@ class StylesPopover extends Component {
     }
 
     render() {
-        const { styles } = this.props,
+        const { layer, styles } = this.props,
             { currentStyleIndex } = this.state,
             currentStyle = styles[currentStyleIndex];
 

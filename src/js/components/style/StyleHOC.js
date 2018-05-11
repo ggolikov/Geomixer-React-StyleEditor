@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 export const StyleHOC = (InnerComponent) => class extends Component {
     constructor(props) {
@@ -7,10 +8,11 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         this.state = props;
     }
 
-    onChange(e) {
-        let param = this.props.param,
-            nestedParam = this.props.nestedParam,
+    onChange = (e) => {
+        let { layer, style, index, param, nestedParam }  = this.props,
             value,
+            extendingStyle,
+            newRenderStyle, newHoverStyle,
             newStyle;
 
         if (typeof e === "number") {
@@ -25,7 +27,7 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         if (param.match(/\//gi)) {
             let paramArray = param.split('/'),
                 paramIndex = paramArray[1],
-                currentLayerStyle = this.state.style.RenderStyle,
+                currentLayerStyle = style.RenderStyle,
                 currentLabelAnchorStyle, newlabelAnchorStyle;
 
             if ('labelAnchor' in currentLayerStyle && Array.isArray(currentLayerStyle.labelAnchor)) {
@@ -47,26 +49,29 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         }
 
         if (nestedParam) {
-            newStyle = {
-                RenderStyle: {
-                    [param]: {
-                        nestedParam: value
-                    }
+            extendingStyle = {
+                [param]: {
+                    nestedParam: value
                 }
             };
         } else {
-            newStyle = {
-                RenderStyle: {
-                    [param]: value
-                }
+            extendingStyle = {
+                [param]: value
             };
         }
 
-        const extendedStyle = $.extend(true, this.props.style, newStyle);
+        newRenderStyle = _.extend(style.RenderStyle, extendingStyle);
+        newHoverStyle = _.extend(style.HoverStyle, extendingStyle);
+        newStyle = {
+            RenderStyle: newRenderStyle,
+            HoverStyle: newHoverStyle
+        };
 
-        this.setState({style: extendedStyle});
+        style = _.extend(style, newStyle);
 
-        this.state.layer.setStyle(extendedStyle, this.props.index);
+        this.setState({ style });
+
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {
@@ -74,7 +79,7 @@ export const StyleHOC = (InnerComponent) => class extends Component {
             <InnerComponent
                 {...this.props}
                 {...this.state}
-                onChange={this.onChange.bind(this)}
+                onChange={this.onChange}
             />
         )
     }

@@ -25,6 +25,7 @@ class StylesSelector extends Component {
 
         let stylesPopover = (
             <StylesPopover
+                layer={layer}
                 styles={styles}
                 currentStyleIndex={index}
                 onChange={this.props.onChange}

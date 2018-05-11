@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 class ZoomSettings extends Component {
     constructor(props) {
@@ -11,56 +12,57 @@ class ZoomSettings extends Component {
     }
 
     handleChange = (e) => {
-        let style = this.props.style,
+        let { layer, style, index } = this.props,
             isMinZoom = e.target.className.indexOf('minzoom') !== -1,
-            newSyle = {},
+            extendingStyle = {},
             value = Number(e.target.value),
             error;
 
         if (isMinZoom) {
-            let minZoomError = Number.isNaN(value) || value > this.props.style.MaxZoom;
+            let minZoomError = Number.isNaN(value) || value > style.MaxZoom;
 
             this.setState({
                 minZoomError: minZoomError
             })
 
             if (!minZoomError) {
-                newSyle.MinZoom = value;
+                extendingStyle.MinZoom = value;
             } else {
                 return;
             }
 
         } else {
-            let maxZoomError = Number.isNaN(value) || value < this.props.style.MinZoom;
+            let maxZoomError = Number.isNaN(value) || value < style.MinZoom;
 
             this.setState({
                 maxZoomError: maxZoomError
             })
 
             if (!maxZoomError) {
-                newSyle.MaxZoom = value;
+                extendingStyle.MaxZoom = value;
             } else {
                 return;
             }
         }
 
-        console.log(newSyle);
+        console.log(extendingStyle);
 
-        const extendedStyle = $.extend(true, this.props.style, newSyle);
+        style = _.extend(style, extendingStyle);
 
-        this.props.layer.setStyle(extendedStyle, this.props.index);
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {
-        let style = this.props.style,
-            minZoomClassName = 'gmx-style-editor-input-small gmx-style-editor-minzoom' + (this.state.minZoomError ? ' gmx-style-editor-input-error' : ''),
-            maxZoomClassName = 'gmx-style-editor-input-small gmx-style-editor-maxzoom' + (this.state.maxZoomError ? ' gmx-style-editor-input-error' : '');
+        let { style } = this.props,
+            { minZoomError, maxZoomError } = this.state,
+            minZoomClassName = 'gmx-style-editor-input-small gmx-style-editor-minzoom' + (minZoomError ? ' gmx-style-editor-input-error' : ''),
+            maxZoomClassName = 'gmx-style-editor-input-small gmx-style-editor-maxzoom' + (maxZoomError ? ' gmx-style-editor-input-error' : '');
 
         return (
             <div className='gmx-style-editor-zoom-settings'>
-                <input className={minZoomClassName} defaultValue={this.props.style.MinZoom} onChange={this.handleChange}/>
+                <input type="number" className={minZoomClassName} defaultValue={style.MinZoom} onChange={this.handleChange}/>
                  -
-                <input className={maxZoomClassName} defaultValue={this.props.style.MaxZoom} onChange={this.handleChange}/>
+                <input type="number" className={maxZoomClassName} defaultValue={style.MaxZoom} onChange={this.handleChange}/>
             </div>
         );
     }

@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import styleEditor from '../../../StyleEditor';
+import _ from 'lodash/core';
 
 export const SuggestorHOC = (InnerComponent) => class extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
+        this.state = {};
     }
 
     componentWillMount() {
         this.setState({defaultValue: this.props.style[this.props.param]})
-        let style = this.props.style
     }
 
     onChange(e) {
-        let style = this.props.style,
-            param = this.props.param,
-            newSyle = {
-                [param]: e.target.value
-            };
+        let { layer, param, style, index } = this.props,
+            extendingStyle;
 
-        const extendedStyle = $.extend(true, this.props.style, newSyle);
+        extendingStyle = {
+            [param]: e.target.value
+        };
 
-        this.state.layer.setStyle(extendedStyle, this.props.index);
+        style = _.extend(style, extendingStyle);
+
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {

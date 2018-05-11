@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 class Input extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
-        this.onChange = this.onChange.bind(this);
     }
 
-    onChange(e) {
-        const newSyle = {
-            RenderStyle: {
-                labelFontSize: Number(e.target.value)
-            }
-        };
-        const extendedStyle = $.extend(true, {}, this.state.style, newSyle);
+    onChange = (e) => {
+        let { layer, param, style, index } = this.props,
+            extendingStyle,
+            newRenderStyle, newHoverStyle,
+            newStyle;
 
-        this.state.layer.setStyle(extendedStyle, this.state.index);
+        extendingStyle = {
+            [param]: Number(e.target.value)
+        };
+
+        newRenderStyle = _.extend(style.RenderStyle, extendingStyle);
+        newHoverStyle = _.extend(style.HoverStyle, extendingStyle);
+        style = _.extend(style, {
+            RenderStyle: newRenderStyle,
+            HoverStyle: newHoverStyle
+        });
+
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {
         return (
-            <input type="text" onChange={this.onChange}></input>
+            <input type="number" onChange={this.onChange}></input>
         );
     }
 }

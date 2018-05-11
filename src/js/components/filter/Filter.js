@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { loadAttrValues } from '../utils/attrValuesLoader';
-import $ from 'jquery';
+import styleEditor from '../../StyleEditor';
+import _ from 'lodash/core';
 
 class Filter extends Component {
     constructor(props) {
@@ -30,16 +30,19 @@ class Filter extends Component {
 
     onChange(e) {
         console.log(this.state.attrs);
-        const newSyle = {
+        let { layer, param, style, index } = this.props,
+            extendingStyle;
+
+        extendingStyle = {
             Filter: e.value
         };
-        const extendedStyle = $.extend(true, {}, this.state.style, newSyle);
 
-        this.state.layer.setStyle(extendedStyle, this.state.index);
+        style = _.extend(style, extendingStyle);
+
+        styleEditor.setStyle(layer, style, index);
     }
 
     render() {
-
         this.state.attrs && console.log(this.state.attrs);
         const streets = this.state.attrs ? this.state.attrs['Улица'].map(function(street) {
             return (
