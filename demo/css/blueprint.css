@@ -9,11 +9,6 @@ html{
   -webkit-box-sizing:border-box;
           box-sizing:border-box; }
 
-*,
-*::before,
-*::after{
-  -webkit-box-sizing:inherit;
-          box-sizing:inherit; }
 hr{
   margin:20px 0;
   border:none;
@@ -209,10 +204,6 @@ blockquote{
     margin-bottom:0; }
   .pt-dark blockquote{
     border-color:rgba(115, 134, 148, 0.5); }
-ol,
-ul{
-  margin:10px 0;
-  padding-left:40px; }
 
 .pt-list li:not(:last-child),
 .pt-running-text ul li:not(:last-child),

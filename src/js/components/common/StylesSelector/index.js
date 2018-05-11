@@ -3,6 +3,7 @@ import StyleSelectorItem from './StyleSelectorItem';
 import StylesPopover from './StylesPopover';
 import CurrentStyle from './CurrentStyle';
 import { Popover, PopoverInteractionKind } from '@blueprintjs/core';
+import './index.css';
 
 class StylesSelector extends Component {
     constructor(props) {

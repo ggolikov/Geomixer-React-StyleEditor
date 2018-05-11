@@ -177,11 +177,14 @@
 /*COLORPICKER*/
 
 .gmx-style-editor-color-picker-container {
-vertical-align: middle;
-ine-block;
+   vertical-align: middle;
 }
 
 /*Style selector*/
+/*
+.gmx-style-editor-style-selector {
+    cursor: pointer;
+}
 
 .gmx-style-editor-style-selector-item-name {
     height: 18px;
@@ -196,4 +199,4 @@
 
 .gmx-style-editor-style-selector-icon {
     margin-left: 5px;
-}
+} */

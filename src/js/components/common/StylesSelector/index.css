@@ -1,0 +1,19 @@
+.gmx-style-editor-style-selector {
+    cursor: pointer;
+    background-color: red;
+}
+
+.gmx-style-editor-style-selector-item-name {
+    height: 18px;
+    line-height: 18px;
+    min-width: 80px;
+    vertical-align: top;
+}
+
+.gmx-style-editor-style-selector-current-item-name {
+    font-weight: bold;
+}
+
+.gmx-style-editor-style-selector-icon {
+    margin-left: 5px;
+}

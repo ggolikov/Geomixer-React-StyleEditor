@@ -11,10 +11,6 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body'
 });
 
-const extractSass = new ExtractTextPlugin({
-    filename: "./src/css/[name].css"
-});
-
 const common = {
     resolve: {
         extensions: ['.js', '.jsx', '.css', '.sass', 'scss'], //An empty string is no longer required.
@@ -31,17 +27,11 @@ const common = {
                     }],
                     exclude: /node_modules/
                 }, {
-                    test: /\.(scss|sass|css)$/i,
-                    use: extractSass.extract({
-                        use: [{
-                            loader: "css-loader" // translates CSS into CommonJS
-                        },
-                        'resolve-url-loader',
-                        {
-                            loader: "sass-loader" // compiles Sass to CSS
-                        }],
-                        fallback: "style-loader" // creates style nodes from JS strings
-                    }),
+                    test: /\.(css)$/i,
+                    use: [
+                      { loader: "style-loader" },
+                      { loader: "css-loader" }
+                    ],
                     exclude: /node_modules/
                 },  {
                     test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.eot$|\.ttf$|\.wav$|\.mp3$/,
