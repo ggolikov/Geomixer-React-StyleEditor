@@ -1,6 +1,5 @@
 .gmx-style-editor-style-selector {
     cursor: pointer;
-    background-color: red;
 }
 
 .gmx-style-editor-style-selector-item-name {
@@ -12,8 +11,13 @@
 
 .gmx-style-editor-style-selector-current-item-name {
     font-weight: bold;
+    background-color: red;
 }
 
 .gmx-style-editor-style-selector-icon {
     margin-left: 5px;
+}
+
+.pt-popover {
+    width: 300px;
 }

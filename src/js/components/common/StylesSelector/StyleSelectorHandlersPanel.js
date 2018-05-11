@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ColorIcon } from '../ColorIcon';
-import { Button } from "@blueprintjs/core";
+import { Button, Classes, Popover } from "@blueprintjs/core";
 import $ from 'jquery';
 
 class StyleSelectorHandlersPanel extends Component {
@@ -12,7 +12,7 @@ class StyleSelectorHandlersPanel extends Component {
 
     render() {
         return (
-            <div className={"gmx-style-editor-style-selector-item"} >
+            <div className={`${Classes.POPOVER_DISMISS} gmx-style-editor-style-selector-item`} >
                 <Button onClick={this.props.onClick}>
                     {"Применить"}
                 </Button>

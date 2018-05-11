@@ -8,36 +8,41 @@ class StylesPopover extends Component {
 
         this.state = {
             currentStyleIndex: props.currentStyleIndex
-            // currentStyle: null
         }
     }
 
-    handleMouseMove = (e) => {
-        this.setState({
-            currentStyle: null
-        })
-    }
-
-    onStyleClick = (e) => {
-        console.log(e.target);
+    onStyleClick = (e, index) => {
+        let data = {
+            currentStyleIndex: index
+        };
+        this.setState({currentStyleIndex: index});
+        // this.props.onChange(e, data);
     }
 
     handleChange = (e) => {
         let data = {
             currentStyleIndex: this.state.currentStyleIndex
         };
+        this.setState({currentStyleIndex: null});
         this.props.onChange(e, data);
     }
 
     render() {
-        const { layer, styles } = this.props,
+        let { layer, styles } = this.props,
             { currentStyleIndex } = this.state,
-            currentStyle = styles[currentStyleIndex];
-
-        const stylesItems = styles.map(function (style, index) {
-            console.log(this);
-            var isCurrent = style === currentStyle;
-            return <StyleSelectorItem key={style.Filter} layer={layer} style={style} index={index} isCurrent={isCurrent}/* onClick={this.onStyleClick}*//>;
+            currentStyle = styles[currentStyleIndex],
+            onStyleClick = this.onStyleClick.bind(this);
+            
+        let stylesItems = styles.map((style, index) => {
+                let isCurrent = style === currentStyle;
+            return <StyleSelectorItem
+                        key={style.Filter}
+                        layer={layer}
+                        style={style}
+                        index={index}
+                        isCurrent={isCurrent}
+                        onStyleClick={this.onStyleClick}
+                    />;
         });
 
         return (

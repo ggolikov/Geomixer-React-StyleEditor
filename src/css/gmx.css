@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+.gmx-style-editor textarea {
+    resize: none;
+}
+
 .gmx-style-editor *,
 .gmx-style-editor *::before,
 .gmx-style-editor *::after {
@@ -21,19 +25,6 @@
     background-color: rgba(236, 241, 245, 0);
 }
 
-.gmx-style-editor-block-small {
-    height: 30px;
-}
-
-.gmx-style-editor-right {
-    float: right;
-    margin-right: 5px;
-}
-
-.gmx-style-editor-left {
-    float: left;
-    margin: 0 10px 0 5px;
-}
 
 .gmx-style-editor-label {
     font-weight: bold;
@@ -47,23 +38,6 @@
 .gmx-style-editor-label-small {
     display: inline-block;
     width: 120px;
-}
-
-.style-slider {
-    vertical-align: middle;
-    width: 80px;
-    display: inline-block;
-}
-
-.gmx-style-editor-input-small {
-    display: inline-block;
-    margin: 0 5px 0 0;
-    width: 30px;
-    /* vertical-align: middle; */
-}
-
-.gmx-style-editor-input-error {
-    background-color: red;
 }
 
 .gmx-style-editor-back-button {

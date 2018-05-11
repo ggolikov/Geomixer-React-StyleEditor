@@ -33,11 +33,12 @@ class StylesSelector extends Component {
             />
         );
 
-
-
         return (
             <div className="gmx-style-editor-style-selector">
-                <Popover content={stylesPopover}>
+                <Popover
+                    content={stylesPopover}
+                    minimal={true}
+                >
                     <CurrentStyle style={currentStyle} />
                 </Popover>
             </div>

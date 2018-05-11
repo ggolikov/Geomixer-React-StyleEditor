@@ -8,22 +8,18 @@ class StyleSelectorItem extends Component {
     constructor(props) {
         super(props);
 
-        this.state = props;
-    }
-
-    componentWillMount() {
-        this.setState({
+        this.state = {
             active: false,
-            isNameEditable: false,
-            // style: null
-        });
+            selected: false,
+            isNameEditable: false
+        }
     }
 
-    handleMouseEnter = (e) => {
+    onMouseEnter = (e) => {
         this.setState({active: true});
     }
 
-    handleMouseLeave = (e) => {
+    onMouseLeave = (e) => {
         this.setState({active: false});
     }
 
@@ -51,25 +47,29 @@ class StyleSelectorItem extends Component {
     }
 
     render() {
-        let layer = this.props.layer,
+        let { layer, style, isSelected, index, isCurrent, onStyleClick } = this.props,
+            { active, isNameEditable } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
-            style = this.state.style,
-            styleNameClassName = this.state.isCurrent ? "gmx-style-editor-style-selector-item-name gmx-style-editor-style-selector-current-item-name" : "gmx-style-editor-style-selector-item-name",
+            styleNameClassName = isCurrent ? "gmx-style-editor-style-selector-item-name gmx-style-editor-style-selector-current-item-name" : "gmx-style-editor-style-selector-item-name",
             styleNameValue = style.Name || style.Filter,
-            isNameEditable = this.state.isNameEditable,
             iconBorderStyle = {borderColor: "#" + style.RenderStyle.color},
             iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
 
-        let styleName =
-            this.state.isNameEditable ?
-            <EditableText defaultValue={styleNameValue} onChange={this.setStyleName} onConfirm={this.confirmStyleName}/> :
+        let styleName = isNameEditable ?
+            <EditableText defaultValue={styleNameValue} onChange={this.setStyleName} onConfirm={this.confirmStyleName} /> :
             <span className={styleNameClassName}>
                 {styleNameValue}
             </span>
-        let editIcon = this.state.active ? <span className="pt-icon-standard pt-icon-edit gmx-style-editor-style-selector-icon" /> : <span></span>;
+        let editIcon = active ? <span className="pt-icon-standard pt-icon-edit gmx-style-editor-style-selector-icon" /> : <span></span>;
 
         return (
-            <div className={"gmx-style-editor-style-selector-item"} key={style.Filter} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+            <div
+                className={"gmx-style-editor-style-selector-item"}
+                key={style.Filter}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+                onClick={(e) => onStyleClick(e, index)}
+            >
                 <ColorIcon iconBorderStyle={iconBorderStyle} iconFillStyle={iconFillStyle}/>
                 {styleName}
                 <span onClick={this.editStyleName}>

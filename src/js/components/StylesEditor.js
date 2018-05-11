@@ -32,9 +32,8 @@ class StylesEditor extends Component {
     }
 
     changeStyle = (e, data) => {
-        // let { currentStyleIndex } = data;
-
-        let currentStyleIndex = Number(prompt('Введите индекс'));
+        let { currentStyleIndex } = data;
+        console.log('changed');
 
         this.setState({ currentStyleIndex });
     }

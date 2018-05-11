@@ -64,7 +64,7 @@ class SliderBlock extends Component {
 
     getInputClassName() {
         let num = Number(this.state.inputValue),
-            className = 'gmx-style-editor-input-small gmx-style-editor-minzoom';
+            className = 'gmx-style-editor-input-small gmx-style-editor-right';
 
         if (this.state.inputValue === '' || Number.isNaN(num) || num < -50 || num > 50) {
             className += ' gmx-style-editor-input-error';
