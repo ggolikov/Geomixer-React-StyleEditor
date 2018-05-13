@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { applyStylesToTree, loadAttrValues } from '../utils';
-import { Header } from './common/Header';
-import StylesSelector from './common/StylesSelector';
-import { FilterPanel } from './filter/FilterPanel';
-import { StylePanel } from './style/StylePanel';
-import { PopupPanel } from './popup/PopupPanel';
 import { Tab, Tabs } from '@blueprintjs/core';
+import { applyStylesToTree, loadAttrValues } from '../utils';
+import Header from './common/Header';
+import StylesSelector from './common/StylesSelector';
+import FilterPanel from './FilterPanel';
+import StylePanel from './StylePanel';
+import PopupPanel from './PopupPanel';
 
 class StylesEditor extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class StylesEditor extends Component {
     }
 
     render() {
-        let { layer, styles } = this.props,
+        let { layer, styles, env } = this.props,
             {currentStyleIndex, attrs} = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = styles[currentStyleIndex];
@@ -49,6 +49,7 @@ class StylesEditor extends Component {
                 <Header
                     layer={layer}
                     layerName={layerProperties.title}
+                    env={env}
                 />
                 <StylesSelector layer={layer} styles={styles} index={currentStyleIndex} onChange={this.changeStyle}/>
                 <Tabs id="StylesTabs">

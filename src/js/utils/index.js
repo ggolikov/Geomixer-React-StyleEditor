@@ -1,7 +1,7 @@
-import applyStylesToTree from './applyStylesToTree';
 import loadAttrValues from './loadAttrValues';
+import insertAtCursor from './insertAtCursor';
 
 export {
-    applyStylesToTree,
-    loadAttrValues
+    loadAttrValues,
+    insertAtCursor
 }

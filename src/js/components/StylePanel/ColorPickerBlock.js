@@ -34,7 +34,7 @@ const ColorPickerBlock = (props) => {
 
         styleEditor.setStyle(layer, style, index);
     };
-
+    
     return (
         <ColorPicker
             color={`${props.style.RenderStyle[props.param]}`}

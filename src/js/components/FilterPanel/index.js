@@ -1,40 +1,38 @@
 import React, { Component } from 'react';
 import { Label } from '../common/Label';
-import { Input } from '../common/Input';
+import { Filter } from './Filter';
 import Suggestor from '../common/Suggestor';
-import { ShowPopupSettings } from './ShowPopupSettings';
-import $ from 'jquery';
+import './index.css';
 
-class PopupPanel extends Component {
+class FilterPanel extends Component {
     constructor(props) {
         super(props);
         this.state = props;
     }
 
     render() {
-        let popupSuggestorColumns = ['attrs'];
+        let popupSuggestorColumns = ['attrs', 'operators', 'values'];
 
-        const popupPanel = (
+        const filterPanel = (
             <div key={this.props.style.Filter}>
-                <Label txt={window._gtxt('Показывать')} />
-                <ShowPopupSettings layer={this.props.layer} style={this.props.style} index={this.props.index} />
                 <Suggestor
-                    param={"Balloon"}
+                    param={"Filter"}
                     layer={this.props.layer}
                     style={this.props.style}
                     index={this.props.index}
                     attrs={this.props.attrs}
                     columns={popupSuggestorColumns}
-                    attrsValueWrapper={'brackets'}
+                    attrsValueWrapper={'quotes'}
                     valuesLimit={20}
                 />
             </div>
         );
+
         return (
             <div>
-                {popupPanel}
+                {filterPanel}
             </div>
         );
     }
 }
-export { PopupPanel };
+export default FilterPanel;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styleEditor from '../../StyleEditor';
 
-const backButtonPath = "plugins/styleEditorPlugin/css/images/bac0``k.svg";
 
-export const Header = (props) => {
+const Header = (props) => {
+    const { layer, env } = props,
+        backButtonPath = env === 'plugin' ? "plugins/styleEditorPlugin/" : "./";
     const onBackButtonClick = (e) => {
-        let { layer } = props,
-            event = document.createEvent('Event');
+        event = document.createEvent('Event');
 
         event.initEvent('saveStyles', false, false);
         event.detail = { layer };
@@ -16,7 +16,7 @@ export const Header = (props) => {
 
     return (
         <div className="gmx-style-editor-header">
-            <img className="gmx-style-editor-back-button" src={backButtonPath} onClick={onBackButtonClick} />
+            <img className="gmx-style-editor-back-button" src={`${backButtonPath}css/images/back.svg`} onClick={onBackButtonClick} />
             <div>
                 <span className="gmx-style-editor-top-header">{window._gtxt('Стили слоя')}</span>
                 <span className="gmx-style-editor-layer-name">{props.layerName}</span>
@@ -24,3 +24,5 @@ export const Header = (props) => {
         </div>
     );
 }
+
+export default Header;

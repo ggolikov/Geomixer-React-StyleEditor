@@ -44,6 +44,7 @@ import './src/js/translationsHash.js';
 
                             render(
                                 <StylesEditor
+                                    env={'plugin'}
                                     layer={layer}
                                     styles={gmxProps.gmxStyles.styles}
                                     currentStyleIndex={i}

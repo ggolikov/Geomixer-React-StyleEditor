@@ -9,7 +9,7 @@ export const StyleHOC = (InnerComponent) => class extends Component {
     }
 
     onChange = (e) => {
-        let { layer, style, index, param, nestedParam }  = this.props,
+        let { layer, style, index, attrs, param, nestedParam }  = this.props,
             value,
             extendingStyle,
             newRenderStyle, newHoverStyle,

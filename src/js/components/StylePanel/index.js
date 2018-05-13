@@ -14,17 +14,26 @@ import './index.css';
 class StylePanel extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            attrs: props.attrs
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({attrs: nextProps.attrs});
     }
 
     render() {
-        let {layer, index, style, attrs} = this.props,
+        let {layer, index, style } = this.props,
+            { attrs } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties();
 
         /*Labels*/
         let labelClassName = 'gmx-style-editor-label',
             smallLabelClassName = labelClassName + ' gmx-style-editor-label-small';
+            console.log(attrs);
 
-        const stylePanel = (
+        return (
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Уровень зума')} className={smallLabelClassName} />
                 <ZoomSettings layer={layer} style={style} />
@@ -41,8 +50,8 @@ class StylePanel extends Component {
                 </StyleSettingsBlock>
 
                 <Label txt={window._gtxt('Подпись стиля')} className={labelClassName} />
-                <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} >
-                    <LabelEditor layer={layer} style={style} param='labelTemplate' index={index} attrs={attrs} />
+                <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} attrs={attrs}>
+                    <LabelEditor layer={layer} style={style} param='labelTemplate' index={index} />
                 </StyleSettingsBlock>
 
                 <StyleSettingsBlock size='small' txt={window._gtxt('Кегль и цвет')} >
@@ -56,12 +65,6 @@ class StylePanel extends Component {
                 <SliderBlock layer={layer} style={style} param='labelAnchor/1' index={index} txt={window._gtxt('Смещение по Y')} />
             </div>
         );
-
-        return (
-            <div>
-                {stylePanel}
-            </div>
-        );
     }
 }
-export { StylePanel };
+export default StylePanel;

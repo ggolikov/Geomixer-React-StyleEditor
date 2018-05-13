@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { SuggestorListValue } from './SuggestorListValue';
 import $ from 'jquery';
-import reactTriggerChange from 'react-trigger-change';
+import { insertAtCursor } from '../../../utils';
 import { SuggestorHOC } from './SuggestorHOC';
+import sqlOperators from './sqlOperators';
+import './index.css';
 
 class Suggestor extends Component {
     constructor(props) {
@@ -14,47 +16,19 @@ class Suggestor extends Component {
             selectedAttribute: '',
             hideSuggestions: true
         };
-
-        this.hideSuggestions = this.hideSuggestions.bind(this);
-        this.onAttributeClick = this.onAttributeClick.bind(this);
-        this.insertAtCursor = this.insertAtCursor.bind(this);
-        this.generateList = this.generateList.bind(this);
-        this.clearSelectedAttribute = this.clearSelectedAttribute.bind(this);
     }
 
-    hideSuggestions() {
+    hideSuggestions = () => {
         this.setState({hideSuggestions: !this.state.hideSuggestions});
     }
 
-    insertAtCursor(e) {
-        let value = e.target.innerText,
-            type = e.target.getAttribute('data-type'),
-            textArea = this.textArea;
+    insertValue = (e) => {
+        let { attrsValueWrapper } = this.props;
 
-        if (type === 'attrs') {
-            if (this.props.attrsValueWrapper === 'brackets') {
-                value = '[' + e.target.innerText + ']';
-            } else if (this.props.attrsValueWrapper === 'quotes') {
-                value = '"' + e.target.innerText + '"';
-            }
-        }
-	       if (document.selection) {
-               textArea.focus();
-			   let sel = document.selection.createRange();
-			   sel.text = value;
-		   } else if (textArea.selectionStart || textArea.selectionStart == '0') {
-		       let startPos = textArea.selectionStart,
-			       endPos = textArea.selectionEnd;
-
-		        textArea.value = textArea.value.substring(0, startPos) + value + textArea.value.substring(endPos, textArea.value.length);
-	       } else {
-               textArea.value += myValue;
-           }
-
-           reactTriggerChange(textArea);
+        insertAtCursor(e, attrsValueWrapper, this.textArea);
     }
 
-    onAttributeClick(e) {
+    onAttributeClick = (e) => {
         let attrValue = e.target.innerText;
 
         this.setState({
@@ -62,13 +36,13 @@ class Suggestor extends Component {
         });
     }
 
-    clearSelectedAttribute() {
+    clearSelectedAttribute = () => {
         this.setState({
             selectedAttribute: ''
         });
     }
 
-    generateList(array, type, text) {
+    generateList = (array, type, text) => {
         array = array.map((item) =>
             <SuggestorListValue
                 className={(type !== 'attrs' || item !== this.state.selectedAttribute) ? "gmx-suggest-list-value" : "gmx-suggest-list-value gmx-suggest-list-value-selected"}
@@ -76,7 +50,7 @@ class Suggestor extends Component {
                 value={item}
                 dataType={type}
                 onClick={type === 'attrs' ? this.onAttributeClick : null}
-                onDoubleClick={this.insertAtCursor}/>
+                onDoubleClick={this.insertValue}/>
         );
 
         return (
@@ -103,7 +77,7 @@ class Suggestor extends Component {
         }
 
         if (operators) {
-            let sqlOperators = ['=', '>', '<', '>=', '<=', '<>', 'AND', 'OR', 'NOT', 'IN', 'CONTAINS', 'CONTAINSIGNORECASE', 'BETWEEN', 'STARTSWITH', 'ENDSWITH'];
+            operators = ['=', '>', '<', '>=', '<=', '<>', 'AND', 'OR', 'NOT', 'IN', 'CONTAINS', 'CONTAINSIGNORECASE', 'BETWEEN', 'STARTSWITH', 'ENDSWITH'],
             operatorsHeaderBlock = <SuggestorListValue className={"gmx-suggest-list-header"}value={window._gtxt('Операторы')} style={this.state.listStyle} />,
             operatorsBlock = this.generateList(sqlOperators, 'operators');
         }
