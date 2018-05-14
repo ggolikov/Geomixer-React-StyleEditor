@@ -1,8 +1,9 @@
 import reactTriggerChange from 'react-trigger-change';
 
-const insertAtCursor = (e, attrsValueWrapper, textArea) => {
-    let value = e.target.innerText || e.target.value,
-        type = e.target.getAttribute('data-type');
+const insertAtCursor = (e, attrsValueWrapper, textArea, type) => {
+    let value = e.target.innerText || e.target.value;
+
+    type = type || e.target.getAttribute('data-type');
 
     if (type === 'attrs') {
         if (attrsValueWrapper === 'brackets') {

@@ -5,7 +5,9 @@ import _ from 'lodash/core';
 export const StyleHOC = (InnerComponent) => class extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
+        this.state = {
+            style: props.style
+        };
     }
 
     onChange = (e) => {

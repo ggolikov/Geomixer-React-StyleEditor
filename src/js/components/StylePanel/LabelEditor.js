@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
-import { Select } from "@blueprintjs/select";
 import { insertAtCursor } from '../../utils';
 import { StyleHOC } from './StyleHOC';
 
 class LabelEditor extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            attrs: props.attrs
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger;
-        console.log(nextProps);
+        this.setState({attrs: nextProps.attrs});
     }
 
     onItemSelect = (e) => {
-        insertAtCursor(e, 'brackets', this.textArea);
+        insertAtCursor(e, 'brackets', this.textArea, 'attrs');
     }
 
     render() {
-        let { layer, index, style, param, attrs, onChange } = this.props,
+        let { layer, index, style, param, onChange } = this.props,
+            { attrs } = this.state,
             labelSuggestorColumns = ['attrs'],
             onItemSelect = this.onItemSelect.bind(this),
-            options = null;
-    /*        options = Object.keys(attrs).map(a => {
+            options = Object.keys(attrs).map(attribute => {
                 return (
-                    <option key={a} onClick={onItemSelect}>
-                        a
+                    <option
+                        key={attribute}
+                    >
+                        {attribute}
                     </option>
                 )
-            })*/
+            })
             console.log(attrs);
 
         console.log(style.RenderStyle[param]);
@@ -39,9 +42,12 @@ class LabelEditor extends Component {
                     ref={(textarea) => { this.textArea = textarea; }}
                     className="gmx-style-editor-input-big gmx-style-editor-right"
                     onChange={onChange}
-                    value={String(style.RenderStyle[param])}
+                    defaultValue={String(style.RenderStyle[param])}
                 />
-                <select className="gmx-style-editor-input-big gmx-style-editor-right">
+                <select
+                    className="gmx-style-editor-input-big gmx-style-editor-right"
+                    onChange={this.onItemSelect}
+                >
                     {options}
                 </select>
 
