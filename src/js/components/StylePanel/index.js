@@ -14,18 +14,10 @@ import './index.css';
 class StylePanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            attrs: props.attrs
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({attrs: nextProps.attrs});
     }
 
     render() {
-        let {layer, index, style } = this.props,
-            { attrs } = this.state,
+        let {layer, index, style, attrs } = this.props,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties();
 
         /*Labels*/
@@ -50,8 +42,8 @@ class StylePanel extends Component {
                 </StyleSettingsBlock>
 
                 <Label txt={window._gtxt('Подпись стиля')} className={labelClassName} />
-                <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} attrs={attrs}>
-                    <LabelEditor layer={layer} style={style} param='labelTemplate' index={index} />
+                <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} >
+                    <LabelEditor layer={layer} style={style} param='labelTemplate' index={index} attrs={attrs} />
                 </StyleSettingsBlock>
 
                 <StyleSettingsBlock size='small' txt={window._gtxt('Кегль и цвет')} >
