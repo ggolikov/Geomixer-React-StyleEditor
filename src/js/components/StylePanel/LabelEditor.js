@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Select } from "@blueprintjs/select";
 import { insertAtCursor } from '../../utils';
 import { StyleHOC } from './StyleHOC';
 
