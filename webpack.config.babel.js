@@ -47,21 +47,21 @@ const common = {
 module.exports = (env) => {
     if (env.plugin) {
         console.log('build plugin');
-        return merge({
-            entry: [
-                __dirname + '/plugin.js'
-            ],
-            devtool: "cheap-inline-module-source-map",
-            output: {
-                path: paths.dist,
-                filename: 'styleEditorPlugin.js'
-            },
-            plugins: [
-                HTMLWebpackPluginConfig,
-                new CopyWebpackPlugin([
-                    { from: path.join(paths.src, 'css'), to: path.join(paths.dist, 'css') }
-                ])
-            ]
+            return merge({
+                entry: [
+                    __dirname + '/plugin.js'
+                ],
+                devtool: "cheap-inline-module-source-map",
+                output: {
+                    path: paths.dist,
+                    filename: 'styleEditorPlugin.js'
+                },
+                plugins: [
+                    HTMLWebpackPluginConfig,
+                    new CopyWebpackPlugin([
+                        { from: path.join(paths.src, 'css'), to: path.join(paths.dist, 'css') }
+                    ])
+                ]
         }, common);
     } else {
         console.log('build demo');

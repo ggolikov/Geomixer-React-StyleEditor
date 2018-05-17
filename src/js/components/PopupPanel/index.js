@@ -16,7 +16,7 @@ class PopupPanel extends Component {
 
         const popupPanel = (
             <div key={this.props.style.Filter}>
-                <Label txt={window._gtxt('Показывать')} />
+                <Label className={'label1'} txt={window._gtxt('Показывать')} />
                 <ShowPopupSettings layer={this.props.layer} style={this.props.style} index={this.props.index} />
                 <Suggestor
                     param={"Balloon"}
