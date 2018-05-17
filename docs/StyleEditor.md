@@ -24,16 +24,16 @@
 Номер | Наименование | Тип | Серверный стиль | Описание | Значение по умолчанию
 ----- | ------------ | --- | --------------- | -------- | ------------
 | | | иконки | |
-1 | `iconUrl` | `String` | `marker.image` | URL иконки маркера |
-2 | `iconAngle`  | `Float` | `marker.angle` | угол поворота маркера | 0
-3 | `iconSize` | `UInt/Expression` | `marker.size` | размер иконки |  
-4 | `iconScale` | `Float`  | `marker.scale` | масштабирование маркера | 1
-5 | `iconMinScale` | `Float` | `marker.minScale` | минимальный scale | 0.01
-6 | `iconMaxScale` | `Float` | `marker.maxScale` | максимальный scale  | 1000
-7 | `iconCircle` | `Boolean` | `marker.circle` | отображение круга | `false`
-8 | `iconCenter` | `Boolean` | `marker.center` | флаг центрирования маркера | true
-9 | `iconAnchor` | [`UInt`, `UInt`] | `marker.dx`, `marker.dy` | смещение X,Y |
-10 | `iconColor`   | `UInt` | `marker.color` | замена цвета `0xff00ff` на color в маркере | `0xff00ff`
+1 | `iconUrl` | `String` | `marker.image` | URL иконки маркера. Должен быть fileUploader или инпут, стандартные иконки |
+2 | `iconAngle`  | `Float` | `marker.angle` | угол поворота маркера - покажем инпут | 0
+3 | `iconSize` | `UInt/Expression` | `marker.size` | размер иконки. Значение по умолчанию - выяснить у Сереги - показывать пользователям не будем |  
+4 | `iconScale` | `Float`  | `marker.scale` | масштабирование маркера - Размер ионки (100%) - покажем инпут | 1
+5 | `iconMinScale` | `Float` | `marker.minScale` | минимальный scale  - показывать пользователям не будем | 0.01
+6 | `iconMaxScale` | `Float` | `marker.maxScale` | максимальный scale - показывать пользователям не будем | 1000
+7 | `iconCircle` | `Boolean` | `marker.circle` | отображение круга - показывать пользователям не будем | `false`
+8 | `iconCenter` | `Boolean` | `marker.center` | флаг центрирования маркера - показывать пользователям не будем | true
+9 | `iconAnchor` | [`UInt`, `UInt`] | `marker.dx`, `marker.dy` | смещение X,Y - показывать пользователям не будем  |
+10 | `iconColor`   | `UInt` | `marker.color` | замена цвета `0xff00ff` на color в маркере - показывать пользователям не будем  | `0xff00ff`
 | | | обводка | |
 11 | `stroke` | `Boolean` | наличие `outline` | признак отрисовки границы объекта |
 12 | `color` |  `UInt/Expression` | `outline.color` | цвет границы объекта | 0
