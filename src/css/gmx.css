@@ -261,6 +261,8 @@ textarea.gmx-style-editor-input-big.gmx-style-editor-right {
     text-align: left;
     margin-right: 23px!important;
     width: 137px;
+    height: 200px;
+    margin-top: -5px!important;
 }
 
 .gmx-style-editor textarea {
