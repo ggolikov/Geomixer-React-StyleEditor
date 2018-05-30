@@ -112,17 +112,6 @@
     vertical-align: middle;
 }
 
-
-.gmx-style-editor-style-selector {
-    height: 50px;
-    /* border-bottom: 1px solid; */
-    display: flex;
-    align-items: center;
-    /*border-bottom: 1px solid rgba(0,0,0,0.2);*/
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
 .pt-tab-list {
     border-top: 1px solid rgba(0,0,0,0.2);
     border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -152,40 +141,6 @@ img.gmx-style-editor-back-button {
     position: relative!important;
     top: 4px!important;
     margin-right: 5px!important;
-}
-
-.gmx-style-editor-style-selector-item {
-    height: 50px;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.gmx-style-editor-style-selector-current-item-name {
-    font-weight: bold;
-    width: 113%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    right: 47px;
-    padding-left: 54px;
-    margin-right: -67px;
-    padding-right: 48px;
-    background-color: #ecf1f5!important;
-    height: 50px!important;
-}
-
-.gmx-style-editor-style-selector-item:hover {
-
-    background-color: #f4f8fb!important;
-    height: 50px!important;
-}
-
-.gmx-style-editor-style-selector-current-item-name:hover {
-    background-color: #f4f8fb!important;
-    height: 50px!important;
 }
 
 .gmx-style-editor-label.gmx-style-editor-label-small {

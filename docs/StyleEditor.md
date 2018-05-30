@@ -35,7 +35,7 @@
 9 | `iconAnchor` | [`UInt`, `UInt`] | `marker.dx`, `marker.dy` | смещение X,Y - показывать пользователям не будем  |
 10 | `iconColor`   | `UInt` | `marker.color` | замена цвета `0xff00ff` на color в маркере - показывать пользователям не будем  | `0xff00ff`
 | | | обводка | |
-11 | `stroke` | `Boolean` | наличие `outline` | признак отрисовки границы объекта |
+11 | `stroke` | `Boolean` | наличие `outline` | признак отрисовки границы объекта - показывать пользователям не будем |
 12 | `color` |  `UInt/Expression` | `outline.color` | цвет границы объекта | 0
 13 | `weight` | `UInt` | `outline.thickness` | ширина линии границ объекта | 0
 14 | `opacity` | `Float`| `outline.opacity` (от 0 до 100) | opacity линии границ объекта (от 0.0 до 1.0 по умолчанию) | 1

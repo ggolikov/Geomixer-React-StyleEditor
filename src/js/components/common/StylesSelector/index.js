@@ -20,6 +20,10 @@ class StylesSelector extends Component {
         })
     }
 
+    onInteraction = (e) => {
+        console.log('a');
+    }
+
     render() {
         const { layer, styles, index } = this.props,
             currentStyle = styles[index];
@@ -36,6 +40,8 @@ class StylesSelector extends Component {
         return (
             <div className="gmx-style-editor-style-selector">
                 <Popover
+                    onClose={function () {debugger;}}
+                    onInteraction={this.onInteraction}
                     content={stylesPopover}
                     minimal={true}
                 >
