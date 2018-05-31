@@ -2,11 +2,13 @@ import React from 'react';
 import ColorPicker from 'rc-color-picker';
 import { StyleHOC } from './StyleHOC';
 import styleEditor from '../../StyleEditor';
-import _ from 'lodash/core';
+import { convertColor } from '../../utils';
+import _ from 'underscore';
 
 const ColorPickerBlock = (props) => {
 
     const parseColor = color => parseInt('0x' + color.replace(/#/, ''));
+    const hexColor = convertColor(props.style.RenderStyle[props.param], 'hex');
 
     const onChange = (color, e) => {
         let { layer, param, style, index } = props,
@@ -14,15 +16,15 @@ const ColorPickerBlock = (props) => {
             newRenderStyle, newHoverStyle;
 
         extendingStyle = {
-            [param]: parseColor(color.color)
+            [param]: convertColor(color.color, 'int')
         };
 
         if (param === 'color') {
-            extendingStyle.opacity = color.alpha;
+            extendingStyle.opacity = color.alpha / 100;
         };
 
         if (param === 'fillColor') {
-            extendingStyle.fillOpacity = color.alpha;
+            extendingStyle.fillOpacity = color.alpha / 100;
         }
 
         newRenderStyle = _.extend(style.RenderStyle, extendingStyle);
@@ -34,10 +36,10 @@ const ColorPickerBlock = (props) => {
 
         styleEditor.setStyle(layer, style, index);
     };
-    
+
     return (
         <ColorPicker
-            color={`${props.style.RenderStyle[props.param]}`}
+            color={hexColor}
             alpha={100}
             onChange={onChange}
             // onClose={this.closeHandler}

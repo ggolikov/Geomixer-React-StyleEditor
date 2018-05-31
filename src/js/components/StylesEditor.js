@@ -10,6 +10,7 @@ import PopupPanel from './PopupPanel';
 class StylesEditor extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             currentStyleIndex: props.currentStyleIndex,
             attrs: []

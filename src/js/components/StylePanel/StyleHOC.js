@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styleEditor from '../../StyleEditor';
-import _ from 'lodash/core';
+import _ from 'underscore';
 
 export const StyleHOC = (InnerComponent) => class extends Component {
     constructor(props) {

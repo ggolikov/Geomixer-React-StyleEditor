@@ -40,7 +40,6 @@ class StylesSelector extends Component {
         return (
             <div className="gmx-style-editor-style-selector">
                 <Popover
-                    onClose={function () {debugger;}}
                     onInteraction={this.onInteraction}
                     content={stylesPopover}
                     minimal={true}

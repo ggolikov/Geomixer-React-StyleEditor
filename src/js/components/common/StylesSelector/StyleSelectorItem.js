@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ColorIcon } from '../ColorIcon';
 import { EditableText } from "@blueprintjs/core";
+import { convertColor } from '../../../utils';
 import styleEditor from '../../../StyleEditor';
-import _ from 'lodash/core';
+import _ from 'underscore';
 
 class StyleSelectorItem extends Component {
     constructor(props) {
@@ -52,8 +53,8 @@ class StyleSelectorItem extends Component {
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             styleNameClassName = isCurrent ? "gmx-style-editor-style-selector-item-name gmx-style-editor-style-selector-current-item-name" : "gmx-style-editor-style-selector-item-name",
             styleNameValue = style.Name || style.Filter,
-            iconBorderStyle = {borderColor: "#" + style.RenderStyle.color},
-            iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor};
+            iconBorderStyle = {borderColor: convertColor(style.RenderStyle.color, 'hex')},
+            iconFillStyle = {backgroundColor: "#" + convertColor(style.RenderStyle.fillColor, 'hex')};
 
         let styleName = isNameEditable ?
             <EditableText defaultValue={styleNameValue} onChange={this.setStyleName} onConfirm={this.confirmStyleName} /> :

@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { StylesEditor } from './src/js/components/StylesEditor';
 import styleEditor from './src/js/StyleEditor';
+import { clearStyle } from './src/js/utils';
 import './src/js/translationsHash.js';
 
 (function () {
@@ -42,6 +43,8 @@ import './src/js/translationsHash.js';
                             layersTreeContainer.style.display = 'none';
                             nsGmx.layersTreePane.appendChild(pluginContainer);
 
+                            gmxProps.gmxStyles.styles = clearStyles(gmxProps.gmxStyles.styles);
+
                             render(
                                 <StylesEditor
                                     env={'plugin'}
@@ -52,6 +55,12 @@ import './src/js/translationsHash.js';
                                 pluginContainer
                             );
                         }
+
+                        function clearStyles(styles) {
+                            return styles.map(st => {
+                                return clearStyle(st);
+                            });
+                        };
 
                         nsGmx.styleEditor = styleEditor;
                     }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { ColorIcon } from '../ColorIcon';
+import { convertColor } from '../../../utils';
 
 const CurrentStyle = (props) => {
     let { style, onClick } = props,
         styleNameClassName = "gmx-style-editor-style-selector-item-name",
-        iconBorderStyle = {borderColor: "#" + style.RenderStyle.color},
-        iconFillStyle = {backgroundColor: "#" + style.RenderStyle.fillColor},
+        iconBorderStyle = {borderColor: convertColor(style.RenderStyle.color, 'hex')},
+        iconFillStyle = {backgroundColor: "#" + convertColor(style.RenderStyle.fillColor, 'hex')},
         styleNameValue = style.Name || style.Filter,
         styleName = (
             <span className={styleNameClassName}>
