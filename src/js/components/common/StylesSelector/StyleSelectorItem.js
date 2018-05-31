@@ -49,23 +49,27 @@ class StyleSelectorItem extends Component {
 
     render() {
         let { layer, style, isSelected, index, isCurrent, onStyleClick } = this.props,
-            { active, isNameEditable } = this.state,
+            { active, selected, isNameEditable } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
-            styleNameClassName = isCurrent ? "gmx-style-editor-style-selector-item-name gmx-style-editor-style-selector-current-item-name" : "gmx-style-editor-style-selector-item-name",
+            styleClassName = isCurrent ? "gmx-style-editor-style-selector-current-item" : "gmx-style-editor-style-selector-item",
             styleNameValue = style.Name || style.Filter,
             iconBorderStyle = {borderColor: convertColor(style.RenderStyle.color, 'hex')},
             iconFillStyle = {backgroundColor: "#" + convertColor(style.RenderStyle.fillColor, 'hex')};
 
         let styleName = isNameEditable ?
-            <EditableText defaultValue={styleNameValue} onChange={this.setStyleName} onConfirm={this.confirmStyleName} /> :
-            <span className={styleNameClassName}>
+            <EditableText
+                placeholder={"изменить название стиля"}
+                defaultValue={styleNameValue}
+                onChange={this.setStyleName}
+                onConfirm={this.confirmStyleName} /> :
+            <span className={"gmx-style-editor-style-selector-item-name"}>
                 {styleNameValue}
             </span>
         let editIcon = active ? <span className="pt-icon-standard pt-icon-edit gmx-style-editor-style-selector-icon" /> : <span></span>;
 
         return (
             <div
-                className={"gmx-style-editor-style-selector-item"}
+                className={styleClassName}
                 key={style.Filter}
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}

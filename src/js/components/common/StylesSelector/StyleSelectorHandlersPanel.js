@@ -12,9 +12,12 @@ class StyleSelectorHandlersPanel extends Component {
 
     render() {
         return (
-            <div className={`${Classes.POPOVER_DISMISS} gmx-style-editor-style-selector-item`} >
-                <Button onClick={this.props.onClick}>
+            <div  className={`gmx-style-editor-style-selector-item`} >
+                <Button className={`${Classes.POPOVER_DISMISS}`} onClick={this.props.onClose}>
                     {"Применить"}
+                </Button>
+                <Button className={``} onClick={this.props.onAdd}>
+                    {"Добавить стиль"}
                 </Button>
             </div>
         );

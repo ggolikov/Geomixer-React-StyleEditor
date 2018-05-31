@@ -198,7 +198,7 @@ input[type=number]::-webkit-outer-spin-button {
     float: right;
     margin-right: 5px;
     margin-left: 5px;
-    width: 137px;
+    /* width: 137px; */
     height: 30px;
 }
 

@@ -6,17 +6,13 @@ class SliderBlock extends Component {
     constructor(props) {
         super(props);
         this.state = props;
-        this.handleSlideChange = this.handleSlideChange.bind(this);
-        this.setSliderValue = this.setSliderValue.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.getInputClassName = this.getInputClassName.bind(this);
     }
 
     componentDidMount() {
         this.setSliderValue();
     }
 
-    setSliderValue() {
+    setSliderValue = () => {
         let param = this.state.param,
             inputValue = 0;
 
@@ -44,12 +40,12 @@ class SliderBlock extends Component {
         }
     }
 
-    handleSlideChange(e) {
+    handleSlideChange = (e) => {
         this.state.onChange(e);
         this.setSliderValue();
     }
 
-    handleInputChange(e) {
+    handleInputChange = (e) => {
         let num = Number(e.target.value);
 
         if (e.target.value === '' || Number.isNaN(num) || num < -50 || num > 50) {
@@ -62,7 +58,7 @@ class SliderBlock extends Component {
         this.handleSlideChange(num);
     }
 
-    getInputClassName() {
+    getInputClassName = () => {
         let num = Number(this.state.inputValue),
             className = 'gmx-style-editor-input-small gmx-style-editor-right';
 

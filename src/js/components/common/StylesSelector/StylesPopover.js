@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import StyleSelectorItem from './StyleSelectorItem';
 import StyleSelectorHandlersPanel from './StyleSelectorHandlersPanel';
+import { createDefaultStyle } from '../../../utils';
 
 class StylesPopover extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            styles: props.styles,
             currentStyleIndex: props.currentStyleIndex
         }
     }
@@ -16,7 +18,6 @@ class StylesPopover extends Component {
             currentStyleIndex: index
         };
         this.setState({currentStyleIndex: index});
-        // this.props.onChange(e, data);
     }
 
     handleChange = (e) => {
@@ -27,15 +28,21 @@ class StylesPopover extends Component {
         this.props.onChange(e, data);
     }
 
+    addStyle = () => {
+        this.props.styles.push(createDefaultStyle());
+        this.setState({styles: this.props.styles});
+    }
+
     render() {
-        let { layer, styles } = this.props,
-            { currentStyleIndex } = this.state,
+        let { layer } = this.props,
+            { styles, currentStyleIndex } = this.state,
             currentStyle = styles[currentStyleIndex],
             onStyleClick = this.onStyleClick.bind(this);
-            
+
         let stylesItems = styles.map((style, index) => {
                 let isCurrent = style === currentStyle;
-            return <StyleSelectorItem
+                
+                return <StyleSelectorItem
                         key={style.Filter}
                         layer={layer}
                         style={style}
@@ -48,7 +55,10 @@ class StylesPopover extends Component {
         return (
             <div>
                 {stylesItems}
-                <StyleSelectorHandlersPanel onClick={this.handleChange}/>
+                <StyleSelectorHandlersPanel
+                    onAdd={this.addStyle}
+                    onClose={this.handleChange}
+                />
             </div>
         );
     }

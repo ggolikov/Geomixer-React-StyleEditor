@@ -20,7 +20,11 @@ export const StyleHOC = (InnerComponent) => class extends Component {
         if (typeof e === "number") {
             value = e;
         } else if (e.target) {
-            value = Number(e.target.value);
+            if (e.target.type === 'number') {
+                value = Number(e.target.value);
+            } else {
+                value = e.target.value;
+            }
         } else {
             value = e.color;
         }
