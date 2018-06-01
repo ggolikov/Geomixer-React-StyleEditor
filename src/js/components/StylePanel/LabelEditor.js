@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { insertAtCursor } from '../../utils';
+import StyleSettingsBlock from './StyleSettingsBlock';
 import { StyleHOC } from './StyleHOC';
 
 class LabelEditor extends Component {
@@ -31,25 +32,24 @@ class LabelEditor extends Component {
                         {attribute}
                     </option>
                 )
-            })
-            console.log(attrs);
+            }),
+            defaultValue = style.RenderStyle[param] ? String(style.RenderStyle[param]) : '';
 
-        console.log(style.RenderStyle[param]);
-        console.log(param);
         return (
             <div>
-                <textarea
-                    ref={(textarea) => { this.textArea = textarea; }}
-                    className="gmx-style-editor-input-big gmx-style-editor-right"
-                    onChange={onChange}
-                    defaultValue={String(style.RenderStyle[param])}
-                />
-                <select
-                    className="gmx-style-editor-input-big gmx-style-editor-right"
-                    onChange={this.onItemSelect}
-                >
-                    {options}
-                </select>
+                <div className={"gmx-style-editor-big gmx-style-editor-right"} >
+                    <textarea
+                        ref={(textarea) => { this.textArea = textarea; }}
+                        onChange={onChange}
+                        defaultValue={defaultValue}
+                    />
+                    <select
+                        className="gmx-style-editor-right"
+                        onChange={this.onItemSelect}
+                    >
+                        {options}
+                    </select>
+                </div>
 
             </div>
         )

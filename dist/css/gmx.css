@@ -158,19 +158,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.gmx-style-editor-input-small {
-    display: inline-block;
-    margin: 0 5px 0 5px!important;
-    width: 30px;
-    height: 30px;
-    color: #5b7284;
-    text-align: center;
-    text-indent: -2px;
-    background: #f4f8fb;
-    border: 1px solid rgba(0,0,0,0.2);
-    padding-left: 2px;
-}
-
 .gmx-style-editor-zoom-settings {
     display: inline;
     margin-left: 50px;
@@ -198,7 +185,7 @@ input[type=number]::-webkit-outer-spin-button {
     float: right;
     margin-right: 5px;
     margin-left: 5px;
-    /* width: 137px; */
+    width: 137px;
     height: 30px;
 }
 
@@ -213,49 +200,32 @@ textarea.gmx-style-editor-input-big.gmx-style-editor-right {
     line-height: 23px;
     text-transform: uppercase;
     color: #5b7284;
-    /*padding-right: 10px;*/
+    padding-right: 10px;
     padding-left: 10px;
     text-align: left;
-    margin-right: 23px!important;
+    margin-right: 20px!important;
     width: 137px;
     height: 200px;
     margin-top: -5px!important;
 }
 
 .gmx-style-editor textarea {
-    resize: none;
-    background: #f4f8fb;
-    border: 1px solid rgba(0,0,0,0.2);
-    margin-bottom: 10px!important;
+    .gmx-style-editor textarea {
+        resize: none;
+        margin-bottom: 10px!important;
+        background: #FFF;
+        margin: 0 5px 0 0;
+        border: 1px solid 1px solid rgba(216, 225, 232, 1);
+        /* margin: 20px!important; */
+        width: 317px;
+        height: 80px;
+        color: #5b7284;
+        line-height: 30px;
+        position: relative;
+        top: 5px;
+    }
+
 }
-
-.gmx-style-editor-input-big {
-    display: inline-block;
-    margin: 0 23px 23px 25px!important;
-    width: 137px!important;
-    /* vertical-align: middle; */
-    border: 1px solid rgba(0,0,0,0.2);
-    /*background: #f4f8fb;*/
-    background: #FFF;
-    color: #5b7284;
-    text-transform: uppercase;
-    padding-left: 5px;
-}
-
-.gmx-style-editor textarea {
-    resize: none;
-    background: #FFF;
-    border: 1px solid 1px solid rgba(216, 225, 232, 1);
-    margin: 20px!important;
-    width: 317px;
-    color: #5b7284;
-    line-height: 30px;
-    position: relative;
-    top: 5px;
-}
-
-
-
 
 .gmx-suggest-list-container {
     display: block;

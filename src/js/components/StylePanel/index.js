@@ -18,12 +18,27 @@ class StylePanel extends Component {
 
     render() {
         let {layer, index, style, attrs } = this.props,
-            layerProperties = layer.getGmxProperties && layer.getGmxProperties();
+            layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
+            markerBlock;
 
         /*Labels*/
         let labelClassName = 'gmx-style-editor-label',
             smallLabelClassName = labelClassName + ' gmx-style-editor-label-small';
-            console.log(attrs);
+
+        let geometryType = layer.getGmxProperties().GeometryType;
+
+        markerBlock = geometryType === 'point' ? (
+            <StyleSettingsBlock size='small' txt={window._gtxt('url иконки')} >
+                <InputBlock
+                    layer={layer}
+                    style={style}
+                    index={index}
+                    param='iconUrl'
+                    type='text'
+                    size='big'
+                />
+            </StyleSettingsBlock>
+        ) : null;
 
         return (
             <div key={style.Filter}>
@@ -37,9 +52,16 @@ class StylePanel extends Component {
                 </StyleSettingsBlock>
 
                 <StyleSettingsBlock size='small' txt={window._gtxt('Обводка')} >
-                    <InputBlock layer={layer} style={style} param='weight' index={index} />
+                    <InputBlock
+                        layer={layer}
+                        style={style}
+                        index={index}
+                        param='weight'
+                    />
                     <ColorPickerBlock layer={layer} style={style} param='color' index={index} />
                 </StyleSettingsBlock>
+
+                {markerBlock}
 
                 <Label txt={window._gtxt('Подпись стиля')} className={labelClassName} />
                 <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} >
@@ -47,7 +69,12 @@ class StylePanel extends Component {
                 </StyleSettingsBlock>
 
                 <StyleSettingsBlock size='small' txt={window._gtxt('Кегль и цвет')} >
-                    <InputBlock layer={layer} style={style} param='labelFontSize' index={index} />
+                    <InputBlock
+                        layer={layer}
+                        style={style}
+                        index={index}
+                        param='labelFontSize'
+                    />
                     <ColorPickerBlock layer={layer} style={style} param='labelColor' index={index} />
                 </StyleSettingsBlock>
                 <StyleSettingsBlock size='small' txt={window._gtxt('Обводка и цвет')}>

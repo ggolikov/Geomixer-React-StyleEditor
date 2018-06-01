@@ -1,5 +1,6 @@
 .gmx-style-editor-block-big {
-    height: 90px;
+    height: 150px;
+    padding-right: 15px;
 }
 
 .gmx-style-editor-block-small {
@@ -22,20 +23,56 @@
     display: inline-block;
 }
 
-.gmx-style-editor-input-big {
-    display: inline-block;
-    margin: 0 5px 0 0;
-    width: 210px;
-    /* vertical-align: middle; */
-}
-
 .gmx-style-editor-input-small {
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 5px!important;
     width: 30px;
-    /* vertical-align: middle; */
+    height: 30px;
+    color: #5b7284;
+    text-align: center;
+    text-indent: -2px;
+    background: #f4f8fb;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding-left: 2px;
+}
+
+.gmx-style-editor-input-big {
+    display: inline-block;
+    background: #FFF;
+    margin: 0 5px 0 0;
+    border: 1px solid rgba(0,0,0,0.2);
+    /* margin: 0 5px 0 5px!important; */
+    width: 137px;
+    height: 30px;
+    color: #5b7284;
+    text-align: center;
+    /* text-indent: -2px; */
+    background: #f4f8fb;
+    border: 1px solid rgba(0,0,0,0.2);
+    /* padding-left: 2px; */
+}
+
+.gmx-style-editor-block-big textarea {
+    resize: none;
+    margin-bottom: 10px!important;
+    background: #FFF;
+    margin: 0 5px 0 0;
+    border: 1px solid 1px solid rgba(216, 225, 232, 1);
+    /* margin: 20px!important; */
+    width: 137px;
+    height: 80px;
+    color: #5b7284;
+    line-height: 30px;
+    position: relative;
+    top: 5px;
 }
 
 .gmx-style-editor-input-error {
     background-color: red;
+}
+
+
+.gmx-style-editor-block-big select {
+    margin-right: 0;
+    border: 1px solid 1px solid rgba(216, 225, 232, 1);
 }

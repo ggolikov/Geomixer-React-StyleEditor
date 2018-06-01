@@ -1,6 +1,7 @@
 .gmx-suggest-textarea {
     border: solid 1px rgba(216, 225, 232, 1);
-    width: 350px;
+    width: 316px;
+    margin: 20px!important;
     height: 80px;
     resize: none;
     margin: 5px 0 5px 0;

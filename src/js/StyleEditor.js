@@ -1,5 +1,5 @@
 import EventTarget from './utils/EventTarget';
-import _ from 'lodash/core';
+import _ from 'underscore';
 
 class StyleEditor extends EventTarget {
     constructor() {

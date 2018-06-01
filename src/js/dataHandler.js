@@ -18,7 +18,10 @@ const dataHandler = function (gmxMap) {
 
     window.layer = layer;
     render(
-        <StylesEditor layer={layer} styles={layerStyles} />,
+        <StylesEditor
+            layer={layer}
+            geometryType = {props.GeometryType} 
+            styles={layerStyles} />,
         document.querySelector('.content')
     );
 }
