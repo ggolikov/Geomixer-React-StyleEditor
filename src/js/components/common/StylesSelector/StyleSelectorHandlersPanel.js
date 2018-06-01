@@ -19,6 +19,9 @@ class StyleSelectorHandlersPanel extends Component {
                 <Button className={``} onClick={this.props.onAdd}>
                     {"Добавить стиль"}
                 </Button>
+                <Button className={``} onClick={this.props.onRemove}>
+                    {"Удалить стиль"}
+                </Button>
             </div>
         );
     }
