@@ -19,15 +19,20 @@ class StylePanel extends Component {
     render() {
         let {layer, index, style, attrs } = this.props,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
-            markerBlock;
+            labelClassName = 'gmx-style-editor-label',
+            smallLabelClassName = labelClassName + ' gmx-style-editor-label-small',
+            geometryType = layer.getGmxProperties().GeometryType,
+            isPoint  = geometryType === 'point',
+            isLine  = geometryType === 'linestring',
+            fillBlock, iconUrlBlock;
 
-        /*Labels*/
-        let labelClassName = 'gmx-style-editor-label',
-            smallLabelClassName = labelClassName + ' gmx-style-editor-label-small';
+        fillBlock = !isLine ? (
+            <StyleSettingsBlock size='small' txt={window._gtxt('Заливка')} >
+                <ColorPickerBlock layer={layer} style={style} param='fillColor' index={index} />
+            </StyleSettingsBlock>
+        ) : null;
 
-        let geometryType = layer.getGmxProperties().GeometryType;
-
-        markerBlock = geometryType === 'point' ? (
+        iconUrlBlock = isPoint ? (
             <StyleSettingsBlock size='small' txt={window._gtxt('url иконки')} >
                 <InputBlock
                     layer={layer}
@@ -40,16 +45,14 @@ class StylePanel extends Component {
             </StyleSettingsBlock>
         ) : null;
 
-        return (
+        let styleBlock = (
             <div key={style.Filter}>
                 <Label txt={window._gtxt('Уровень зума')} className={smallLabelClassName} />
                 <ZoomSettings layer={layer} style={style} />
 
                 <Label txt={window._gtxt('Стилевое оформление')} className={labelClassName} />
 
-                <StyleSettingsBlock size='small' txt={window._gtxt('Заливка')} >
-                    <ColorPickerBlock layer={layer} style={style} param='fillColor' index={index} />
-                </StyleSettingsBlock>
+                {fillBlock}
 
                 <StyleSettingsBlock size='small' txt={window._gtxt('Обводка')} >
                     <InputBlock
@@ -61,7 +64,7 @@ class StylePanel extends Component {
                     <ColorPickerBlock layer={layer} style={style} param='color' index={index} />
                 </StyleSettingsBlock>
 
-                {markerBlock}
+                {iconUrlBlock}
 
                 <Label txt={window._gtxt('Подпись стиля')} className={labelClassName} />
                 <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} >
@@ -74,6 +77,7 @@ class StylePanel extends Component {
                         style={style}
                         index={index}
                         param='labelFontSize'
+                        // defaultValue='12'
                     />
                     <ColorPickerBlock layer={layer} style={style} param='labelColor' index={index} />
                 </StyleSettingsBlock>
@@ -84,6 +88,8 @@ class StylePanel extends Component {
                 <SliderBlock layer={layer} style={style} param='labelAnchor/1' index={index} txt={window._gtxt('Смещение по Y')} />
             </div>
         );
+
+        return styleBlock;
     }
 }
 export default StylePanel;

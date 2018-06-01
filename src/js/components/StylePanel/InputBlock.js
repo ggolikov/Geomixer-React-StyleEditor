@@ -13,7 +13,7 @@ const InputBlock = (props) => {
             type={type}
             className={`gmx-style-editor-input-${size}`}
             onChange={onChange}
-            value={value}
+            defaultValue={value}
         />
     )
 };

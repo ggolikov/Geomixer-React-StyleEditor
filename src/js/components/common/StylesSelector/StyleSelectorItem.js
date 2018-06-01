@@ -51,9 +51,11 @@ class StyleSelectorItem extends Component {
         let { layer, style, isSelected, index, isCurrent, onStyleClick } = this.props,
             { active, selected, isNameEditable } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
+            geometryType = layerProperties.GeometryType,
             styleClassName = isCurrent ? "gmx-style-editor-style-selector-current-item" : "gmx-style-editor-style-selector-item",
             styleNameValue = style.Name || style.Filter,
-            iconBorderStyle = {borderColor: convertColor(style.RenderStyle.color, 'hex')},
+            iconBorderStyle = {borderColor: "#" + convertColor(style.RenderStyle.color, 'hex')},
+            lineIconStyle = {backgroundColor: "#" + convertColor(style.RenderStyle.color, 'hex')},
             iconFillStyle = {backgroundColor: "#" + convertColor(style.RenderStyle.fillColor, 'hex')};
 
         let styleName = isNameEditable ?
@@ -75,7 +77,12 @@ class StyleSelectorItem extends Component {
                 onMouseLeave={this.onMouseLeave}
                 onClick={(e) => onStyleClick(e, index)}
             >
-                <ColorIcon iconBorderStyle={iconBorderStyle} iconFillStyle={iconFillStyle}/>
+                <ColorIcon
+                    iconBorderStyle={iconBorderStyle}
+                    lineIconStyle={lineIconStyle}
+                    iconFillStyle={iconFillStyle}
+                    geometryType={geometryType}
+                />
                 {styleName}
                 <span onClick={this.editStyleName}>
                     {editIcon}

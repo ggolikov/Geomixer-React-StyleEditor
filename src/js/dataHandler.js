@@ -10,7 +10,8 @@ const nsGmx = window.nsGmx || {};
  */
 const dataHandler = function (gmxMap) {
 
-    const layer = gmxMap.layersByID['05D50D053F8A495BB3F59A9AEFE976B8'],
+    // const layer = gmxMap.layersByID['05D50D053F8A495BB3F59A9AEFE976B8'], // points
+    const layer = gmxMap.layersByID['FBCEEB06FB004A2DBD568CDBDDBAFAB2'], // lines
         props = layer.getGmxProperties(),
         layerStyles = props.gmxStyles.styles;
 
@@ -20,7 +21,7 @@ const dataHandler = function (gmxMap) {
     render(
         <StylesEditor
             layer={layer}
-            geometryType = {props.GeometryType} 
+            geometryType = {props.GeometryType}
             styles={layerStyles} />,
         document.querySelector('.content')
     );

@@ -44,7 +44,7 @@ class StylesSelector extends Component {
                     content={stylesPopover}
                     minimal={true}
                 >
-                    <CurrentStyle style={currentStyle} />
+                    <CurrentStyle layer={layer} style={currentStyle} />
                 </Popover>
             </div>
         );
