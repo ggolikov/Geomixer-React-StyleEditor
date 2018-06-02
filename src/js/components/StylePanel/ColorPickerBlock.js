@@ -10,6 +10,14 @@ const ColorPickerBlock = (props) => {
     const parseColor = color => parseInt('0x' + color.replace(/#/, ''));
     const hexColor = convertColor(props.style.RenderStyle[props.param], 'hex');
 
+    let alpha;
+
+    if (props.alphaParam) {
+        alpha = props.style.RenderStyle[props.alphaParam] > 1 ? props.style.RenderStyle[props.alphaParam] : props.style.RenderStyle[props.alphaParam] * 100;
+    } else {
+        alpha = 100;
+    }
+
     const onChange = (color, e) => {
         let { layer, param, style, index } = props,
             extendingStyle,
@@ -40,7 +48,7 @@ const ColorPickerBlock = (props) => {
     return (
         <ColorPicker
             color={hexColor}
-            alpha={100}
+            alpha={alpha}
             onChange={onChange}
             // onClose={this.closeHandler}
             placement="topLeft"

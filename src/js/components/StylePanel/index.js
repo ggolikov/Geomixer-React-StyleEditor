@@ -28,7 +28,13 @@ class StylePanel extends Component {
 
         fillBlock = !isLine ? (
             <StyleSettingsBlock size='small' txt={window._gtxt('Заливка')} >
-                <ColorPickerBlock layer={layer} style={style} param='fillColor' index={index} />
+                <ColorPickerBlock
+                    layer={layer}
+                    style={style}
+                    param='fillColor'
+                    alphaParam='fillOpacity'
+                    index={index}
+                />
             </StyleSettingsBlock>
         ) : null;
 
@@ -61,7 +67,13 @@ class StylePanel extends Component {
                         index={index}
                         param='weight'
                     />
-                    <ColorPickerBlock layer={layer} style={style} param='color' index={index} />
+                    <ColorPickerBlock
+                        layer={layer}
+                        style={style}
+                        param='color'
+                        alphaParam='opacity'
+                        index={index}
+                    />
                 </StyleSettingsBlock>
 
                 {iconUrlBlock}
@@ -82,7 +94,12 @@ class StylePanel extends Component {
                     <ColorPickerBlock layer={layer} style={style} param='labelColor' index={index} />
                 </StyleSettingsBlock>
                 <StyleSettingsBlock size='small' txt={window._gtxt('Обводка и цвет')}>
-                    <ColorPickerBlock layer={layer} style={style} param='labelHaloColor' index={index} />
+                    <ColorPickerBlock
+                        layer={layer}
+                        style={style}
+                        param='labelHaloColor'
+                        index={index}
+                    />
                 </StyleSettingsBlock>
                 <SliderBlock layer={layer} style={style} param='labelAnchor/0' index={index} txt={window._gtxt('Смещение по X')} />
                 <SliderBlock layer={layer} style={style} param='labelAnchor/1' index={index} txt={window._gtxt('Смещение по Y')} />
