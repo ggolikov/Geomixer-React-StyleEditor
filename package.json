@@ -16,7 +16,7 @@
     "build": "webpack --env",
     "build-plugin": "webpack --env.plugin",
     "build-plugin-copy": "webpack --env.plugin && plugin-copy.bat",
-    "build-plugin-copy-l": "webpack --env.plugin && ./plugin-copy-l.sh",
+    "build-plugin-copy-l": "webpack --env.plugin && bash plugin-copy-l.sh",
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "react-virtualized": "^9.9.0"
   },
   "devDependencies": {
+    "@blueprintjs/icons": "^2.2.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.23.0",
     "babel-loader": "^6.3.2",

@@ -16,6 +16,7 @@ class StyleEditor extends EventTarget {
 
     setStyle = (layer, style, index) => {
         let copyStyle = _.extend({}, style);
+        if (copyStyle.RenderStyle.common) delete copyStyle.RenderStyle.common;
         layer.setStyle(copyStyle, index, true);
     }
 }

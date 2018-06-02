@@ -36,7 +36,10 @@ class StylesPopover extends Component {
     removeStyle = (index) => {
         this.props.styles.splice(index, 1);
 
-        this.setState({styles: this.props.styles});
+        this.setState({
+            styles: this.props.styles,
+            currentStyleIndex: null
+        });
     }
 
     render() {
