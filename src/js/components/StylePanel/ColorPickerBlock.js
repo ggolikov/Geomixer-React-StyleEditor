@@ -13,7 +13,11 @@ const ColorPickerBlock = (props) => {
     let alpha;
 
     if (props.alphaParam) {
-        alpha = props.style.RenderStyle[props.alphaParam] > 1 ? props.style.RenderStyle[props.alphaParam] : props.style.RenderStyle[props.alphaParam] * 100;
+        if (props.alphaParam in props.style.RenderStyle) {
+            alpha = props.style.RenderStyle[props.alphaParam] > 1 ? props.style.RenderStyle[props.alphaParam] : props.style.RenderStyle[props.alphaParam] * 100;
+        } else {
+            alpha = 100;
+        }
     } else {
         alpha = 100;
     }
