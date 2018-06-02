@@ -8,25 +8,40 @@ import $ from 'jquery';
 class StyleSelectorHandlersPanel extends Component {
     constructor(props) {
         super(props);
-
-        this.state = props;
     }
 
     render() {
+        let oneStyleLeft = this.props.styles.length === 1,
+            deleteIconClassName = this.props.itemCurrent ? 'gmx-style-editor-icon' : 'gmx-style-editor-icon-disabled',
+            color = !this.props.itemCurrent ? '#999' : null,
+            deleteIcon = !oneStyleLeft ? (
+                <Icon
+                    icon={"trash"}
+                    color={color}
+                    title="удалить стиль"
+                    className={deleteIconClassName}
+                    iconSize={Icon.SIZE_LARGE}
+                    intent={Intent.PRIMARY}
+                    onClick={this.props.onRemove}
+                />) : null;
+
         return (
-            <div  className={`gmx-style-editor-style-selector-item`} >
-                <Button className={`${Classes.POPOVER_DISMISS}`} onClick={this.props.onClose}>
+            <div className={`gmx-style-editor-handler-panel`} >
+                <Button
+                    disabled={!this.props.itemCurrent}
+                    className={`${Classes.POPOVER_DISMISS}`}
+                    onClick={this.props.onClose}>
                     {"Применить"}
                 </Button>
-                {/*<Button className={``} onClick={this.props.onAdd}>
-                    {"Добавить стиль"}
-                </Button>
-                <Button className={``} onClick={this.props.onRemove}>
-                    {"Удалить стиль"}
-                </Button>*/}
-                <Icon icon={"small-plus"} iconSize={Icon.SIZE_LARGE} intent={Intent.PRIMARY} onClick={this.props.onAdd} />
-                <Icon icon={"paperclip"} iconSize={Icon.SIZE_LARGE} intent={Intent.PRIMARY}  onClick={this.props.onRemove}/>
-
+                <Icon
+                    icon={"small-plus"}
+                    title="добавить стиль"
+                    className={'gmx-style-editor-icon'}
+                    iconSize={Icon.SIZE_LARGE}
+                    intent={Intent.PRIMARY}
+                    onClick={this.props.onAdd}
+                />
+                {deleteIcon}
             </div>
         );
     }

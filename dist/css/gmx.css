@@ -293,5 +293,5 @@ input[type="radio"] {
     border-collapse: collapse;
 }
 .pt-transition-container.pt-overlay-content.pt-popover-enter-done {
-    transform: translate3d(65px, 129px, 0px)!important;
+    transform: translate3d(40px, -29px, 0px)!important;
 }

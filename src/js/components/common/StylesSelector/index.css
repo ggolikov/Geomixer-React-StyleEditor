@@ -26,6 +26,15 @@
     /* width: 390px; */
 }
 
+.gmx-style-editor-handler-panel {
+    height: 50px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .gmx-style-editor-style-selector-item {
     cursor: pointer;
     height: 50px;

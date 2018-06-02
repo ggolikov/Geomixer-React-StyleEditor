@@ -34,6 +34,7 @@ class StylesPopover extends Component {
     }
 
     removeStyle = (index) => {
+        if (!index && index !== 0) {return};
         this.props.styles.splice(index, 1);
 
         this.setState({
@@ -46,6 +47,7 @@ class StylesPopover extends Component {
         let { layer } = this.props,
             { styles, currentStyleIndex } = this.state,
             currentStyle = styles[currentStyleIndex],
+            itemCurrent = currentStyleIndex !== null && typeof currentStyleIndex !== 'undefined',
             onStyleClick = this.onStyleClick.bind(this);
 
         let stylesItems = styles.map((style, index) => {
@@ -65,6 +67,8 @@ class StylesPopover extends Component {
             <div>
                 {stylesItems}
                 <StyleSelectorHandlersPanel
+                    styles={styles}
+                    itemCurrent={itemCurrent}
                     onAdd={this.addStyle}
                     onRemove={() => {this.removeStyle(currentStyleIndex)}}
                     onClose={this.handleChange}
