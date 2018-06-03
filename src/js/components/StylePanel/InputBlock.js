@@ -3,7 +3,7 @@ import { StyleHOC } from './StyleHOC';
 
 const InputBlock = (props) => {
     let { type, size, style, onChange, param } = props,
-        value = style.RenderStyle[param] ? String(style.RenderStyle[param]) : '';
+        value = style.RenderStyle[param] ? String(style.RenderStyle[param]) : props.defaultValue || '';
 
     type = type || 'number';
     size = size || 'small';

@@ -89,7 +89,7 @@ class StylePanel extends Component {
                         style={style}
                         index={index}
                         param='labelFontSize'
-                        // defaultValue='12'
+                        defaultValue={12}
                     />
                     <ColorPickerBlock layer={layer} style={style} param='labelColor' index={index} />
                 </StyleSettingsBlock>

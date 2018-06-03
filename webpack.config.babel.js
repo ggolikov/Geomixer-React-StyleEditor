@@ -28,10 +28,10 @@ const common = {
                     exclude: /node_modules/
                 }, {
                     test: /\.(css)$/i,
-                    use: [
-                      { loader: "style-loader" },
-                      { loader: "css-loader" }
-                    ],
+                    use: ExtractTextPlugin.extract({
+                      fallback: "style-loader",
+                      use: "css-loader"
+                    }),
                     exclude: /node_modules/
                 },  {
                     test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.eot$|\.ttf$|\.wav$|\.mp3$/,
@@ -58,6 +58,7 @@ module.exports = (env) => {
                 },
                 plugins: [
                     HTMLWebpackPluginConfig,
+                    new ExtractTextPlugin('./css/gmx.css'),
                     new CopyWebpackPlugin([
                         { from: path.join(paths.src, 'css'), to: path.join(paths.dist, 'css') }
                     ])
@@ -76,6 +77,7 @@ module.exports = (env) => {
             },
             plugins: [
                 HTMLWebpackPluginConfig,
+                new ExtractTextPlugin('./css/gmx.css'),
                 new CopyWebpackPlugin([
                     { from: path.join(paths.src, 'css'), to: path.join(paths.public, 'css') }
                 ])
