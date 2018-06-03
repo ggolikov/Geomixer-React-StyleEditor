@@ -51,6 +51,7 @@ const ColorPickerBlock = (props) => {
 
     return (
         <ColorPicker
+            defaultColor={hexColor}
             color={hexColor}
             alpha={alpha}
             onChange={onChange}

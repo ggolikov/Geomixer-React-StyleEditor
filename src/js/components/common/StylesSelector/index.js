@@ -38,15 +38,15 @@ class StylesSelector extends Component {
         );
 
         return (
-            <div className="gmx-style-editor-style-selector">
                 <Popover
                     onInteraction={this.onInteraction}
                     content={stylesPopover}
                     minimal={true}
                 >
+                <div className="gmx-style-editor-style-selector">
                     <CurrentStyle layer={layer} style={currentStyle} />
+                    </div>
                 </Popover>
-            </div>
         );
     }
 }

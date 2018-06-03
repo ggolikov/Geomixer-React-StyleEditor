@@ -5,7 +5,10 @@ import { StyleHOC } from './StyleHOC';
 class SliderBlock extends Component {
     constructor(props) {
         super(props);
-        this.state = props;
+        this.state = {
+            error: false,
+            value: 0
+        };
     }
 
     componentDidMount() {
@@ -13,14 +16,14 @@ class SliderBlock extends Component {
     }
 
     setSliderValue = () => {
-        let param = this.state.param,
+        let { param, style }= this.props,
             inputValue = 0;
 
         // handle array param
         if (param.match(/\//gi)) {
             let paramArray = param.split('/'),
                 paramIndex = paramArray[1],
-                currentLayerStyle = this.state.style.RenderStyle,
+                currentLayerStyle = style.RenderStyle,
                 currentLabelAnchorStyle, newlabelAnchorStyle;
 
             if ('labelAnchor' in currentLayerStyle && Array.isArray(currentLayerStyle.labelAnchor)) {
@@ -33,15 +36,17 @@ class SliderBlock extends Component {
 
             param = paramArray[0];
             inputValue = currentLabelAnchorStyle[paramIndex];
-            this.setState({
-                sliderValue: inputValue,
-                inputValue: inputValue
-            });
+            if (!this.state.error) {
+                this.setState({
+                    value: inputValue,
+                    sliderValue: inputValue
+                });
+            }
         }
     }
 
     handleSlideChange = (e) => {
-        this.state.onChange(e);
+        this.props.onChange(e);
         this.setSliderValue();
     }
 
@@ -50,19 +55,26 @@ class SliderBlock extends Component {
 
         if (e.target.value === '' || Number.isNaN(num) || num < -50 || num > 50) {
             this.setState({
-                inputValue: e.target.value
+                value: e.target.value,
+                error: true
             });
             return;
+        } else {
+            this.setState({
+                value: num,
+                error: false
+            });
         }
+        // this.props.onChange(num);
 
         this.handleSlideChange(num);
     }
 
     getInputClassName = () => {
-        let num = Number(this.state.inputValue),
+        let num = Number(this.state.value),
             className = 'gmx-style-editor-input-small gmx-style-editor-right';
 
-        if (this.state.inputValue === '' || Number.isNaN(num) || num < -50 || num > 50) {
+        if (this.state.error) {
             className += ' gmx-style-editor-input-error';
         }
 
@@ -81,7 +93,11 @@ class SliderBlock extends Component {
                     labelRenderer={false}
                     onChange={this.handleSlideChange}
                 / >
-                <input className={this.getInputClassName()} value={this.state.inputValue} onChange={this.handleInputChange}/>
+                <input
+                    type="number"
+                    min={-50}
+                    max={50}
+                    className={this.getInputClassName()} value={this.state.value} onChange={this.handleInputChange}/>
             </div>
         );
     }
