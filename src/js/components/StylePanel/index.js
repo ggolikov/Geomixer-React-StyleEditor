@@ -66,6 +66,7 @@ class StylePanel extends Component {
                         style={style}
                         index={index}
                         param='weight'
+                        defaultValue={1}
                     />
                     <ColorPickerBlock
                         layer={layer}

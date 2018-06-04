@@ -60,7 +60,7 @@ class StyleSelectorItem extends Component {
 
         let styleName = isNameEditable ?
             <EditableText
-                placeholder={"изменить название стиля"}
+                placeholder={"имя"}
                 defaultValue={styleNameValue}
                 onChange={this.setStyleName}
                 onConfirm={this.confirmStyleName} /> :

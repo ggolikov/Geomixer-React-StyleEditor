@@ -36,17 +36,27 @@ class StylesEditor extends Component {
             .then(data => this.setState({attrs: data.Result}));
     }
 
+    replaceStyle = (oldStyle, newStyle) => {
+        while (oldStyle.length) {
+            oldStyle.pop();
+        }
+
+        for (var i = 0; i < newStyle.length; i++) {
+            oldStyle.push(newStyle[i]);
+        }
+    }
+
     changeStyle = (e, data) => {
-        let { layer } = this.props,
+        let { layer, styles } = this.props,
             { type } = data,
-            styles;
+            layerStyles;
 
         if (type === 'changeCurrent') {
             let { index } = data;
             console.log('changed current');
             this.setState({ currentStyleIndex: index });
         } else if (type === 'addStyle') {
-            styles = layer.getStyles();
+            // styles = layer.getStyles();
             console.log('было');
             console.log(styles.length);
 
@@ -55,11 +65,12 @@ class StylesEditor extends Component {
             console.log(styles.length);
             layer.setStyles(styles);
             // styleEditor.setStyles(layer, styles);
-            console.log(layer.getStyles());
-            this.setState({ styles });
+            // console.log(layer.getStyles());
+            this.setState({
+                currentStyleIndex: styles.length - 1 >= 0 ? styles.length - 1 : 0
+             });
         } else if (type === 'removeStyle') {
             let { index } = data;
-            styles = layer.getStyles();
             console.log('было');
             console.log(styles.length);
 
@@ -68,17 +79,15 @@ class StylesEditor extends Component {
             console.log(styles.length);
             layer.setStyles(styles);
             // styleEditor.setStyles(layer, styles);.
-            console.log(layer.getStyles());
             this.setState({
-                styles: styles,
                 currentStyleIndex: 0
              });
         }
     }
 
     render() {
-        let { layer, env } = this.props,
-            { styles, currentStyleIndex, attrs } = this.state,
+        let { layer, styles, env } = this.props,
+            { currentStyleIndex, attrs } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = styles[currentStyleIndex];
 
