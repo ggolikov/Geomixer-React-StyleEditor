@@ -1,5 +1,8 @@
 const convertColor = (color, to) => {
-    const isHex = typeof color === 'string' && color.indexOf('#') !== -1;
+    const isHex = typeof color === 'string';
+
+    if (isHex && color.indexOf('#') === -1) color = '#'+ color;
+    
     if (to === 'hex') {
         if (isHex) {
             return color;

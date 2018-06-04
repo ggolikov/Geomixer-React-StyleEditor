@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StyleSelectorItem from './StyleSelectorItem';
 import StyleSelectorHandlersPanel from './StyleSelectorHandlersPanel';
-import { createDefaultStyle } from '../../../utils';
+import styleEditor from '../../../StyleEditor';
 
 class StylesPopover extends Component {
     constructor(props) {
@@ -22,30 +22,37 @@ class StylesPopover extends Component {
 
     handleChange = (e) => {
         let data = {
-            currentStyleIndex: this.state.currentStyleIndex
+            type: 'changeCurrent',
+            index: this.state.currentStyleIndex
         };
+
         this.setState({currentStyleIndex: null});
         this.props.onChange(e, data);
     }
 
-    addStyle = () => {
-        this.props.styles.push(createDefaultStyle());
-        this.setState({styles: this.props.styles});
+    addStyle = (e) => {
+        let data = {
+            type: 'addStyle'
+        };
+        this.props.onChange(e, data);
     }
 
     removeStyle = (index) => {
         if (!index && index !== 0) {return};
-        this.props.styles.splice(index, 1);
+        let data = {
+            type: 'removeStyle',
+            index: index
+        };
+        this.props.onChange(null, data);
 
         this.setState({
-            styles: this.props.styles,
             currentStyleIndex: null
         });
     }
 
     render() {
-        let { layer } = this.props,
-            { styles, currentStyleIndex } = this.state,
+        let { layer, styles } = this.props,
+            { currentStyleIndex } = this.state,
             currentStyle = styles[currentStyleIndex],
             itemCurrent = currentStyleIndex !== null && typeof currentStyleIndex !== 'undefined',
             onStyleClick = this.onStyleClick.bind(this);
@@ -54,7 +61,7 @@ class StylesPopover extends Component {
                 let isCurrent = style === currentStyle;
 
                 return <StyleSelectorItem
-                        key={style.Filter}
+                        key={style.Name || style.Filter}
                         layer={layer}
                         style={style}
                         index={index}

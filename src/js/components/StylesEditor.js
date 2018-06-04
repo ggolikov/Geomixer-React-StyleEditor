@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { Tab, Tabs } from '@blueprintjs/core';
-import { applyStylesToTree, loadAttrValues } from '../utils';
+import { createDefaultStyle, applyStylesToTree, loadAttrValues } from '../utils';
 import Header from './common/Header';
 import StylesSelector from './common/StylesSelector';
 import FilterPanel from './FilterPanel';
 import StylePanel from './StylePanel';
 import PopupPanel from './PopupPanel';
+import styleEditor from '../StyleEditor';
 
 class StylesEditor extends Component {
     constructor(props) {
         super(props);
 
+        var _this = this;
+
         this.state = {
             currentStyleIndex: props.currentStyleIndex,
+            styles: props.layer.getStyles(),
             attrs: []
         };
     }
@@ -33,15 +37,48 @@ class StylesEditor extends Component {
     }
 
     changeStyle = (e, data) => {
-        let { currentStyleIndex } = data;
-        console.log('changed');
+        let { layer } = this.props,
+            { type } = data,
+            styles;
 
-        this.setState({ currentStyleIndex });
+        if (type === 'changeCurrent') {
+            let { index } = data;
+            console.log('changed current');
+            this.setState({ currentStyleIndex: index });
+        } else if (type === 'addStyle') {
+            styles = layer.getStyles();
+            console.log('было');
+            console.log(styles.length);
+
+            styles.push(createDefaultStyle());
+            console.log('стало');
+            console.log(styles.length);
+            layer.setStyles(styles);
+            // styleEditor.setStyles(layer, styles);
+            console.log(layer.getStyles());
+            this.setState({ styles });
+        } else if (type === 'removeStyle') {
+            let { index } = data;
+            styles = layer.getStyles();
+            console.log('было');
+            console.log(styles.length);
+
+            styles.splice(index, 1);
+            console.log('стало');
+            console.log(styles.length);
+            layer.setStyles(styles);
+            // styleEditor.setStyles(layer, styles);.
+            console.log(layer.getStyles());
+            this.setState({
+                styles: styles,
+                currentStyleIndex: 0
+             });
+        }
     }
 
     render() {
-        let { layer, styles, env } = this.props,
-            {currentStyleIndex, attrs} = this.state,
+        let { layer, env } = this.props,
+            { styles, currentStyleIndex, attrs } = this.state,
             layerProperties = layer.getGmxProperties && layer.getGmxProperties(),
             style = styles[currentStyleIndex];
 

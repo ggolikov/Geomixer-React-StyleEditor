@@ -75,6 +75,8 @@ export const StyleHOC = (InnerComponent) => class extends Component {
 
         style = _.extend(style, newStyle);
 
+        styleEditor.clearStyle(style);
+
         this.setState({ style });
 
         styleEditor.setStyle(layer, style, index);

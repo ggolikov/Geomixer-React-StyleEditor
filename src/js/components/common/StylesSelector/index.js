@@ -10,10 +10,6 @@ class StylesSelector extends Component {
         super(props);
     }
 
-    handleChange = (e) => {
-        this.props.onChange(e);
-    }
-
     toggleStylesList = () => {
         this.setState({
             stylesListShown: !this.state.stylesListShown
@@ -27,7 +23,8 @@ class StylesSelector extends Component {
     render() {
         const { layer, styles, index } = this.props,
             currentStyle = styles[index];
-
+        console.log('rendered in list');
+        console.log(styles);
         let stylesPopover = (
             <StylesPopover
                 layer={layer}

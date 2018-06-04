@@ -49,7 +49,7 @@ class ShowPopupSettings extends Component {
                         type="radio"
                         name="contact"
                         value="DisableBalloonOnClick"
-                        defaultChecked={!style.DisableBalloonOnClick}
+                        defaultChecked={style.DisableBalloonOnClick || false}
                         onClick={this.handleClick}
                     />
                         {window._gtxt('при клике')}
@@ -60,7 +60,7 @@ class ShowPopupSettings extends Component {
                         type="radio"
                         name="contact"
                         value="DisableBalloonOnMouseMove"
-                        defaultChecked={!style.DisableBalloonOnMouseMove}
+                        defaultChecked={style.DisableBalloonOnMouseMove || true}
                         onClick={this.handleClick}
                     />
                         {window._gtxt('при наведении')}
