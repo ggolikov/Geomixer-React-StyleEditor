@@ -34,10 +34,57 @@ class StyleEditor extends EventTarget {
     }
 
     setStyle = (layer, style, index) => {
-        let copyStyle = _.extend({}, style);
+        let copyStyle;
 
-        this.clearStyle(copyStyle);
+        this.clearStyle(style);
+
+        copyStyle = _.extend({}, style);
+
+        if (copyStyle.HoverStyle) delete copyStyle.HoverStyle;
+
         layer.setStyle(copyStyle, index, true);
+    }
+
+    setHoverStyle = (layer) => {
+        let props = layer.getGmxProperties && layer.getGmxProperties();
+
+        if (props) {
+            let gmxStyles = props.gmxStyles;
+            if (!gmxStyles || !gmxStyles.styles) return;
+
+            let styles = gmxStyles.styles;
+
+            for (var i = 0; i < styles.length; i++) {
+                let style = styles[i];
+                style.HoverStyle = this._setHoverStyle(style);
+            }
+
+            layer.setStyles(styles);
+        }
+    }
+
+    _setHoverStyle = (style) => {
+        let renderStyle = style.RenderStyle,
+            hoverStyle = {};
+
+        if (renderStyle) {
+
+            for (var key in renderStyle) {
+                if (renderStyle.hasOwnProperty(key)) {
+                    hoverStyle[key] = renderStyle[key];
+                }
+
+                if (key === 'weight') {
+                    if (renderStyle[key] < 2) {
+                        hoverStyle[key] = 2;
+                    } else {
+                        hoverStyle[key] = renderStyle[key] + 1;
+                    }
+                }
+            }
+        }
+        console.log(hoverStyle);
+        return hoverStyle;
     }
 
     clearStyle = (style) => {

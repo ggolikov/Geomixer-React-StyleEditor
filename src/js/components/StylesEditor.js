@@ -12,25 +12,22 @@ class StylesEditor extends Component {
     constructor(props) {
         super(props);
 
-        var _this = this;
-
         this.state = {
             currentStyleIndex: props.currentStyleIndex,
-            styles: props.layer.getStyles(),
             attrs: []
         };
     }
 
     componentWillMount() {
-        const { layer, currentStyleIndex } = this.props,
+        let { layer, styles, currentStyleIndex } = this.props,
             gmxProps = layer.getGmxProperties && layer.getGmxProperties(),
             layerID = gmxProps.LayerID;
 
-        if (currentStyleIndex) {
-            this.setState({ currentStyleIndex })
-        } else {
-            this.setState({currentStyleIndex: 0})
-        }
+        currentStyleIndex = currentStyleIndex || 0;
+
+        this.setState({
+            currentStyleIndex: currentStyleIndex
+        });
 
         loadAttrValues(layerID)
             .then(data => this.setState({attrs: data.Result}));
@@ -49,6 +46,7 @@ class StylesEditor extends Component {
     changeStyle = (e, data) => {
         let { layer, styles } = this.props,
             { type } = data,
+            geometryType = layer.getGmxProperties().GeometryType,
             layerStyles;
 
         if (type === 'changeCurrent') {
@@ -56,16 +54,13 @@ class StylesEditor extends Component {
             console.log('changed current');
             this.setState({ currentStyleIndex: index });
         } else if (type === 'addStyle') {
-            // styles = layer.getStyles();
             console.log('было');
             console.log(styles.length);
 
-            styles.push(createDefaultStyle());
+            styles.push(createDefaultStyle(geometryType));
             console.log('стало');
             console.log(styles.length);
             layer.setStyles(styles);
-            // styleEditor.setStyles(layer, styles);
-            // console.log(layer.getStyles());
             this.setState({
                 currentStyleIndex: styles.length - 1 >= 0 ? styles.length - 1 : 0
              });

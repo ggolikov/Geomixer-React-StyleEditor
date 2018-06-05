@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { StylesEditor } from './components/StylesEditor';
 import { clearStyle } from './utils';
+import styleEditor from './StyleEditor';
 
 const nsGmx = window.nsGmx || {};
 
@@ -16,6 +17,10 @@ const dataHandler = function (gmxMap) {
     // const layer = gmxMap.layersByID['63DC5EC8318744FFBA2075ED74FF456F'], // polys
         props = layer.getGmxProperties(),
         layerStyles = props.gmxStyles.styles;
+
+        gmxMap.layers.forEach(l => {
+            styleEditor.setHoverStyle(l);
+        })
 
     // layerStyles = clearStyles(layerStyles);
 

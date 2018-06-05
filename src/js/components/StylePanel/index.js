@@ -24,7 +24,7 @@ class StylePanel extends Component {
             geometryType = layer.getGmxProperties().GeometryType,
             isPoint  = geometryType === 'point',
             isLine  = geometryType === 'linestring',
-            fillBlock, iconUrlBlock;
+            fillBlock, iconUrlBlock, iconSizeBlock;
 
         fillBlock = !isLine ? (
             <StyleSettingsBlock size='small' txt={window._gtxt('Заливка')} >
@@ -34,6 +34,20 @@ class StylePanel extends Component {
                     param='fillColor'
                     alphaParam='fillOpacity'
                     index={index}
+                />
+            </StyleSettingsBlock>
+        ) : null;
+
+        iconSizeBlock = isPoint ? (
+            <StyleSettingsBlock size='small' txt={window._gtxt('Размер иконки')} >
+                <InputBlock
+                    layer={layer}
+                    style={style}
+                    index={index}
+                    param='iconSize'
+                    size='small'
+                    position='left'
+                    defaultValue={12}
                 />
             </StyleSettingsBlock>
         ) : null;
@@ -78,6 +92,7 @@ class StylePanel extends Component {
                 </StyleSettingsBlock>
 
                 {iconUrlBlock}
+                {iconSizeBlock}
 
                 <Label txt={window._gtxt('Подпись стиля')} className={labelClassName} />
                 <StyleSettingsBlock size='big' txt={window._gtxt('Текст подписи')} >

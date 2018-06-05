@@ -16,6 +16,11 @@ import './src/js/translationsHash.js';
             afterViewer: function (params, map) {
     			if (window.nsGmx) {
                     if (window.newStyles) {
+
+                        window.nsGmx.gmxMap.layers.forEach(l => {
+                            styleEditor.setHoverStyle(l);
+                        })
+
                         styleEditor.addEventListener('saveStyles', (e) => {
                             let { layer } = e.detail,
                                 gmxProps = layer.getGmxProperties && layer.getGmxProperties(),

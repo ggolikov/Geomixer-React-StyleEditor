@@ -1,7 +1,7 @@
 import generateStyle from './generateStyle';
 
-const createDefaultStyle = () => {
-    let renderStyle = generateStyle();
+const createDefaultStyle = (type) => {
+    let renderStyle = generateStyle(type);
 
     let style = {
         Balloon: '',

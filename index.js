@@ -1,7 +1,6 @@
 import './src/js/translations.js';
 import './src/js/translationsHash.js';
 import { dataHandler } from './src/js/dataHandler.js';
-// import './src/css/gmx.css';
 
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 var m = document.querySelector('#map');
