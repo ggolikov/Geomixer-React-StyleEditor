@@ -80,3 +80,30 @@
     margin-right: 0;
     border: 1px solid 1px solid rgba(216, 225, 232, 1);
 }
+
+/*COLORPICKER*/
+.gmx-style-editor-color-picker-container {
+    border: 1px solid rgba(0,0,0,0.2);
+    vertical-align: middle;
+}
+
+.gmx-style-editor-color-picker-inner {
+    width: 100;
+    height: 100%;
+    border: 3px solid rgba(255,255,255,1);
+    cursor: pointer;
+}
+
+.gmx-style-editor-color-picker-popover {
+    position: absolute;
+    right: 20px;
+    z-index: 200000000000;
+}
+
+.gmx-style-editor-color-picker-cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}

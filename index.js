@@ -21,9 +21,9 @@ let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
 let mapPromise = L.gmx.loadMap('4ZICS', {leafletMap: map});
 
 mapPromise.then((gmxMap) => {
-    // const layer = gmxMap.layersByID['05D50D053F8A495BB3F59A9AEFE976B8']; // points
+    const layer = gmxMap.layersByID['B28C60D95898437EA420D80B18DAE41D']; // points
     // const layer = gmxMap.layersByID['FBCEEB06FB004A2DBD568CDBDDBAFAB2']; // lines
-    const layer = gmxMap.layersByID['6963F0B5F73A4147889847555E0C0AF3']; // lines2
+    // const layer = gmxMap.layersByID['6963F0B5F73A4147889847555E0C0AF3']; // lines2
     // const layer = gmxMap.layersByID['63DC5EC8318744FFBA2075ED74FF456F']; // polys
     map.fitBounds(layer.getBounds());
     dataHandler(gmxMap);

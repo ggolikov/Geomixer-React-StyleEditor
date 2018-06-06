@@ -18,7 +18,12 @@ class CurrentStyle extends Component {
         });
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps(nextProps) {
+        let { style } = nextProps;
+
+        if (style !== this.state.style) {
+            this.setState({ style });
+        }
 
     }
 

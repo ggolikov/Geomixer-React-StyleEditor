@@ -1,42 +1,68 @@
 import React from 'react';
 import ColorPicker from 'rc-color-picker';
+import { SketchPicker } from 'react-color';
 import { StyleHOC } from './StyleHOC';
 import styleEditor from '../../StyleEditor';
 import { convertColor } from '../../utils';
 import _ from 'underscore';
 
-const ColorPickerBlock = (props) => {
+class ColorPickerBlock extends React.Component {
+    constructor(props){
+        super(props);
 
-    const parseColor = color => parseInt('0x' + color.replace(/#/, ''));
-    const hexColor = convertColor(props.style.RenderStyle[props.param], 'hex');
+        let color, alpha;
 
-    let alpha;
-
-    if (props.alphaParam) {
-        if (props.alphaParam in props.style.RenderStyle) {
-            alpha = props.style.RenderStyle[props.alphaParam] > 1 ? props.style.RenderStyle[props.alphaParam] : props.style.RenderStyle[props.alphaParam] * 100;
+        if (props.alphaParam) {
+            if (props.alphaParam in props.style.RenderStyle) {
+                alpha = props.style.RenderStyle[props.alphaParam] > 1 ? props.style.RenderStyle[props.alphaParam] / 100 : props.style.RenderStyle[props.alphaParam];
+            } else {
+                alpha = 1;
+            }
         } else {
-            alpha = 100;
+            alpha = 1;
         }
-    } else {
-        alpha = 100;
+
+        color = this.dec2rgba(convertColor(props.style.RenderStyle[props.param], 'int'), String(alpha));
+
+        this.state = {
+            displayColorPicker: false,
+            color: color
+        }
     }
 
-    const onChange = (color, e) => {
-        let { layer, param, style, index } = props,
+    dec2rgba = (i, a) => {				// convert decimal to rgb
+        let r = String((i >> 16) & 255),
+            g = String((i >> 8) & 255),
+            b = String(i & 255);
+
+        return { r, g, b, a };
+    }
+
+    handleClick = () => {
+        this.setState({ displayColorPicker: !this.state.displayColorPicker })
+    }
+
+    handleClose = () => {
+        this.setState({ displayColorPicker: false })
+    }
+
+    parseColor = color => parseInt('0x' + color.replace(/#/, ''))
+
+    onChange = (color) => {
+        let { layer, param, style, index } = this.props,
             extendingStyle,
             newRenderStyle, newHoverStyle;
 
         extendingStyle = {
-            [param]: convertColor(color.color, 'int')
+            [param]: convertColor(color.hex, 'int')
         };
 
         if (param === 'color') {
-            extendingStyle.opacity = color.alpha / 100;
+            extendingStyle.opacity = color.rgb.a;
         };
 
         if (param === 'fillColor') {
-            extendingStyle.fillOpacity = color.alpha / 100;
+            extendingStyle.fillOpacity = color.rgb.a;
         }
 
         newRenderStyle = _.extend(style.RenderStyle, extendingStyle);
@@ -47,19 +73,35 @@ const ColorPickerBlock = (props) => {
         });
 
         styleEditor.setStyle(layer, style, index);
+
+        this.setState({ color: color.rgb });
     };
 
-    return (
-        <ColorPicker
-            defaultColor={hexColor}
-            color={hexColor}
-            alpha={alpha}
-            onChange={onChange}
-            // onClose={this.closeHandler}
-            placement="topLeft"
-            className="gmx-style-editor-color-picker-container gmx-style-editor-right"
-        />
-    )
+    render() {
+        let panelStyle={
+            backgroundColor: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`
+        }
+
+        return (
+            <div className="gmx-style-editor-color-picker-container gmx-style-editor-right">
+                <div
+                    className="gmx-style-editor-color-picker-inner"
+                    style={panelStyle}
+                    onClick={ this.handleClick }
+                />
+                { this.state.displayColorPicker ?
+                    <div className="gmx-style-editor-color-picker-popover">
+                        <div className="gmx-style-editor-color-picker-cover" onClick={ this.handleClose }/>
+                        <SketchPicker
+                            presetColors={[]}
+                            color={ this.state.color }
+                            onChange={ this.onChange } />
+                    </div> : null
+                }
+            </div>
+
+        )
+    }
 };
 
-export default StyleHOC(ColorPickerBlock);
+export default ColorPickerBlock;

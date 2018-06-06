@@ -61,13 +61,13 @@ class Suggestor extends Component {
     }
 
     render() {
-        let attrs = this.props.columns.indexOf('attrs' !== -1),
+        let attrs = this.props.columns.indexOf('attrs') !== -1,
             attrsHeaderBlock,
             attrsBlock,
-            operators = this.props.columns.indexOf('operators' !== -1),
+            operators = this.props.columns.indexOf('operators') !== -1,
             operatorsHeaderBlock,
             operatorsBlock,
-            values = this.props.columns.indexOf('values' !== -1),
+            values = this.props.columns.indexOf('values') !== -1,
             valuesHeaderBlock,
             valuesBlock;
 
