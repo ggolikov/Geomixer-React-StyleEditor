@@ -13,6 +13,10 @@ const insertAtCursor = (e, attrsValueWrapper, textArea, type) => {
         }
     }
 
+    if (type === 'values') {
+        value = `'${value}'`;
+    }
+
     value = value + ' ';
 
     if (document.selection) {

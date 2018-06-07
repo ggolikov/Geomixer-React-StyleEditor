@@ -26,12 +26,12 @@ import './src/js/translationsHash.js';
                                 gmxProps = layer.getGmxProperties && layer.getGmxProperties(),
                                 div = $(window._queryMapLayers.buildedTree).find("div[LayerID='" + gmxProps.name + "']")[0],
                                 styles = gmxProps.gmxStyles.styles,
-                                layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu'),
-                                styleEditorContainer = nsGmx.layersTreePane.querySelector('.gmx-style-editor');
+                                layersTreeContainer = nsGmx.layersTreePane,
+                                styleEditorContainer = nsGmx.layersTreePane.parentElement.querySelector('.gmx-style-editor');
 
                             window._mapHelper.updateTreeStyles(styles, div, window._layersTree);
 
-                            nsGmx.layersTreePane.removeChild(styleEditorContainer);
+                            nsGmx.layersTreePane.parentElement.removeChild(styleEditorContainer);
                             layersTreeContainer.style.display = 'block';
 
                         });
@@ -42,11 +42,11 @@ import './src/js/translationsHash.js';
                                 layer = nsGmx.gmxMap.layersByID[layerId],
                                 gmxProps = layer.getGmxProperties && layer.getGmxProperties(),
                                 pluginContainer = document.createElement('div'),
-                                layersTreeContainer = nsGmx.layersTreePane.querySelector('.leftMenu');
+                                layersTreeContainer = nsGmx.layersTreePane;
 
                             pluginContainer.className = 'gmx-style-editor';
                             layersTreeContainer.style.display = 'none';
-                            nsGmx.layersTreePane.appendChild(pluginContainer);
+                            nsGmx.layersTreePane.parentElement.appendChild(pluginContainer);
 
                             gmxProps.gmxStyles.styles = clearStyles(gmxProps.gmxStyles.styles);
 

@@ -100,21 +100,22 @@
     float: left;
     cursor: pointer;
     padding: 0 2px 0 2px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .gmx-suggest-list-value {
     cursor: pointer;
     overflow: hidden;
+    /* overflow-y: auto; */
 }
 
 .gmx-suggest-list-value-selected {
-    background-color: #2f70e1;
+    background-color: rgba(236, 241, 245, 1);
 }
 
 .gmx-suggest-list-container {
     display: block;
-    height: 300px;
+    /* height: 300px; */
     background-color: white;
     cursor: pointer;
 }

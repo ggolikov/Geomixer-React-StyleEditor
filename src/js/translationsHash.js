@@ -1,3 +1,4 @@
+window._translationsHash = window._translationsHash || {};
 window._translationsHash.addtext('rus', {
     'Стили слоя': 'Стили слоя',
     'Уровень зума': 'Уровень зума',

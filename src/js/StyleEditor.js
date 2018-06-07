@@ -59,7 +59,7 @@ class StyleEditor extends EventTarget {
                 style.HoverStyle = this._setHoverStyle(style);
             }
 
-            layer.setStyles(styles);
+            layer.setStyles && layer.setStyles(styles);
         }
     }
 
