@@ -16,7 +16,9 @@ class LabelEditor extends Component {
     }
 
     onItemSelect = (e) => {
-        insertAtCursor(e, 'brackets', this.textArea, 'attrs');
+        if (e.target.value) {
+            insertAtCursor(e, 'brackets', this.textArea, 'attrs');
+        }
     }
 
     render() {
@@ -24,7 +26,8 @@ class LabelEditor extends Component {
             { attrs } = this.state,
             labelSuggestorColumns = ['attrs'],
             onItemSelect = this.onItemSelect.bind(this),
-            options = Object.keys(attrs).map(attribute => {
+            extendedAttrs = [''].concat(Object.keys(attrs)),
+            options = extendedAttrs.map(attribute => {
                 return (
                     <option
                         key={attribute}
@@ -44,8 +47,8 @@ class LabelEditor extends Component {
                         defaultValue={defaultValue}
                     />
                     <select
+                        onChange={onItemSelect}
                         className="gmx-style-editor-right"
-                        onChange={this.onItemSelect}
                     >
                         {options}
                     </select>

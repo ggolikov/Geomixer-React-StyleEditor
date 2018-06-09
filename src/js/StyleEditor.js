@@ -1,4 +1,5 @@
 import EventTarget from './utils/EventTarget';
+import setHoverStyle from './utils/setHoverStyle';
 import _ from 'underscore';
 
 class StyleEditor extends EventTarget {
@@ -56,35 +57,11 @@ class StyleEditor extends EventTarget {
 
             for (var i = 0; i < styles.length; i++) {
                 let style = styles[i];
-                style.HoverStyle = this._setHoverStyle(style);
+                style.HoverStyle = setHoverStyle(style);
             }
 
             layer.setStyles && layer.setStyles(styles);
         }
-    }
-
-    _setHoverStyle = (style) => {
-        let renderStyle = style.RenderStyle,
-            hoverStyle = {};
-
-        if (renderStyle) {
-
-            for (var key in renderStyle) {
-                if (renderStyle.hasOwnProperty(key)) {
-                    hoverStyle[key] = renderStyle[key];
-                }
-
-                if (key === 'weight') {
-                    if (renderStyle[key] < 2) {
-                        hoverStyle[key] = 2;
-                    } else {
-                        hoverStyle[key] = renderStyle[key] + 1;
-                    }
-                }
-            }
-        }
-        console.log(hoverStyle);
-        return hoverStyle;
     }
 
     clearStyle = (style) => {
