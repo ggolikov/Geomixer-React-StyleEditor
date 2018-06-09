@@ -1,4 +1,5 @@
 import generateStyle from './generateStyle';
+import setHoverStyle from './setHoverStyle';
 
 const createDefaultStyle = (type) => {
     let renderStyle = generateStyle(type);
@@ -14,6 +15,8 @@ const createDefaultStyle = (type) => {
         Name: '',
         RenderStyle: renderStyle
     };
+
+    style.HoverStyle = setHoverStyle(style);
 
     return style;
 }

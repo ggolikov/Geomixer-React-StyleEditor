@@ -8,11 +8,18 @@ const generateStyle = (type) => {
             fillOpacity: 0.2,
             iconSize: 8
         };
-
-    } else {
+    } else if (type === 'linestring') {
         style = {
             color: 255,
+            weight: 1,
             fillColor: 16777215
+        };
+    } else if (type === 'polygon') {
+        style = {
+            color: 255,
+            weight: 1,
+            fillColor: 16777215,
+            fillOpacity: 0.2
         };
     }
 

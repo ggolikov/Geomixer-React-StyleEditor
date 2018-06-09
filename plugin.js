@@ -36,6 +36,11 @@ import './src/js/translationsHash.js';
 
                         });
 
+                        nsGmx.leafletMap.on('layeradd', function(event) {
+                            var layer = event.layer;
+                            styleEditor.setHoverStyle(layer);
+                        });
+
                         // replace existing LayersStylesEditor function
                         nsGmx.createStylesDialog = function(treeElem, treeView, i) {
                             let layerId = treeElem.name,
